@@ -44,7 +44,7 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
      * @return 用户注册结果
      */
     @Override
-    public boolean insert(CustomerLoginEntity entity) {
+    public boolean register(CustomerLoginEntity entity) {
         return dao.insert(entity) > 0;
     }
 }

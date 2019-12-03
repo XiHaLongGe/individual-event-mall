@@ -56,28 +56,36 @@
         </div>
         <div class="row register-form">
             <div class="col-sm-4 col-sm-offset-4">
-                <form role="form" action="" method="post" class="r-form">
+                <form id="registerForm" role="form" action="" method="post" class="l-form">
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-name">用户昵称</label>--%>
-                        <input type="text" name="r-form-first-name" placeholder="用户昵称" class="r-form-first-name form-control" id="for-name">
+                        <input type="text" name="r-form-first-name" placeholder="用户昵称" class="r-form-first-name form-control" id="for-name" maxlength='6'>
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-pwd">登录密码</label>--%>
-                        <input type="text" name="r-form-last-name" placeholder="登录密码" class="r-form-last-name form-control" id="for-pwd">
+                        <input type="password" name="pwd" placeholder="登录密码" class="r-form-first-name form-control" id="password">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-confirm-pwd">确认密码</label>--%>
-                        <input type="text" name="r-form-last-name" placeholder="确认密码" class="r-form-last-name form-control" id="for-confirm-pwd">
+                        <input type="password" name="confirm-pwd" placeholder="确认密码" class="r-form-first-name form-control" id="confirmPassword">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-phone">手机号</label>--%>
-                        <input type="text" name="phone" placeholder="手机号" class="r-form-email form-control" id="for-phone">
+                        <input type="text" name="customerPhone" placeholder="手机号" class=" form-control" id="for-phone" maxlength='11'>
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-email">邮箱</label>--%>
-                        <input type="text" name="r-form-email" placeholder="邮箱" class="r-form-email form-control" id="for-email">
+                        <input type="text" name="customerEmail" placeholder="邮箱" class="r-form-email form-control" id="for-email"  maxlength='17'>
                     </div>
-                    <button type="submit" class="btn">注册</button>
+                    <div class="form-group">
+                        <div class="col-sm-7">
+                            <input type="text" name="verifyCode" placeholder="验证码" class=" form-control" id="for-verify-code"  maxlength='4'>
+                        </div>
+                        <div class="col-sm-5">
+                            <div id="verifyCodeDIV" style="width: 200px;height: 50px;"></div>
+                        </div>
+                    </div>
+                    <button id="registerBtn" type="button" class="btn">注册</button>
                 </form>
             </div>
         </div>
@@ -108,8 +116,9 @@
     </div><!-- /.modal -->
 </div>--%>
 <script src="/static/js/jquery/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/verifyCode.js"></script>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/loginAJAX.js"></script>
+<script src="/assets/js/loginAJAX.js?v=<%= System.currentTimeMillis()%>"></script>
 <script src="/assets/js/jquery.backstretch.min.js"></script>
 <script src="/assets/js/scripts.js?v=<%= System.currentTimeMillis()%>"></script>
 </body>

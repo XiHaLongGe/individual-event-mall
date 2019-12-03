@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 public class CustomerLoginServiceImplTest {
@@ -29,6 +31,6 @@ public class CustomerLoginServiceImplTest {
 
     @Test
     public void insert() {
-        System.out.println(service.insert(CustomerLoginEntity.newBuilder().loginName("admin1").loginAccount("admin1").loginPassword("admin1").build()));
+        System.out.println(service.register(CustomerLoginEntity.newBuilder().loginName("admin1").loginAccount("admin1").loginPassword("admin1").build()));
     }
 }

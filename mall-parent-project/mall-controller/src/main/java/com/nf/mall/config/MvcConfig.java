@@ -1,6 +1,5 @@
 package com.nf.mall.config;
 
-import javafx.application.Application;
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;

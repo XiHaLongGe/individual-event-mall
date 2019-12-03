@@ -29,5 +29,5 @@ public interface CustomerLoginService {
      * @param entity 用户登录信息实体类
      * @return 用户注册结果
      */
-    boolean insert(CustomerLoginEntity entity);
+    boolean register(CustomerLoginEntity entity);
 }

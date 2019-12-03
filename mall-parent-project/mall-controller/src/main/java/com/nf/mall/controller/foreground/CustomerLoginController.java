@@ -36,9 +36,9 @@ public class CustomerLoginController {
                 ResponseVO.newBuilder().code("200").msg("登录成功").data(true).build() :
                 ResponseVO.newBuilder().code("400").msg("登录失败").data(false).build();
     }
-    @RequestMapping("/insert")
+    @RequestMapping("/register")
     @ResponseBody
-    public ResponseVO insert(@RequestBody CustomerLoginEntity entity){
+    public ResponseVO register(@RequestBody CustomerLoginEntity entity){
 
         return ResponseVO.newBuilder().build();
     }
