@@ -14,6 +14,7 @@ import lombok.Data;
 public class CustomerLoginEntity {
     public CustomerLoginEntity() {
     }
+
     /**
      * customerId 用户登录id
      */

@@ -59,27 +59,29 @@
                 <form id="registerForm" role="form" action="" method="post" class="l-form">
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-name">用户昵称</label>--%>
-                        <input type="text" name="r-form-first-name" placeholder="用户昵称" class="r-form-first-name form-control" id="for-name" maxlength='6'>
+                        <input type="text" name="loginName" placeholder="用户昵称" class="r-form-first-name form-control" id="for-name" maxlength='6' value="123456">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-pwd">登录密码</label>--%>
-                        <input type="password" name="pwd" placeholder="登录密码" class="r-form-first-name form-control" id="password">
+                        <input type="password" name="loginPassword" placeholder="登录密码" class="r-form-first-name form-control" id="password" maxlength='18' value="123456">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-confirm-pwd">确认密码</label>--%>
-                        <input type="password" name="confirm-pwd" placeholder="确认密码" class="r-form-first-name form-control" id="confirmPassword">
+                        <%-- name="confirm-pwd"--%>
+                        <input type="password" placeholder="确认密码" class="r-form-first-name form-control" id="confirmPassword" maxlength='18' value="123456">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-phone">手机号</label>--%>
-                        <input type="text" name="customerPhone" placeholder="手机号" class=" form-control" id="for-phone" maxlength='11'>
+                        <input type="text" name="customerPhone" placeholder="手机号" class=" form-control" id="for-phone" maxlength='11' value="13526386954">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-email">邮箱</label>--%>
-                        <input type="text" name="customerEmail" placeholder="邮箱" class="r-form-email form-control" id="for-email"  maxlength='17'>
+                        <input type="text" name="customerEmail" placeholder="邮箱" class="r-form-email form-control" id="for-email"  maxlength='17' value="1728375643@qq.com">
                     </div>
                     <div class="form-group">
                         <div class="col-sm-7">
-                            <input type="text" name="verifyCode" placeholder="验证码" class=" form-control" id="for-verify-code"  maxlength='4'>
+                            <%--name="verifyCode"--%>
+                            <input type="text"  placeholder="验证码" class=" form-control" id="for-verify-code"  maxlength='4'>
                         </div>
                         <div class="col-sm-5">
                             <div id="verifyCodeDIV" style="width: 200px;height: 50px;"></div>

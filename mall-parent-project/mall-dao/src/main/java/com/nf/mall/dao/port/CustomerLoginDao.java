@@ -1,6 +1,8 @@
 package com.nf.mall.dao.port;
 
+import com.nf.mall.entity.CustomerInfEntity;
 import com.nf.mall.entity.CustomerLoginEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,17 +20,17 @@ public interface CustomerLoginDao {
     List<CustomerLoginEntity> getAll();
 
     /**
-     * 通过账号和密码来获得用户ID
-     * @param account 账号
-     * @param password 密码
-     * @return 返回用户ID
+     * 验证账号密码是否正确
+     * @param entity 用户登录信息实体类
+     * @return返回验证结果
      */
-    Integer verifyAndById(String account, String password);
+    Integer verifyAndById(CustomerLoginEntity entity);
 
     /**
      * 用户注册 添加账号信息
-     * @param entity 用户登录信息实体类
+     * @param customerLoginEntity 用户登录信息实体类
+     * @param customerInfEntity 用户个人信息实体类
      * @return 影响行数
      */
-    Integer insert(CustomerLoginEntity entity);
+    Integer register(@Param("loginEntity") CustomerLoginEntity customerLoginEntity, @Param("infEntity") CustomerInfEntity customerInfEntity);
 }

@@ -1,6 +1,7 @@
 package com.nf.mall.service.impl;
 
 import com.nf.mall.dao.port.CustomerLoginDao;
+import com.nf.mall.entity.CustomerInfEntity;
 import com.nf.mall.entity.CustomerLoginEntity;
 import com.nf.mall.service.port.CustomerLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,23 +29,23 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
 
     /**
      * 验证账号密码是否正确
-     * @param account  账号
-     * @param password 密码
-     * @return 返回验证结果
+     * @param entity 用户登录信息实体类
+     * @return返回验证结果
      */
     @Override
-    public boolean verify(String account, String password) {
-        Integer result = dao.verifyAndById(account, password);
+    public boolean verify(CustomerLoginEntity entity) {
+        Integer result = dao.verifyAndById(entity);
         return result != null && result > 0;
     }
 
     /**
-     * 判断用户注册信息是否添加成功
-     * @param entity 用户登录信息实体类
-     * @return 用户注册结果
+     * 用户注册 添加账号信息
+     * @param customerLoginEntity 用户登录信息实体类
+     * @param customerInfEntity 用户个人信息实体类
+     * @return 影响行数
      */
     @Override
-    public boolean register(CustomerLoginEntity entity) {
-        return dao.insert(entity) > 0;
+    public boolean register(CustomerLoginEntity customerLoginEntity, CustomerInfEntity customerInfEntity) {
+        return dao.register(customerLoginEntity, customerInfEntity) > 0;
     }
 }

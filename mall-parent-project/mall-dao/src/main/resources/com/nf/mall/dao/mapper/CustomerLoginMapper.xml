@@ -15,12 +15,19 @@
     <select id="verifyAndById" resultType="Integer">
         select
             customer_id
-        from customer_login where login_account = #{param1} and login_password = #{param2}
+        from customer_login where login_account = #{loginAccount} and login_password = #{loginPassword}
     </select>
-
-    <insert id="insert">
+    <!--
+        下面是注册的相关语句
+        LAST_INSERT_ID() ： 获取到当前事务中最后添加数据的id
+    -->
+    <insert id="register">
         insert into
-        customer_login(<include refid="customerLoginParams"/>)
-        values(#{loginAccount},#{loginName},#{loginPassword})
+            customer_login(<include refid="customerLoginParams"/>)
+        values(#{loginEntity.loginAccount},#{loginEntity.loginName},#{loginEntity.loginPassword})
+        ;
+        insert into
+            customer_inf(customer_id, customer_phone, customer_email)
+        values(LAST_INSERT_ID(), #{infEntity.customerPhone},#{infEntity.customerEmail})
     </insert>
 </mapper>
