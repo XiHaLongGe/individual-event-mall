@@ -44,7 +44,7 @@
                 <form id="loginForm" role="form" action="" method="post" class="l-form">
                     <div class="form-group">
                         <%--<label class="sr-only" for="l  -form-username">Username</label>--%>
-                        <input type="text" name="loginAccount" placeholder="账号" class="l-form-username form-control" id="accountID">
+                        <input type="text" name="loginAccount" placeholder="账号" class="l-form-username form-control" id="accountID"  onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="l-form-password">Password</label>--%>
