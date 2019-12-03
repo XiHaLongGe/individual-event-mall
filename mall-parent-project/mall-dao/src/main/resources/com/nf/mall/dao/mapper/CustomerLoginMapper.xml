@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.CustomerLoginDao">
+    <sql id="customerLoginParams">
+        login_account, login_name, login_password
+    </sql>
+
+    <select id="getAll" resultType="com.nf.mall.entity.CustomerLoginEntity">
+        select
+            customer_id, <include refid="customerLoginParams"/>, user_stats
+        from customer_login
+    </select>
+    <select id="verifyAndById" resultType="Integer">
+        select
+            customer_id
+        from customer_login where login_account = #{param1} and login_password = #{param2}
+    </select>
+
+    <insert id="insert">
+        insert into
+        customer_login(<include refid="customerLoginParams"/>)
+        values(#{loginAccount},#{loginName},#{loginPassword})
+    </insert>
+</mapper>
