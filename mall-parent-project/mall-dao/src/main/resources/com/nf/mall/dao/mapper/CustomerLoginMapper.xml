@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nf.mall.dao.port.CustomerLoginDao">
     <sql id="customerLoginParams">
-        login_account, login_name, login_password
+        login_account, login_name, login_password, activate_code
     </sql>
 
     <select id="getAll" resultType="com.nf.mall.entity.CustomerLoginEntity">
@@ -24,10 +24,15 @@
     <insert id="register">
         insert into
             customer_login(<include refid="customerLoginParams"/>)
-        values(#{loginEntity.loginAccount},#{loginEntity.loginName},#{loginEntity.loginPassword})
+        values(#{loginEntity.loginAccount},#{loginEntity.loginName},#{loginEntity.loginPassword},#{loginEntity.activateCode})
         ;
         insert into
             customer_inf(customer_id, customer_phone, customer_email)
         values(LAST_INSERT_ID(), #{infEntity.customerPhone},#{infEntity.customerEmail})
     </insert>
+
+    <!--修改账号状态-->
+    <update id="activate">
+        update customer_login set user_stats = 1 where activate_code = #{code}
+    </update>
 </mapper>

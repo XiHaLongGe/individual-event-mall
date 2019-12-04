@@ -31,4 +31,12 @@ public interface CustomerLoginService {
      * @return 影响行数
      */
     boolean register(CustomerLoginEntity customerLoginEntity, CustomerInfEntity customerInfEntity);
+
+
+    /**
+     * 根据激活码来修改用户账号的状态，也就是激活用户账号
+     * @param code 激活码
+     * @return 激活结果的影响行数
+     */
+    boolean activate(String code);
 }

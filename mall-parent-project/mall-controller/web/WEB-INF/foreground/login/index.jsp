@@ -14,15 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/form-elements.css">
-    <link rel="stylesheet" href="/assets/css/style.css?v=<%= System.currentTimeMillis()%>">
-    <link rel="shortcut icon" href="/assets/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="stylesheet" href="/static/login/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/login/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/login/assets/css/form-elements.css">
+    <link rel="stylesheet" href="/static/login/assets/css/style.css?v=<%= System.currentTimeMillis()%>">
+    <link rel="shortcut icon" href="/static/login/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/login/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/login/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/login/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/login/assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
 <!-- Top content -->
@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-email">邮箱</label>--%>
-                        <input type="text" name="customerEmail" placeholder="邮箱" class="r-form-email form-control" id="for-email"  maxlength='17' value="1728375643@qq.com">
+                        <input type="text" name="customerEmail" placeholder="邮箱" class="r-form-email form-control" id="for-email"  maxlength='17' value="1530937232@qq.com">
                     </div>
                     <div class="form-group">
                         <div class="col-sm-7">
@@ -118,10 +118,10 @@
     </div><!-- /.modal -->
 </div>--%>
 <script src="/static/js/jquery/jquery-3.3.1.min.js"></script>
-<script src="/assets/js/verifyCode.js"></script>
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/loginAJAX.js?v=<%= System.currentTimeMillis()%>"></script>
-<script src="/assets/js/jquery.backstretch.min.js"></script>
-<script src="/assets/js/scripts.js?v=<%= System.currentTimeMillis()%>"></script>
+<script src="/static/login/assets/js/verifyCode.js"></script>
+<script src="/static/login/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/login/assets/js/loginAJAX.js?v=<%= System.currentTimeMillis()%>"></script>
+<script src="/static/login/assets/js/jquery.backstretch.min.js"></script>
+<script src="/static/login/assets/js/scripts.js?v=<%= System.currentTimeMillis()%>"></script>
 </body>
 </html>

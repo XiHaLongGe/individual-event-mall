@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mall-controller" />
+        <module name="mall-dao" />
         <module name="mall-entity" />
         <module name="mall-service" />
-        <module name="mall-dao" />
+        <module name="mall-controller" />
+        <module name="mall-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="mall-entity" target="1.8" />
       <module name="mall-parent-project" target="1.8" />
       <module name="mall-service" target="1.8" />
+      <module name="mall-util" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

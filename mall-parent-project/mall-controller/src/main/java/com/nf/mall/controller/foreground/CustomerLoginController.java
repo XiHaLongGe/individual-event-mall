@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author: LJP
@@ -53,7 +53,20 @@ public class CustomerLoginController {
         CustomerLoginEntity customerLoginEntity = CustomerLoginEntity.newBuilder().loginAccount(PasswordUtil.randomGenerate(11)).loginName(registerVO.getLoginName()).loginPassword(password).build();
         CustomerInfEntity customerInfEntity = CustomerInfEntity.newBuilder().customerPhone(registerVO.getCustomerPhone()).customerEmail(registerVO.getCustomerEmail()).build();
         return service.register(customerLoginEntity, customerInfEntity) ?
-                ResponseVO.newBuilder().code("200").msg("注册成功").data(true).build() :
+                ResponseVO.newBuilder().code("200").msg("注册成功").data(true).build():
                 ResponseVO.newBuilder().code("400").msg("注册失败").data(false).build();
+    }
+    /*@RequestMapping("/activate")
+    public ResponseVO activate(String code){
+        return service.activate(code) ?
+                ResponseVO.newBuilder().code("200").msg("激活成功").data(true).build():
+                ResponseVO.newBuilder().code("400").msg("激活失败").data(false).build();
+    }*/
+    @RequestMapping("/activate")
+    public ModelAndView activate(String code){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("foreground/login/activate");
+        modelAndView.addObject("activate",service.activate(code));
+        return modelAndView;
     }
 }

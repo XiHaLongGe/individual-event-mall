@@ -32,6 +32,10 @@ public class CustomerLoginEntity {
      */
     private String loginPassword;
     /**
+     * activateCode : 账号激活码
+     */
+    private String activateCode;
+    /**
      * userStats 用户账号状态
      */
     private Byte userStats;
@@ -41,6 +45,7 @@ public class CustomerLoginEntity {
         loginAccount = builder.loginAccount;
         loginName = builder.loginName;
         loginPassword = builder.loginPassword;
+        activateCode = builder.activateCode;
         userStats = builder.userStats;
     }
 
@@ -54,16 +59,17 @@ public class CustomerLoginEntity {
         builder.loginAccount = copy.getLoginAccount();
         builder.loginName = copy.getLoginName();
         builder.loginPassword = copy.getLoginPassword();
+        builder.activateCode = copy.getActivateCode();
         builder.userStats = copy.getUserStats();
         return builder;
     }
-
 
     public static final class Builder {
         private Integer customerId;
         private String loginAccount;
         private String loginName;
         private String loginPassword;
+        private String activateCode;
         private Byte userStats;
 
         private Builder() {
@@ -86,6 +92,11 @@ public class CustomerLoginEntity {
 
         public Builder loginPassword(String val) {
             loginPassword = val;
+            return this;
+        }
+
+        public Builder activateCode(String val) {
+            activateCode = val;
             return this;
         }
 

@@ -4,8 +4,11 @@ import com.nf.mall.dao.port.CustomerLoginDao;
 import com.nf.mall.entity.CustomerInfEntity;
 import com.nf.mall.entity.CustomerLoginEntity;
 import com.nf.mall.service.port.CustomerLoginService;
+import com.nf.mall.util.CodeUtil;
+import com.nf.mall.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -45,7 +48,26 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
      * @return 影响行数
      */
     @Override
+    @Transactional(rollbackFor = Throwable.class)
     public boolean register(CustomerLoginEntity customerLoginEntity, CustomerInfEntity customerInfEntity) {
-        return dao.register(customerLoginEntity, customerInfEntity) > 0;
+        /**
+         * CodeUtil.generateUniqueCode() : 获取到激活码
+         */
+        String code = CodeUtil.generateUniqueCode();
+        if(dao.register(CustomerLoginEntity.newBuilder(customerLoginEntity).activateCode(code).build(), customerInfEntity) > 0){
+            new Thread(new MailUtil(customerInfEntity.getCustomerEmail(), code)).start();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 根据激活码来修改用户账号的状态，也就是激活用户账号
+     * @param code 激活码
+     * @return 激活结果的影响行数
+     */
+    @Override
+    public boolean activate(String code) {
+        return dao.activate(code) > 0;
     }
 }

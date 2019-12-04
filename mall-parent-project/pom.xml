@@ -13,6 +13,7 @@
         <module>mall-service</module>
         <module>mall-controller</module>
         <module>mall-entity</module>
+        <module>mall-util</module>
     </modules>
 
     <properties>
@@ -35,6 +36,7 @@
         <mysql.version>5.1.47</mysql.version>
         <junit.version>4.12</junit.version>
         <jackson.version>2.10.1</jackson.version>
+        <mail.version>1.4.7</mail.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -117,7 +119,11 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
