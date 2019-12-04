@@ -24,7 +24,7 @@
     <p hidden id="activateResult">激活成功！</p>
 </c:if>
 <c:if test="${activate == false}">
-    <p hidden id="activateResult">激活失败！</p>
+    <p hidden id="activateResult">激活失败！请你确保激活码是否已过期(激活码有效期：----)，如果出现其他问题 请联系管理员：QQ:1530937232 Email:1530937232@qq.com</p>
 </c:if>
 
 <script>

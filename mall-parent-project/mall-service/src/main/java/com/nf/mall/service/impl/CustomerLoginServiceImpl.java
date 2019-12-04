@@ -6,6 +6,7 @@ import com.nf.mall.entity.CustomerLoginEntity;
 import com.nf.mall.service.port.CustomerLoginService;
 import com.nf.mall.util.CodeUtil;
 import com.nf.mall.util.MailUtil;
+import com.nf.mall.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,12 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
      */
     @Override
     public boolean verify(CustomerLoginEntity entity) {
-        Integer result = dao.verifyAndById(entity);
+        //这里对用户登录时输入的密码进行MD5加密，加密后再到数据库进行查找
+        //原因：因为注册账号时添加到数据库的密码是经过MD5加密后的格式
+        String md5Pwd = Md5Util.encodeByMd5(entity.getLoginPassword());
+        //获得一个新的对象，将传过来的对象中的密码字段进行MD5加密
+        CustomerLoginEntity customerLoginEntity = CustomerLoginEntity.newBuilder(entity).loginPassword(md5Pwd).build();
+        Integer result = dao.verifyAndById(customerLoginEntity);
         return result != null && result > 0;
     }
 

@@ -9,9 +9,7 @@ import com.nf.mall.vo.RegisterVO;
 import com.nf.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -33,14 +31,14 @@ public class CustomerLoginController {
     public String index(){
         return "foreground/login/index";
     }
-    @RequestMapping("/verify")
+    @PostMapping("/verify")
     @ResponseBody
     public ResponseVO verify(@RequestBody CustomerLoginEntity entity){
         return service.verify(entity) ?
                 ResponseVO.newBuilder().code("200").msg("登录成功").data(true).build() :
                 ResponseVO.newBuilder().code("400").msg("登录失败").data(false).build();
     }
-    @RequestMapping("/register")
+    @PostMapping("/register")
     @ResponseBody
     public ResponseVO register(@RequestBody RegisterVO registerVO){
         /**
@@ -62,7 +60,7 @@ public class CustomerLoginController {
                 ResponseVO.newBuilder().code("200").msg("激活成功").data(true).build():
                 ResponseVO.newBuilder().code("400").msg("激活失败").data(false).build();
     }*/
-    @RequestMapping("/activate")
+    @GetMapping("/activate")
     public ModelAndView activate(String code){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("foreground/login/activate");
