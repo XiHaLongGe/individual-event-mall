@@ -54,12 +54,6 @@ public class CustomerLoginController {
                 ResponseVO.newBuilder().code("200").msg("注册成功").data(true).build():
                 ResponseVO.newBuilder().code("400").msg("注册失败").data(false).build();
     }
-    /*@RequestMapping("/activate")
-    public ResponseVO activate(String code){
-        return service.activate(code) ?
-                ResponseVO.newBuilder().code("200").msg("激活成功").data(true).build():
-                ResponseVO.newBuilder().code("400").msg("激活失败").data(false).build();
-    }*/
     @GetMapping("/activate")
     public ModelAndView activate(String code){
         ModelAndView modelAndView = new ModelAndView();

@@ -12,14 +12,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CustomerInfEntity {
-    public CustomerInfEntity() {
-    }
-
-    public CustomerInfEntity(String customerPhone, String customerEmail) {
-        this.customerPhone = customerPhone;
-        this.customerEmail = customerEmail;
-    }
-
     /**
      * customerInfId 用户个人信息ID
      */
@@ -52,6 +44,15 @@ public class CustomerInfEntity {
      * customerRegion
      */
     private String customerRegion;
+
+    public CustomerInfEntity() {
+    }
+
+    public CustomerInfEntity(String customerPhone, String customerEmail) {
+        this.customerPhone = customerPhone;
+        this.customerEmail = customerEmail;
+    }
+
 
     private CustomerInfEntity(Builder builder) {
         customerInfId = builder.customerInfId;

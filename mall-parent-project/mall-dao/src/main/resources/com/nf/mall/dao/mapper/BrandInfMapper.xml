@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.BrandInfDao">
+    <sql id="brandInfParams">
+        brand_name, category_id
+    </sql>
+
+    <select id="getAll" resultType="com.nf.mall.entity.BrandInfEntity">
+        select
+            brand_id, <include refid="brandInfParams"/>
+        from brand_inf
+    </select>
+
+    <select id="getByListName" resultType="String">
+        select
+            brand_name
+        from brand_inf
+        where category_id = #{categoryId}
+    </select>
+</mapper>

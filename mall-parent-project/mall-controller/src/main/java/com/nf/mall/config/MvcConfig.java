@@ -28,7 +28,14 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceHandlerRegistration registration  = registry.addResourceHandler("/static/**");
-        registration.addResourceLocations("classpath:/static/login/hint/", "classpath:/static/login/assets/", "classpath:/static/");
+        String [] resourceLocations = new String [] {
+                "classpath:/static/",
+                "classpath:/static/login/hint/",
+                "classpath:/static/login/assets/",
+                "classpath:/static/login/assets/",
+                "classpath:/static/home/"
+        };
+        registration.addResourceLocations(resourceLocations);
     }
 
 }
