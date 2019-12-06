@@ -1,5 +1,6 @@
 package com.nf.mall.controller.foreground;
 
+import com.nf.mall.service.port.AfficheInfService;
 import com.nf.mall.service.port.BrandInfService;
 import com.nf.mall.service.port.ProductCategoryService;
 import com.nf.mall.vo.ResponseVO;
@@ -24,9 +25,11 @@ public class HomeController {
     private ProductCategoryService productCategoryService;
     @Autowired
     private BrandInfService brandInfService;
+    @Autowired
+    private AfficheInfService afficheInfService;
 
-    @RequestMapping("/list")
-    public String list(){return "foreground/home";}
+    @RequestMapping("/")
+    public String home(){return "foreground/home";}
 
     @GetMapping("/category/list")
     @ResponseBody
@@ -38,5 +41,11 @@ public class HomeController {
     @ResponseBody
     public ResponseVO spread(Integer categoryId){
         return ResponseVO.newBuilder().code("200").msg("分类展开数据").data(brandInfService.getByListName(categoryId)).build();
+    }
+
+    @RequestMapping("/affiche/list")
+    @ResponseBody
+    public ResponseVO affiche(){
+        return ResponseVO.newBuilder().code("200").msg("右侧公告数据").data(afficheInfService.getAll()).build();
     }
 }

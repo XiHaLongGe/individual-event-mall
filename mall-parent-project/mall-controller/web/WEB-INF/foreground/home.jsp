@@ -105,7 +105,7 @@
         <!--右下侧广告-->
         <div class="advertisement">
             <h4>最新公告</h4>
-            <div class="notice_new">
+            <div id="afficheDIV" class="notice_new">
                 <p><a href="#">【优选】金秋聚会，买一送一</a></p>
                 <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
                 <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
@@ -120,11 +120,6 @@
                     <img src="/static/home/images/activity.jpg" class="img2">
                 </div>
             </a>
-            <!--<script>
-			$(function(){
-				$(".notice_img")
-				})
-            </script>-->
         </div>
         <!--全部商品分类-->
         <div class="important"><img src="/static/home/images/all_list.png" style=" margin-top:8px">&nbsp;全部商品分类

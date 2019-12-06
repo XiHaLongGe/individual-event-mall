@@ -19,6 +19,12 @@ $(function(){
 					$(this).addClass("color").siblings().removeClass("color")
 					});
 				/*控制显示或消失1	*/
+				$(".cates").mouseenter(function(){
+					var cat=$(this).attr("mt-ct");
+					$(".b-"+cat+"").show().siblings().hide();
+				})
+
+
 				$(".cates").live("mouseenter", function(){
 					var cat=$(this).attr("mt-ct");
 					$(".b-"+cat+"").show().siblings().hide();

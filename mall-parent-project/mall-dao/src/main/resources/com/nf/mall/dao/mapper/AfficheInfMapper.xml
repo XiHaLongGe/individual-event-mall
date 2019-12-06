@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.AfficheInfDao">
+    <sql id="afficheInfParams">
+        ainf.affiche_type_id,
+        ainf.affiche_inf_title,
+        ainf.affiche_state,
+        ainf.affiche_inf_content,
+        ainf.affiche_time
+    </sql>
+    
+    <resultMap id="afficheInfResultMap" type="com.nf.mall.entity.AfficheInfEntity">
+        <result property="afficheType" column="atName"/>
+    </resultMap>
+    <select id="getAll" resultMap="afficheInfResultMap">
+        select
+            ainf.affiche_inf_id, <include refid="afficheInfParams"/>, atype.affiche_type_name as atName
+        from affiche_inf ainf join affiche_type atype
+        on ainf.affiche_type_id = atype.affiche_type_id
+    </select>
+</mapper>
