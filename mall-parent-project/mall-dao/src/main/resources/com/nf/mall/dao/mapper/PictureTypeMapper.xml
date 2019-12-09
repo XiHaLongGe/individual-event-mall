@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.PictureTypeDao">
+    <select id="getAll" resultType="com.nf.mall.entity.PictureTypeEntity">
+        select
+        picture_type_id, picture_type_name
+        from picture_type
+    </select>
+
+    <select id="getById" resultType="com.nf.mall.entity.PictureTypeEntity">
+        select
+            picture_type_id, picture_type_name
+        from picture_type
+        where picture_type_id = #{id}
+    </select>
+
+    <select id="getByName" resultType="com.nf.mall.entity.PictureTypeEntity">
+        select
+            picture_type_id, picture_type_name
+        from picture_type
+        where picture_type_name = #{name}
+    </select>
+</mapper>

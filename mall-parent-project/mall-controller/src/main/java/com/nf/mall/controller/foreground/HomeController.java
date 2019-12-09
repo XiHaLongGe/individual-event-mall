@@ -1,9 +1,6 @@
 package com.nf.mall.controller.foreground;
 
-import com.nf.mall.service.port.PictureInfService;
-import com.nf.mall.service.port.AfficheInfService;
-import com.nf.mall.service.port.BrandInfService;
-import com.nf.mall.service.port.ProductCategoryService;
+import com.nf.mall.service.port.*;
 import com.nf.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +24,18 @@ public class HomeController {
     private AfficheInfService afficheInfService;
     @Autowired
     private PictureInfService pictureInfService;
+    @Autowired
+    private ProductInfService productInfService;
+    @Autowired
+    private PictureTypeService pictureTypeService;
 
     @RequestMapping("/")
     public String home(){return "foreground/home";}
 
     @RequestMapping("/category/list")
     @ResponseBody
-    public ResponseVO category(String levelNum){
-        return ResponseVO.newBuilder().code("200").msg("根据分类层次id，获得分类列表数据").data(productCategoryService.getByLevel(Integer.valueOf(levelNum))).build();
+    public ResponseVO category(Integer levelNum){
+        return ResponseVO.newBuilder().code("200").msg("根据分类层次id，获得分类列表数据").data(productCategoryService.getByLevel(levelNum)).build();
     }
 
     @RequestMapping("/category/spread")
@@ -51,7 +52,15 @@ public class HomeController {
 
     @RequestMapping("/picture/push/list")
     @ResponseBody
-    public ResponseVO pushPicture(String pictureTypeId){
-        return ResponseVO.newBuilder().code("200").msg("根据图片类型id，获得图片列表数据").data(pictureInfService.getByType(Integer.valueOf(pictureTypeId))).build();
+    public ResponseVO pushPicture(Integer pictureTypeId){
+        return ResponseVO.newBuilder().code("200").msg("根据图片类型id，获得图片列表数据").data(pictureInfService.getByType(pictureTypeId)).build();
+    }
+
+    @RequestMapping("/category/product")
+    @ResponseBody
+    public ResponseVO categoryProduct(Integer categoryId, String categoryName, Integer pictureTypeId, String pictureTypeName){
+        categoryId = categoryName == null || categoryName.isEmpty() ? categoryId : productCategoryService.getByName(categoryName).getCategoryId();
+        pictureTypeId = pictureTypeName == null || pictureTypeName.isEmpty() ? pictureTypeId : pictureTypeService.getByName(pictureTypeName).getPictureTypeId();
+        return ResponseVO.newBuilder().code("200").msg("根据分类类型id，获得商品列表数据").data(productInfService.getHotSale(pictureTypeId, categoryId)).build();
     }
 }

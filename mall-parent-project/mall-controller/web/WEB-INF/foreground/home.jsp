@@ -216,10 +216,10 @@
 <script src="/static/home/js/navigation.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--热销商品-->
 <span class="as blessing_package">
-	<h3>热销商品<font>热销商品，赶快来抢购</font><a href="#">更多热销商品</a></h3>
+	<h3 id="hotSaleH3">热销商品<font>热销商品，赶快来抢购</font><a href="#">更多热销商品</a></h3>
 </span>
 <div class="three_fb">
-    <ul>
+    <ul id="hotSaleUL">
         <li>
             <light>
                 <img src="/static/home/images/saoguang1.png">

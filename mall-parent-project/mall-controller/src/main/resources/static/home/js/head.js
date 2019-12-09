@@ -7,21 +7,21 @@ function afficheData(){
             <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
             <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
     */
-    var resultVal = "";
     $.ajax({
         url:"/foreground/home/affiche/list",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
         success:function(data){
+            var resultVal = "";
             $.each(data.data, function(index,element) {
                 resultVal += "<p>";
                 resultVal += "<a href=\"javascript:;\">【" + element.afficheType + "】" + element.afficheInfTitle + "</a>";
                 resultVal += "</p>";
             })
+            $("#afficheDIV").empty().append(resultVal);
         }
     })
-    $("#afficheDIV").empty().append(resultVal);
     afficheImageLoader();
 }
 
@@ -31,7 +31,6 @@ function afficheImageLoader(){
             <img src="/static/home/images/activity.jpg" class="img1">
             <img src="/static/home/images/activity.jpg" class="img2">
     */
-    var resultVal = "";
     $.ajax({
         /*
             URIEncoding:"UTF-8",这个属性的设置，是当使用ajax进行请求的请求地址中有中文字符乱码的问题，可以使用这个属性来解决
@@ -43,13 +42,14 @@ function afficheImageLoader(){
         async: false,//设置为同步
         contentType: "application/json;charset=utf-8",
         success:function(data){
+            var resultVal = "";
             $.each(data.data, function(index,element) {
                 resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img1\">";
                 resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img2\">";
             })
+            $("#afficheImageDIV").empty().append(resultVal);
         }
     })
-    $("#afficheImageDIV").empty().append(resultVal);
     categoryName();
 }
 
@@ -68,7 +68,7 @@ function categoryName(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/category/list?levelNum=2",
+        url:"/foreground/home/category/list?levelNum=3",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
@@ -99,9 +99,9 @@ function categoryName(){
                 }
             })
             $("#categoryUL").empty().append(resultVal);
-            categorySpread();
         }
     })
+    categorySpread();
 }
 /*写一个函数的作用是怕ajax的异步操作导致程序出错，现在在上面ajax完成后再调用该函数也就避免了ajax的异步操作带来的漏洞*/
 function categorySpread(){

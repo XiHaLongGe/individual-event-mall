@@ -27,4 +27,14 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public List<ProductCategoryEntity> getByLevel(Integer levelNum) {
         return dao.getByLevel(levelNum);
     }
+
+    @Override
+    public ProductCategoryEntity getById(Integer id) {
+        return dao.getById(id);
+    }
+
+    @Override
+    public ProductCategoryEntity getByName(String categoryName) {
+        return dao.getByName(categoryName);
+    }
 }

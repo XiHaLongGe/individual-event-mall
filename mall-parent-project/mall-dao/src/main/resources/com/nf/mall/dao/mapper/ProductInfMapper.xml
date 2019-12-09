@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.ProductInfDao">
+    <sql id="productParams">
+        proinf.brand_id,
+        proinf.category_id,
+        proinf.product_name,
+        proinf.product_price,
+        proinf.product_sales,
+        proinf.product_status
+    </sql>
+
+    <select id="getAll" resultType="com.nf.mall.entity.ProductInfEntity">
+        select
+        proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf
+    </select>
+
+    <select id="getById" resultType="com.nf.mall.entity.ProductInfEntity">
+        select
+        proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf
+        where product_id = #{id}
+    </select>
+
+    <select id="getByBrandId" resultType="com.nf.mall.entity.ProductInfEntity">
+        select
+        proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf
+        where brand_id = #{id}
+    </select>
+
+    <select id="getByCategoryId" resultType="com.nf.mall.entity.ProductInfEntity">
+        select
+        proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf
+        where category_id = #{categoryId}
+    </select>
+
+
+
+    <resultMap id="hotSaleResultMap" type="com.nf.mall.entity.ProductInfEntity">
+        <result property="pictureInfUrl" column="picUrl"/>
+    </resultMap>
+    <select id="getHotSale" resultMap="hotSaleResultMap">
+        select
+        picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
+        from picture_inf picinf join product_inf proinf
+        on picinf.product_inf_id = proinf.product_id
+        where picinf.picture_type_id = #{pictureTypeId} and proinf.category_id = #{categoryId}
+    </select>
+</mapper>
