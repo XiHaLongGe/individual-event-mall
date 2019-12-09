@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.PictureInfDao">
+    <sql id="pictureInfParams">
+        picture_type_id,
+        picture_inf_url,
+        picture_inf_order,
+        picture_inf_status
+
+    </sql>
+    <select id="getAll" resultType="com.nf.mall.entity.PictureInfEntity">
+        select
+            product_inf_id, <include refid="pictureInfParams"/>
+        from picture_inf
+    </select>
+
+    <select id="getByType" resultType="com.nf.mall.entity.PictureInfEntity">
+        select
+        product_inf_id, <include refid="pictureInfParams"/>
+        from picture_inf
+        where picture_type_id = #{pictureTypeId}
+    </select>
+</mapper>

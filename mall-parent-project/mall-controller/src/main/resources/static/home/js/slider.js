@@ -1,7 +1,7 @@
 /**
  * slider插件可悬停控制
  */
-; $(function ($, window, document, undefined) {
+$(function ($, window, document, undefined) {
     
     Slider = function (container, options) {
         /*
@@ -28,8 +28,11 @@
             controller = options.controller,
             event = options.event,
             interval,
+            /*获取到id为bannerUL的ul标签*/
             slidesWrapper = container.children().first(),
+            /*获取到ul标签内的li标签*/
             slides = slidesWrapper.children(),
+            //获取到li标签的个数
             length = slides.length,
             childWidth = container.width(),
             totalWidth = childWidth * slides.length;

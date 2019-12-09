@@ -24,7 +24,7 @@
 </head>
 <body>
 <!--最大的背景-->
-<div class="maxbj"></div>
+<%--<div class="maxbj"></div>--%>
 
 <!--头部-->
 <top>
@@ -68,7 +68,6 @@
                     <li><a href="javascript:void(0)">香港</a></li>
                     <li><a href="javascript:void(0)">澳门</a></li>
                 </ul>
-
             </div>
         </div>
         <div class="register_login">
@@ -109,13 +108,9 @@
                 <p><a href="#">【优选】金秋聚会，买一送一</a></p>
                 <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
                 <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
-                <p><a href="#">【优选】开学季，“纸”想“净、净”学习</a></p>
-                <p><a href="#">【优选】金秋聚会，买一送一</a></p>
-                <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
-                <p><a href="#">【优选】开学季，“纸”想“净、净”学习</a></p>
             </div>
             <a href="#">
-                <div class="notice_img">
+                <div id="afficheImageDIV" class="notice_img">
                     <img src="/static/home/images/activity.jpg" class="img1">
                     <img src="/static/home/images/activity.jpg" class="img2">
                 </div>
@@ -125,21 +120,6 @@
         <div class="important"><img src="/static/home/images/all_list.png" style=" margin-top:8px">&nbsp;全部商品分类
             <aside>
                 <ul id="categoryUL">
-                    <%--<c:set var="liIndex" value="0" />
-                    <c:forEach items="${productCategory}" var="prolist">
-                        <li class="cates"  mt-ct="list" + ${liIndex += 1}>
-                            &lt;%&ndash;<h3>卫生洁具</h3>&ndash;%&gt;
-                            <p>
-                                <c:forEach items="" var="">
-
-                                </c:forEach>
-                                <a href="#">洗衣粉</a>
-                                <a href="#">马桶刷</a>
-                                <a href="#">不锈钢龙头</a>
-                                <i style="font-family:'宋体';color:#666; line-height:23px; font-size:14px; float:left">></i>
-                            </p>
-                        </li>
-                    </c:forEach>--%>
                     <li class="cates"  mt-ct="list01">
                         <h3>卫生洁具</h3>
                         <p>
@@ -153,90 +133,6 @@
             </aside>
             <div id="categorySpreadDIV">
                 <div class="import_list b-list1">
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
-                    <dt>与内容无关：</dt>
-                    <dd>
-                        <a href="#">T恤</a>
-                        <a href="#">休闲裤</a>
-                        <a href="#">条纹T</a>
-                        <a href="#">牛仔裤</a>
-                        <a href="#">针织运动裤</a>
-                        <a href="#">潮T</a>
-                        <a href="#">格子衬衫</a>
-                        <a href="#">村棉印花T恤</a>
-                        <a href="#">纯色衬衫</a>
-                        <a href="#">牛仔夹克</a>
-                        <a href="#">迷彩风</a>
-                    </dd>
                     <dt>与内容无关：</dt>
                     <dd>
                         <a href="#">T恤</a>
@@ -269,25 +165,15 @@
 <script src="/static/home/js/head.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--banner-->
 <div id="banner_tabs" class="flexslider">
-    <ul class="slides">
-        <li>
+    <ul id="bannerUL" class="slides">
+        <li style="display: list-item;">
             <a title="" target="_blank" href="#">
-                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/alpha.png">
+                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/HUAWEI_P30_Pro.jpg">
             </a>
         </li>
         <li>
             <a title="" href="#">
-                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/alpha.png">
-            </a>
-        </li>
-        <li>
-            <a title="" href="#">
-                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/alpha.png">
-            </a>
-        </li>
-        <li>
-            <a title="" href="#">
-                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/alpha.png">
+                <img width="1920" height="500" alt="" style="background: url(/static/home/images/banner1.png) no-repeat center;" src="/static/home/images/ThinkBook.jpg">
             </a>
         </li>
     </ul>
@@ -298,11 +184,10 @@
     <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
         <li class="active"><a>1</a></li>
         <li><a>2</a></li>
-        <li><a>2</a></li>
-        <li><a>2</a></li>
     </ol>
 </div>
-<script src="/static/home/js/slider.js"></script>
+<script src="/static/home/js/banner.js?v=<%= System.currentTimeMillis()%>"></script>
+<script src="/static/home/js/slider.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--gong告-->
 <script type="text/javascript">
     window.onload=function(){
@@ -315,7 +200,6 @@
     }
 </script>
 <!--楼层分布图-->
-
 <div class="fixed_position">
     <div class="fixed_position_1">
         <ul>
@@ -329,9 +213,10 @@
         </ul>
     </div>
 </div>
-<!--福包专区-->
+<script src=""></script>
+<!--热销商品-->
 <span class="as blessing_package">
-	<h3>超级福包<font>每日精选，好礼优惠不停</font><a href="#">更多福包</a></h3>
+	<h3>热销商品<font>热销商品，赶快来抢购</font><a href="#">更多热销商品</a></h3>
 </span>
 <div class="three_fb">
     <ul>
@@ -364,6 +249,7 @@
         </li>
     </ul>
 </div>
+<script src="/static/home/js/hot-sale.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--应季商品-->
 <span class="as blessing_package">
 	<a href="#" style=" color:#000"><h3 style="float:left">&nbsp;应季商品<img src="/static/home/images/zd.png" style="display:block; float:left; margin-top:5px"></h3></a>

@@ -1,10 +1,10 @@
 package com.nf.mall.config;
 
+import com.nf.mall.interceptor.EncodingInterceptor;
 import org.springframework.context.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.handler.MappedInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -25,6 +25,16 @@ public class MvcConfig implements WebMvcConfigurer {
         viewResolver.setPrefix("/WEB-INF/");
         return viewResolver;
     }
+
+    /**
+     * 添加自己创建的拦截器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new EncodingInterceptor()).addPathPatterns("/**");
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceHandlerRegistration registration  = registry.addResourceHandler("/static/**");
@@ -37,5 +47,4 @@ public class MvcConfig implements WebMvcConfigurer {
         };
         registration.addResourceLocations(resourceLocations);
     }
-
 }

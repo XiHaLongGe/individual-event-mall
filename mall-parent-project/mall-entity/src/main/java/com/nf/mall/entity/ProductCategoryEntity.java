@@ -14,13 +14,16 @@ import lombok.Data;
 public class ProductCategoryEntity {
     private Integer categoryId;
     private String categoryName;
+    private String categoryDescribe;
     private Integer categoryLevel;
     private Integer parentId;
 
     private ProductCategoryEntity(){};
+
     private ProductCategoryEntity(Builder builder) {
         categoryId = builder.categoryId;
         categoryName = builder.categoryName;
+        categoryDescribe = builder.categoryDescribe;
         categoryLevel = builder.categoryLevel;
         parentId = builder.parentId;
     }
@@ -33,6 +36,7 @@ public class ProductCategoryEntity {
         Builder builder = new Builder();
         builder.categoryId = copy.getCategoryId();
         builder.categoryName = copy.getCategoryName();
+        builder.categoryDescribe = copy.getCategoryDescribe();
         builder.categoryLevel = copy.getCategoryLevel();
         builder.parentId = copy.getParentId();
         return builder;
@@ -41,6 +45,7 @@ public class ProductCategoryEntity {
     public static final class Builder {
         private Integer categoryId;
         private String categoryName;
+        private String categoryDescribe;
         private Integer categoryLevel;
         private Integer parentId;
 
@@ -54,6 +59,11 @@ public class ProductCategoryEntity {
 
         public Builder categoryName(String val) {
             categoryName = val;
+            return this;
+        }
+
+        public Builder categoryDescribe(String val) {
+            categoryDescribe = val;
             return this;
         }
 

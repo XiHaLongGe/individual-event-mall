@@ -1,16 +1,14 @@
 package com.nf.mall.controller.foreground;
 
+import com.nf.mall.service.port.PictureInfService;
 import com.nf.mall.service.port.AfficheInfService;
 import com.nf.mall.service.port.BrandInfService;
 import com.nf.mall.service.port.ProductCategoryService;
 import com.nf.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author: LJP
@@ -27,17 +25,19 @@ public class HomeController {
     private BrandInfService brandInfService;
     @Autowired
     private AfficheInfService afficheInfService;
+    @Autowired
+    private PictureInfService pictureInfService;
 
     @RequestMapping("/")
     public String home(){return "foreground/home";}
 
-    @GetMapping("/category/list")
+    @RequestMapping("/category/list")
     @ResponseBody
     public ResponseVO category(){
         return ResponseVO.newBuilder().code("200").msg("分类列表数据").data(productCategoryService.getAll()).build();
     }
 
-    @GetMapping("/category/spread")
+    @RequestMapping("/category/spread")
     @ResponseBody
     public ResponseVO spread(Integer categoryId){
         return ResponseVO.newBuilder().code("200").msg("分类展开数据").data(brandInfService.getByListName(categoryId)).build();
@@ -47,5 +47,11 @@ public class HomeController {
     @ResponseBody
     public ResponseVO affiche(){
         return ResponseVO.newBuilder().code("200").msg("右侧公告数据").data(afficheInfService.getAll()).build();
+    }
+
+    @RequestMapping("/picture/push/list")
+    @ResponseBody
+    public ResponseVO pushPicture(String pictureTypeId){
+        return ResponseVO.newBuilder().code("200").msg("根据图片类型id，获得图片列表数据").data(pictureInfService.getByType(Integer.valueOf(pictureTypeId))).build();
     }
 }
