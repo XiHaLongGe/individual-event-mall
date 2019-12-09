@@ -22,4 +22,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public List<ProductCategoryEntity> getAll() {
         return dao.getAll();
     }
+
+    @Override
+    public List<ProductCategoryEntity> getByLevel(Integer levelNum) {
+        return dao.getByLevel(levelNum);
+    }
 }

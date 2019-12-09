@@ -202,7 +202,7 @@
 <!--楼层分布图-->
 <div class="fixed_position">
     <div class="fixed_position_1">
-        <ul>
+        <ul id="navigationUL">
             <li>超级福包</li>
             <li>应季商品</li>
             <li>母婴之家</li>
@@ -213,7 +213,7 @@
         </ul>
     </div>
 </div>
-<script src=""></script>
+<script src="/static/home/js/navigation.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--热销商品-->
 <span class="as blessing_package">
 	<h3>热销商品<font>热销商品，赶快来抢购</font><a href="#">更多热销商品</a></h3>

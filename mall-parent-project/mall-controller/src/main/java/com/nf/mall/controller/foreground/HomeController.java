@@ -33,8 +33,8 @@ public class HomeController {
 
     @RequestMapping("/category/list")
     @ResponseBody
-    public ResponseVO category(){
-        return ResponseVO.newBuilder().code("200").msg("分类列表数据").data(productCategoryService.getAll()).build();
+    public ResponseVO category(String levelNum){
+        return ResponseVO.newBuilder().code("200").msg("根据分类层次id，获得分类列表数据").data(productCategoryService.getByLevel(Integer.valueOf(levelNum))).build();
     }
 
     @RequestMapping("/category/spread")

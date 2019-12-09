@@ -22,4 +22,11 @@ public class ProductCategoryServiceImplTest {
             System.out.println(productCategoryEntity);
         }
     }
+
+    @Test
+    public void getByLevel() {
+        for (ProductCategoryEntity productCategoryEntity : service.getByLevel(1)) {
+            System.out.println(productCategoryEntity);
+        }
+    }
 }

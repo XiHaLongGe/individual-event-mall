@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface ProductCategoryService {
     List<ProductCategoryEntity> getAll();
+    List<ProductCategoryEntity> getByLevel(Integer levelNum);
 }

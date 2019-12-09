@@ -12,4 +12,12 @@
             category_id, <include refid="productCategoryParams"/>
         from product_category
     </select>
+    <select id="getByLevel" resultType="com.nf.mall.entity.ProductCategoryEntity">
+        select
+        category_id, <include refid="productCategoryParams"/>
+        from product_category
+        where category_level = #{levelNum}
+    </select>
+
+
 </mapper>

@@ -6,10 +6,6 @@ function afficheData(){
             <p><a href="#">【优选】金秋聚会，买一送一</a></p>
             <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
             <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
-            <p><a href="#">【优选】开学季，“纸”想“净、净”学习</a></p>
-            <p><a href="#">【优选】金秋聚会，买一送一</a></p>
-            <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
-            <p><a href="#">【优选】开学季，“纸”想“净、净”学习</a></p>
     */
     var resultVal = "";
     $.ajax({
@@ -72,7 +68,7 @@ function categoryName(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/category/list",
+        url:"/foreground/home/category/list?levelNum=2",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
