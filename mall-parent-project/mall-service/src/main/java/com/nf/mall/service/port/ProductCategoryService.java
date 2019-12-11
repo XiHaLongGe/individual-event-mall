@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ProductCategoryService {
     List<ProductCategoryEntity> getAll();
-    List<ProductCategoryEntity> getByLevel(Integer levelNum);
+    List<ProductCategoryEntity> getByLevel(Integer levelNum, Integer parentId);
     ProductCategoryEntity getById(Integer id);
     ProductCategoryEntity getByName(String categoryName);
 }

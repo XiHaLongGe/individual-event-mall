@@ -1,4 +1,3 @@
-hotProductHead();
 function hotProductHead(){
     /*
         想要达到效果：
@@ -9,7 +8,7 @@ function hotProductHead(){
 	    </h3>
     */
     $.ajax({
-        url:"/foreground/home/category/list?levelNum=1",
+        url:"/foreground/home/category/level/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
@@ -41,7 +40,7 @@ function hotProductBody(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/category/product?categoryId=8&pictureTypeId=3",
+        url:"/foreground/home/picTypeId/proCategoryId/product?picTypeId=3&proCategoryId=8",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",

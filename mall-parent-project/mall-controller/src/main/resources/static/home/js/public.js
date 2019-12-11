@@ -85,13 +85,13 @@ $(function(){
 	});
 	///////////////////////
 	/*控制显示或消失2	*/
-	$(".dog").mouseenter(function(){
+	$(".dog").live("mouseenter", function(){
 	   var dogs=$(this).attr("dg-floor")
 	   var dog=$(this).attr("dg-ct");
 	   $(".f-"+dogs+"-"+dog+"").show().siblings().hide();
 		})
 	/*添加色块*/
-	$(".detailed_navigation ul li").mouseenter(function(){
+	$(".detailed_navigation ul li").live("mouseenter", function(){
 		$(this).addClass("yadi").siblings().removeClass("yadi")
 		})
 	///////////////////////////	

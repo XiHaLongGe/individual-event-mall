@@ -41,14 +41,14 @@
 
 
 
-    <resultMap id="hotSaleResultMap" type="com.nf.mall.entity.ProductInfEntity">
+    <resultMap id="categorySaleResultMap" type="com.nf.mall.entity.ProductInfEntity">
         <result property="pictureInfUrl" column="picUrl"/>
     </resultMap>
-    <select id="getHotSale" resultMap="hotSaleResultMap">
+    <select id="getCategorySale" resultMap="categorySaleResultMap">
         select
         picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
         from picture_inf picinf join product_inf proinf
         on picinf.product_inf_id = proinf.product_id
-        where picinf.picture_type_id = #{pictureTypeId} and proinf.category_id = #{categoryId}
+        where picinf.picture_type_id = #{picTypeId} and proinf.category_id = #{proCategoryId}
     </select>
 </mapper>

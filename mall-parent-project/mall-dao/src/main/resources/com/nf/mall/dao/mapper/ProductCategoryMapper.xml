@@ -17,7 +17,11 @@
         category_id, <include refid="productCategoryParams"/>
         from product_category
         where category_level = #{levelNum}
+        <if test="parentId != 0">
+            and parent_id = #{parentId}
+        </if>
     </select>
+
     <select id="getById" resultType="com.nf.mall.entity.ProductCategoryEntity">
         select
         category_id, <include refid="productCategoryParams"/>

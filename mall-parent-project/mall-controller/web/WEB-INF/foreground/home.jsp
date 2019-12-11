@@ -250,6 +250,7 @@
     </ul>
 </div>
 <script src="/static/home/js/hot-sale.js?v=<%= System.currentTimeMillis()%>"></script>
+<span id="spanProduct">
 <!--应季商品-->
 <span class="as blessing_package">
 	<a href="#" style=" color:#000"><h3 style="float:left">&nbsp;应季商品<img src="/static/home/images/zd.png" style="display:block; float:left; margin-top:5px"></h3></a>
@@ -531,8 +532,6 @@
         </ul>
     </div>
 </div>
-
-
 <!--母婴专区-->
 <span class="as blessing_package">
 	<a href="#" style=" color:#000"><h3 style="float:left">&nbsp;母婴之家<img src="/static/home/images/zd.png" style="display:block; float:left; margin-top:5px"></h3></a>
@@ -2197,7 +2196,8 @@
     <div class="btnr">></div>
     <h4 class="guanfangremai">推荐商品</h4>
 </div>
-
+</span>
+<script src="/static/home/js/category-sale.js?v=<%= System.currentTimeMillis()%>"></script>
 <!--页脚-->
 <footer>
     <section class="foot_in">

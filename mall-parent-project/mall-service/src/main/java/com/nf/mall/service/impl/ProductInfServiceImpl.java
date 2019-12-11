@@ -39,7 +39,7 @@ public class ProductInfServiceImpl implements ProductInfService {
     }
 
     @Override
-    public List<ProductInfEntity> getHotSale(Integer pictureTypeId, Integer categoryId) {
-        return dao.getHotSale(3,8);
+    public List<ProductInfEntity> getCategorySale(Integer picTypeId, Integer proCategoryId) {
+        return dao.getCategorySale(picTypeId, proCategoryId);
     }
 }

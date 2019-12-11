@@ -2,9 +2,11 @@ package com.nf.mall.controller.foreground;
 
 import com.nf.mall.service.port.*;
 import com.nf.mall.vo.ResponseVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -32,10 +34,10 @@ public class HomeController {
     @RequestMapping("/")
     public String home(){return "foreground/home";}
 
-    @RequestMapping("/category/list")
+    @RequestMapping("/category/level/list")
     @ResponseBody
-    public ResponseVO category(Integer levelNum){
-        return ResponseVO.newBuilder().code("200").msg("根据分类层次id，获得分类列表数据").data(productCategoryService.getByLevel(levelNum)).build();
+    public ResponseVO categoryLevel(Integer levelNum, @RequestParam(value = "parentId", required = false, defaultValue = "0") Integer parentId){
+        return ResponseVO.newBuilder().code("200").msg("根据分类层次id，获得分类层次列表数据").data(productCategoryService.getByLevel(levelNum, parentId)).build();
     }
 
     @RequestMapping("/category/spread")
@@ -56,11 +58,9 @@ public class HomeController {
         return ResponseVO.newBuilder().code("200").msg("根据图片类型id，获得图片列表数据").data(pictureInfService.getByType(pictureTypeId)).build();
     }
 
-    @RequestMapping("/category/product")
+    @RequestMapping("/picTypeId/proCategoryId/product")
     @ResponseBody
-    public ResponseVO categoryProduct(Integer categoryId, String categoryName, Integer pictureTypeId, String pictureTypeName){
-        categoryId = categoryName == null || categoryName.isEmpty() ? categoryId : productCategoryService.getByName(categoryName).getCategoryId();
-        pictureTypeId = pictureTypeName == null || pictureTypeName.isEmpty() ? pictureTypeId : pictureTypeService.getByName(pictureTypeName).getPictureTypeId();
-        return ResponseVO.newBuilder().code("200").msg("根据分类类型id，获得商品列表数据").data(productInfService.getHotSale(pictureTypeId, categoryId)).build();
+    public ResponseVO picTypeIdCategoryIdProduct(@RequestParam(value = "picTypeId", required = false, defaultValue = "4") Integer picTypeId, Integer proCategoryId){
+        return ResponseVO.newBuilder().code("200").msg("根据图片类型和商品类型，获得商品列表数据").data(productInfService.getCategorySale(picTypeId, proCategoryId)).build();
     }
 }

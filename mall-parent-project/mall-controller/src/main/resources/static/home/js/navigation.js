@@ -9,7 +9,7 @@ function navigation(){
     */
     var resultVal = "";
     $.ajax({
-        url:"/foreground/home/category/list?levelNum=1",
+        url:"/foreground/home/category/level/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",

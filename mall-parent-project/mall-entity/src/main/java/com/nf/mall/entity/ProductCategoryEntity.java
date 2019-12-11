@@ -3,6 +3,8 @@ package com.nf.mall.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author: LJP
  * @Classname ProductCategoryEntity

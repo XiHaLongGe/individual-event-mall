@@ -16,8 +16,8 @@ public class ProductInfServiceImplTest {
     @Autowired
     private ProductInfService service;
     @Test
-    public void getHotSale() {
-        for (ProductInfEntity productInfEntity : service.getHotSale(3, 8)) {
+    public void getCategorySale() {
+        for (ProductInfEntity productInfEntity : service.getCategorySale(4, 15)) {
             System.out.println(productInfEntity);
         }
     }

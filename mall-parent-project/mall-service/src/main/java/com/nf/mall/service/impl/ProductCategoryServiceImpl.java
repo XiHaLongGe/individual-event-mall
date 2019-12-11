@@ -24,8 +24,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public List<ProductCategoryEntity> getByLevel(Integer levelNum) {
-        return dao.getByLevel(levelNum);
+    public List<ProductCategoryEntity> getByLevel(Integer levelNum, Integer parentId) {
+        return dao.getByLevel(levelNum, parentId);
     }
 
     @Override

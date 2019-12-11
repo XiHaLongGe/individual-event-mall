@@ -68,7 +68,7 @@ function categoryName(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/category/list?levelNum=3",
+        url:"/foreground/home/category/level/list?levelNum=3",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",

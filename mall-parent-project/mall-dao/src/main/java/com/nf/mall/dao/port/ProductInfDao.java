@@ -16,5 +16,5 @@ public interface ProductInfDao {
     ProductInfEntity getById(Integer id);
     List<ProductInfEntity> getByBrandId(Integer brandId);
     List<ProductInfEntity> getByCategoryId(Integer categoryId);
-    List<ProductInfEntity> getHotSale(@Param("pictureTypeId") Integer pictureTypeId, @Param("categoryId")Integer categoryId);
+    List<ProductInfEntity> getCategorySale(@Param("picTypeId") Integer picTypeId, @Param("proCategoryId") Integer proCategoryId);
 }

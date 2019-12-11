@@ -1,6 +1,7 @@
 package com.nf.mall.dao.port;
 
 import com.nf.mall.entity.ProductCategoryEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface ProductCategoryDao {
     List<ProductCategoryEntity> getAll();
-    List<ProductCategoryEntity> getByLevel(Integer levelNum);
+    List<ProductCategoryEntity> getByLevel(@Param("levelNum") Integer levelNum, @Param("parentId") Integer parentId);
     ProductCategoryEntity getById(Integer id);
     ProductCategoryEntity getByName(String categoryName);
 }
