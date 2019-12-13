@@ -4,6 +4,7 @@ import com.nf.mall.entity.CustomerInfEntity;
 import com.nf.mall.entity.CustomerLoginEntity;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,12 @@ public interface CustomerLoginDao {
      * @return
      */
     List<CustomerLoginEntity> getAll();
+
+    List<CustomerLoginEntity> getPageAll(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    List<CustomerLoginEntity> getPageSearch(@Param("startTime")String startTime, @Param("endTime")String endTime, @Param("loginName")String loginName, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+    Integer getCount();
 
     /**
      * 验证账号密码是否正确

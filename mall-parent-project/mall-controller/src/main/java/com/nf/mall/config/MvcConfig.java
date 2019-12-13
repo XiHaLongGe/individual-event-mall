@@ -2,6 +2,8 @@ package com.nf.mall.config;
 
 import com.nf.mall.interceptor.EncodingInterceptor;
 import org.springframework.context.annotation.*;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.MappedInterceptor;
@@ -43,8 +45,14 @@ public class MvcConfig implements WebMvcConfigurer {
                 "classpath:/static/login/hint/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/login/assets/",
-                "classpath:/static/home/"
+                "classpath:/static/home/",
+                "classpath:/static/backend/home/"
         };
         registration.addResourceLocations(resourceLocations);
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new DateFormatter("yyyy-MM-dd"));
     }
 }

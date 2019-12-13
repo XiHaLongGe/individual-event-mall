@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +22,7 @@ import java.util.List;
  * @Description:
  */
 @Service
+
 public class CustomerLoginServiceImpl implements CustomerLoginService {
     @Autowired
     private CustomerLoginDao dao;
@@ -29,6 +32,21 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
     @Override
     public List<CustomerLoginEntity> getAll() {
         return dao.getAll();
+    }
+
+    @Override
+    public List<CustomerLoginEntity> getPageAll(Integer pageNum, Integer pageSize) {
+        return dao.getPageAll(pageNum, pageSize);
+    }
+
+    @Override
+    public List<CustomerLoginEntity> getPageSearch(String startTime, String endTime, String loginName, Integer pageNum, Integer pageSize) {
+        return dao.getPageSearch(startTime, endTime, loginName, pageNum, pageSize);
+    }
+
+    @Override
+    public Integer getCount() {
+        return dao.getCount();
     }
 
     /**

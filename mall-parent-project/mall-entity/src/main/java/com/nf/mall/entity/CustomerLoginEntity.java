@@ -1,7 +1,10 @@
 package com.nf.mall.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @Author: LJP
@@ -12,8 +15,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CustomerLoginEntity {
-    public CustomerLoginEntity() {
-    }
 
     /**
      * customerId 用户登录id
@@ -39,6 +40,14 @@ public class CustomerLoginEntity {
      * userStats 用户账号状态
      */
     private Byte userStats;
+    /**
+     * creation 用户账号创建日期
+     */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Date creationTime;
+
+    public CustomerLoginEntity() {
+    }
 
     private CustomerLoginEntity(Builder builder) {
         customerId = builder.customerId;
@@ -47,6 +56,7 @@ public class CustomerLoginEntity {
         loginPassword = builder.loginPassword;
         activateCode = builder.activateCode;
         userStats = builder.userStats;
+        creationTime = builder.creationTime;
     }
 
     public static Builder newBuilder() {
@@ -61,6 +71,7 @@ public class CustomerLoginEntity {
         builder.loginPassword = copy.getLoginPassword();
         builder.activateCode = copy.getActivateCode();
         builder.userStats = copy.getUserStats();
+        builder.creationTime = copy.getCreationTime();
         return builder;
     }
 
@@ -71,6 +82,7 @@ public class CustomerLoginEntity {
         private String loginPassword;
         private String activateCode;
         private Byte userStats;
+        private Date creationTime;
 
         private Builder() {
         }
@@ -102,6 +114,11 @@ public class CustomerLoginEntity {
 
         public Builder userStats(Byte val) {
             userStats = val;
+            return this;
+        }
+
+        public Builder creationTime(Date val) {
+            creationTime = val;
             return this;
         }
 

@@ -4,13 +4,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nf.mall.dao.port.CustomerLoginDao">
     <sql id="customerLoginParams">
-        login_account, login_name, login_password, activate_code
+        login_account, login_name, login_password, activate_code, creation_time
     </sql>
 
     <select id="getAll" resultType="com.nf.mall.entity.CustomerLoginEntity">
         select
-            customer_id, <include refid="customerLoginParams"/>, user_stats
+        customer_id, <include refid="customerLoginParams"/>, user_stats
         from customer_login
+    </select>
+
+    <select id="getPageAll" resultType="com.nf.mall.entity.CustomerLoginEntity">
+        select
+        customer_id, <include refid="customerLoginParams"/>, user_stats
+        from customer_login order by customer_id
+    </select>
+    <select id="getPageSearch" resultType="com.nf.mall.entity.CustomerLoginEntity">
+        select
+        customer_id, <include refid="customerLoginParams"/>, user_stats
+        from customer_login
+        <where>
+            <choose>
+                <when test="loginName == ''">
+                    creation_time BETWEEN #{startTime} AND #{endTime}
+                </when>
+                <when test="startTime == '' || endTime == ''">
+                    login_name like '%' #{loginName} '%'
+                </when>
+                <otherwise>
+                    creation_time BETWEEN #{startTime} AND #{endTime} and login_name like '%' #{loginName} '%'
+                </otherwise>
+            </choose>
+        </where>
+         order by customer_id
+    </select>
+
+    <select id="getCount" resultType="integer">
+        select count(*) from customer_login
     </select>
     <select id="verifyAndById" resultType="Integer">
         select
@@ -24,7 +53,7 @@
     <insert id="register">
         insert into
             customer_login(<include refid="customerLoginParams"/>)
-        values(#{loginEntity.loginAccount},#{loginEntity.loginName},#{loginEntity.loginPassword},#{loginEntity.activateCode})
+        values(#{loginEntity.loginAccount},#{loginEntity.loginName},#{loginEntity.loginPassword},#{loginEntity.activateCode},#{loginEntity.creationTime})
         ;
         insert into
             customer_inf(customer_id, customer_phone, customer_email)

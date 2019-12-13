@@ -2,7 +2,9 @@ package com.nf.mall.service.port;
 
 import com.nf.mall.entity.CustomerInfEntity;
 import com.nf.mall.entity.CustomerLoginEntity;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +18,13 @@ public interface CustomerLoginService {
      * @return 返回customer_login表的所有数据
      */
     List<CustomerLoginEntity> getAll();
+
+    List<CustomerLoginEntity> getPageAll(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
+
+
+    List<CustomerLoginEntity> getPageSearch(String startTime,String endTime,String loginName, Integer pageNum, Integer pageSize);
+
+    Integer getCount();
 
     /**
      * 验证账号密码是否正确
