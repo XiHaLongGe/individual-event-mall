@@ -38,7 +38,7 @@ public class CustomerLoginServiceImplTest {
 
     @Test
     public void register() {
-        System.out.println(service.register(CustomerLoginEntity.newBuilder().loginName("admin3").loginAccount("admin3").loginPassword("admin3").creationTime(new Date()).build(), CustomerInfEntity.newBuilder().customerPhone("13523423434").customerEmail("1738475867@qq.com").build()));
+        System.out.println(service.register(CustomerLoginEntity.newBuilder().loginName("123123").loginAccount("123123").loginPassword("123123").creationTime(new Date()).build(), CustomerInfEntity.newBuilder().customerPhone("13523423434").customerEmail("1738475867@qq.com").build()));
     }
 
     @Test
@@ -59,5 +59,15 @@ public class CustomerLoginServiceImplTest {
         for (CustomerLoginEntity pageSearch : service.getPageSearch("2019-10-11", "2019-12-12", "6",2,4)) {
             System.out.println(pageSearch);
         }
+    }
+
+    @Test
+    public void updateState() {
+        System.out.println(service.updateState(1,1));
+    }
+
+    @Test
+    public void update() {
+        System.out.println(service.update(CustomerLoginEntity.newBuilder().loginAccount("22871102780").loginName("xiha2").loginPassword("12121212").build()));
     }
 }

@@ -1,6 +1,9 @@
 package com.nf.mall.controller.be;
 
+import com.nf.mall.service.port.CustomerLoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -14,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BeHomeController {
     @RequestMapping("/")
     public String home(){return "backend/home";}
-    @RequestMapping("/member/list")
-    public String memberList(){return "backend/home/customer-login-list";}
-    @RequestMapping("/member/add")
-    public String memberAdd(){
-        return "backend/home/member-add";
+    @RequestMapping("/customer/login/list")
+    public String customerLoginEList(){return "backend/home/customer-login-list";}
+    @RequestMapping("/customer/login/add")
+    public String customerLoginEAdd(){
+        return "backend/home/customer-login-add";
     }
 }

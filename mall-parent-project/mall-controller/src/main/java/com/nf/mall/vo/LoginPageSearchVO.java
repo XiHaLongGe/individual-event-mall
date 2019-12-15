@@ -18,6 +18,8 @@ public class LoginPageSearchVO {
     private String startTime;
     private String endTime;
     private String loginName;
+    private Integer id;
+    private Integer state;
 
     public LoginPageSearchVO(){}
 

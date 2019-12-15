@@ -32,7 +32,7 @@ $(function () {
 
     tableCheck = {
         init:function  () {
-            $(".layui-form-checkbox").click(function(event) {
+            $(".layui-form-checkbox").live("click",function(event) {
                 if($(this).hasClass('layui-form-checked')){
                     $(this).removeClass('layui-form-checked');
                     if($(this).hasClass('header')){

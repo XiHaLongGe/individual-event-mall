@@ -5,13 +5,15 @@ import com.nf.mall.entity.CustomerLoginEntity;
 import com.nf.mall.service.port.CustomerLoginService;
 import com.nf.mall.vo.LoginPageSearchVO;
 import com.nf.mall.vo.ResponseVO;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author: LJP
@@ -26,11 +28,6 @@ public class CustomerController {
     private CustomerLoginService customerLoginService;
     @Autowired
 
-    @RequestMapping("/login/count")
-    @ResponseBody
-    public ResponseVO loginCount(){
-        return ResponseVO.newBuilder().code("200").msg("获取到用户总数量").data(customerLoginService.getCount()).build();
-    }
     @RequestMapping("/login/list")
     @ResponseBody
     public ResponseVO loginList(){
@@ -52,5 +49,58 @@ public class CustomerController {
         String loginName = loginPageSearchVO.getLoginName();
         PageInfo pageInfo = new PageInfo(customerLoginService.getPageSearch(startTime, endTime, loginName, pageNum, pageSize));
         return ResponseVO.newBuilder().code("200").msg("根据条件查询，获取到用户对象的分页列表").data(pageInfo).build();
+    }
+
+    @RequestMapping("/login/edit")
+    public String customerLoginEdit(Integer id, Model model){
+        model.addAttribute("customerLoginEntity", customerLoginService.getById(id));
+        return "backend/home/customer-login-edit";
+    }
+
+    @RequestMapping("/login/edit/password")
+    public String updatePassWord(Integer id, Model model){
+        model.addAttribute("customerLoginEntity", customerLoginService.getById(id));
+        return "backend/home/customer-login-edit-password";
+    }
+
+    @RequestMapping("/login/add")
+    public String customerLoginAdd(){
+        return "backend/home/customer-login-add";
+    }
+
+    @PostMapping("/login/delete")
+    @ResponseBody
+    public ResponseVO delete(@RequestBody LoginPageSearchVO loginPageSearchVO){
+        return ResponseVO.newBuilder().code("200").msg("删除用户账号信息").data(customerLoginService.delete(loginPageSearchVO.getId())).build();
+    }
+
+    @PostMapping("/login/batch/delete")
+    @ResponseBody
+    public ResponseVO delete(@RequestBody String [] batchId){
+        Integer [] batchIds = new Integer[batchId.length];
+        for (int i = 0; i < batchId.length; i++) {
+            batchIds[i] = Integer.valueOf(batchId[i]);
+        }
+        return ResponseVO.newBuilder().code("200").msg("批量删除用户账号信息").data(customerLoginService.batchDelete(batchIds)).build();
+    }
+
+    @PostMapping("/login/update")
+    @ResponseBody
+    public ResponseVO update(@RequestBody CustomerLoginEntity customerLoginEntity){
+        return ResponseVO.newBuilder().code("200").msg("修改用户账号信息").data(customerLoginService.update(customerLoginEntity)).build();
+    }
+
+    @PostMapping("/login/update/password")
+    @ResponseBody
+    public ResponseVO updatePassWord(@RequestBody CustomerLoginEntity customerLoginEntity){
+        return ResponseVO.newBuilder().code("200").msg("修改用户密码信息").data(customerLoginService.updatePassWord(customerLoginEntity)).build();
+    }
+
+    @PostMapping("/login/update/state")
+    @ResponseBody
+    public ResponseVO updateState(@RequestBody LoginPageSearchVO loginPageSearchVO){
+        Integer id = loginPageSearchVO.getId();
+        Integer state = loginPageSearchVO.getState();
+        return ResponseVO.newBuilder().code("200").msg("根据id修改用户账号状态").data(customerLoginService.updateState(id,state)).build();
     }
 }

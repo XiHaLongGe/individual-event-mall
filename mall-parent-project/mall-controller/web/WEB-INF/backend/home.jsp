@@ -166,7 +166,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/backend/home/member/list">
+                        <a _href="/backend/home/customer/login/list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表</cite>
                         </a>

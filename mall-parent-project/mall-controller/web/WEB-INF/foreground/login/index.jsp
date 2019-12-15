@@ -63,12 +63,12 @@
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-pwd">登录密码</label>--%>
-                        <input type="password" name="loginPassword" placeholder="登录密码" class="r-form-first-name form-control" id="password" maxlength='18' value="123456">
+                        <input type="password" name="loginPassword" placeholder="登录密码" class="r-form-first-name form-control" id="password" maxlength='16' value="123456">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-confirm-pwd">确认密码</label>--%>
                         <%-- name="confirm-pwd"--%>
-                        <input type="password" placeholder="确认密码" class="r-form-first-name form-control" id="confirmPassword" maxlength='18' value="123456">
+                        <input type="password" placeholder="确认密码" class="r-form-first-name form-control" id="confirmPassword" maxlength='16' value="123456">
                     </div>
                     <div class="form-group">
                         <%--<label class="sr-only" for="for-phone">手机号</label>--%>

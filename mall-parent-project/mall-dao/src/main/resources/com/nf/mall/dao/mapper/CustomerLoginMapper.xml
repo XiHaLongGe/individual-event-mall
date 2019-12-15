@@ -18,6 +18,14 @@
         customer_id, <include refid="customerLoginParams"/>, user_stats
         from customer_login order by customer_id
     </select>
+
+    <select id="getById" resultType="com.nf.mall.entity.CustomerLoginEntity">
+        select
+        customer_id, <include refid="customerLoginParams"/>, user_stats
+        from customer_login
+        where customer_id = #{id}
+    </select>
+
     <select id="getPageSearch" resultType="com.nf.mall.entity.CustomerLoginEntity">
         select
         customer_id, <include refid="customerLoginParams"/>, user_stats
@@ -60,8 +68,41 @@
         values(LAST_INSERT_ID(), #{infEntity.customerPhone},#{infEntity.customerEmail})
     </insert>
 
+    <delete id="delete">
+        delete from customer_login where customer_id = #{id}
+    </delete>
+
+    <delete id="batchDelete">
+        delete from customer_login
+        where 1 > 2
+        or customer_id in 
+        <foreach collection="batchId" item="batchId" open="(" separator="," close=")">
+            #{batchId}
+        </foreach>
+    </delete>
+
+
     <!--修改账号状态-->
     <update id="activate">
         update customer_login set user_stats = 1 where activate_code = #{code}
+    </update>
+
+    <update id="update">
+        update customer_login
+        set login_name = #{customerLoginEntity.loginName}
+            <if test="customerLoginEntity.loginPassword != ''">
+                , login_password = #{customerLoginEntity.loginPassword}
+            </if>
+        where login_account = #{customerLoginEntity.loginAccount}
+    </update>
+
+    <update id="updatePassWord">
+        update customer_login
+        set login_password = #{customerLoginEntity.loginPassword}
+        where login_account = #{customerLoginEntity.loginAccount}
+    </update>
+
+    <update id="updateState">
+        update customer_login set user_stats = #{state} where customer_id = #{id}
     </update>
 </mapper>

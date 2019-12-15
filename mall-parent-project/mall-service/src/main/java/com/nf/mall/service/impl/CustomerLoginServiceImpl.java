@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +20,8 @@ import java.util.List;
  * @Description:
  */
 @Service
+
+
 
 public class CustomerLoginServiceImpl implements CustomerLoginService {
     @Autowired
@@ -45,8 +45,43 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
     }
 
     @Override
+    public CustomerLoginEntity getById(Integer id) {
+        return dao.getById(id);
+    }
+
+    @Override
     public Integer getCount() {
         return dao.getCount();
+    }
+
+    @Override
+    public boolean update(CustomerLoginEntity customerLoginEntity) {
+        return dao.update(customerLoginEntity) > 0;
+    }
+
+    @Override
+    public boolean delete(Integer id) {
+        return dao.delete(id) > 0;
+    }
+
+    @Override
+    public boolean batchDelete(Integer[] batchId) {
+        return dao.batchDelete(batchId) == batchId.length;
+    }
+
+    @Override
+    public boolean updatePassWord(CustomerLoginEntity customerLoginEntity) {
+        if(verify(customerLoginEntity)){
+            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-验证成功");
+            String madNewPwd = Md5Util.encodeByMd5(customerLoginEntity.getNewPassword());
+            return dao.updatePassWord(CustomerLoginEntity.newBuilder(customerLoginEntity).loginPassword(madNewPwd).build()) > 0;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateState(Integer id, Integer state) {
+        return dao.updateState(id, state) > 0;
     }
 
     /**
@@ -74,11 +109,12 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
     @Override
     @Transactional(rollbackFor = Throwable.class)
     public boolean register(CustomerLoginEntity customerLoginEntity, CustomerInfEntity customerInfEntity) {
+        String md5Pwd = Md5Util.encodeByMd5(customerLoginEntity.getLoginPassword());
         /**
          * CodeUtil.generateUniqueCode() : 获取到激活码
          */
         String code = CodeUtil.generateUniqueCode();
-        if(dao.register(CustomerLoginEntity.newBuilder(customerLoginEntity).activateCode(code).build(), customerInfEntity) > 0){
+        if(dao.register(CustomerLoginEntity.newBuilder(customerLoginEntity).loginPassword(md5Pwd).activateCode(code).build(), customerInfEntity) > 0){
             new Thread(new MailUtil(customerInfEntity.getCustomerEmail(), code)).start();
             return true;
         }

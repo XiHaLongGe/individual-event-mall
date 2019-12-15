@@ -24,7 +24,19 @@ public interface CustomerLoginService {
 
     List<CustomerLoginEntity> getPageSearch(String startTime,String endTime,String loginName, Integer pageNum, Integer pageSize);
 
+    CustomerLoginEntity getById(Integer id);
+
     Integer getCount();
+
+    boolean update(CustomerLoginEntity customerLoginEntity);
+
+    boolean delete(Integer id);
+
+    boolean batchDelete(Integer [] batchId);
+
+    boolean updatePassWord(CustomerLoginEntity customerLoginEntity);
+
+    boolean updateState(Integer id, Integer state);
 
     /**
      * 验证账号密码是否正确

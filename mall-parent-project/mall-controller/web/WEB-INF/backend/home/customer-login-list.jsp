@@ -20,7 +20,7 @@
 <%--    <script src="/static/backend/home/js/jquery.min.js"></script>--%>
     <script src="/static/home/js/jquery-1.8.3.min.js?v=<%= System.currentTimeMillis()%>"></script>
     <script type="text/javascript" src="/static/backend/home/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/static/backend/home/js/xadmin.js"></script>
+        <script type="text/javascript" src="/static/backend/home/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -36,7 +36,7 @@
         <a>
           <cite>导航元素</cite></a>
       </span>
-    <a class="layui-btn layui-btn-primary layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+    <a id="refreshA" class="layui-btn layui-btn-primary layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:;" title="刷新">
         <i class="layui-icon" style="line-height:38px">ဂ</i></a>
 </div>
 <div class="x-body">
@@ -51,7 +51,7 @@
     <script></script>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','/backend/customer/login/add',600,400)"><i class="layui-icon"></i>添加</button>
         <span id="countSPAN" class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
     <table class="layui-table">
@@ -111,8 +111,7 @@
         </div>
     </div>
 </div>
-<script src="/static/backend/home/js/customerLogin.js?v=<%= System.currentTimeMillis()%>"></script>
-
+<script src="/static/backend/home/js/customerLoginList.js?v=<%= System.currentTimeMillis()%>"></script>
 <script>
     layui.use('laydate', function(){
         var laydate = layui.laydate;
@@ -125,47 +124,6 @@
             elem: '#end' //指定元素
         });
     });
-
-    /*用户-停用*/
-    function member_stop(obj,id){
-        layer.confirm('确认要停用吗？',function(index){
-
-            if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-            }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-            }
-
-        });
-    }
-
-    /*用户-删除*/
-    function member_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
-        });
-    }
-    function delAll (argument) {
-        var data = tableCheck.getData();
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
 </script>
 </body>
 

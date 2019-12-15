@@ -24,7 +24,19 @@ public interface CustomerLoginDao {
 
     List<CustomerLoginEntity> getPageSearch(@Param("startTime")String startTime, @Param("endTime")String endTime, @Param("loginName")String loginName, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
 
+    CustomerLoginEntity getById(Integer id);
+
     Integer getCount();
+
+    Integer delete(Integer id);
+
+    Integer batchDelete(@Param("batchId")Integer [] batchId);
+
+    Integer update(@Param("customerLoginEntity")CustomerLoginEntity customerLoginEntity);
+
+    Integer updatePassWord(@Param("customerLoginEntity")CustomerLoginEntity customerLoginEntity);
+
+    Integer updateState(@Param("id")Integer id, @Param("state")Integer state);
 
     /**
      * 验证账号密码是否正确
