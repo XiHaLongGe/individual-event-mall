@@ -12,13 +12,13 @@
     </sql>
     <select id="getAll" resultType="com.nf.mall.entity.PictureInfEntity">
         select
-            product_inf_id, <include refid="pictureInfParams"/>
+            product_id, <include refid="pictureInfParams"/>
         from picture_inf
     </select>
 
     <select id="getByType" resultType="com.nf.mall.entity.PictureInfEntity">
         select
-        product_inf_id, <include refid="pictureInfParams"/>
+        product_id, <include refid="pictureInfParams"/>
         from picture_inf
         where picture_type_id = #{pictureTypeId}
     </select>

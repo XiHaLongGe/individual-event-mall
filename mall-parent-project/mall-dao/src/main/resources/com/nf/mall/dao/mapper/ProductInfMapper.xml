@@ -6,6 +6,8 @@
     <sql id="productParams">
         proinf.brand_id,
         proinf.category_id,
+        proinf.hot_sale,
+        proinf.sidebar_category_id,
         proinf.product_name,
         proinf.product_price,
         proinf.product_sales,
@@ -50,5 +52,29 @@
         from picture_inf picinf join product_inf proinf
         on picinf.product_inf_id = proinf.product_id
         where picinf.picture_type_id = #{picTypeId} and proinf.category_id = #{proCategoryId}
+    </select>
+
+    <select id="getSidebarCategorySale" resultMap="categorySaleResultMap">
+        select
+        picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
+        from picture_inf picinf join product_inf proinf
+        on picinf.product_inf_id = proinf.product_id
+        where picinf.picture_type_id = #{picTypeId} and proinf.hot_sale = 1
+    </select>
+
+    <select id="getHotProduct" resultMap="categorySaleResultMap">
+        select
+        picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf join picture_inf picinf
+        on proinf.product_id = picinf.product_id
+        where proinf.hot_sale = 1 and picinf.picture_type_id = 3
+    </select>
+
+    <select id="getBySidebarCategoryId" resultMap="categorySaleResultMap">
+        select
+        picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
+        from product_inf proinf join picture_inf picinf
+        on proinf.product_id = picinf.product_id
+        where sidebar_category_id = #{sidebarCategoryId} and picinf.picture_type_id = 4
     </select>
 </mapper>

@@ -21,4 +21,11 @@ public class ProductInfServiceImplTest {
             System.out.println(productInfEntity);
         }
     }
+
+    @Test
+    public void getBySidebarCategoryId() {
+        for (ProductInfEntity productInfEntity : service.getBySidebarCategoryId(8)) {
+            System.out.println(productInfEntity);
+        }
+    }
 }

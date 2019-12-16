@@ -8,7 +8,7 @@ function afficheData(){
             <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
     */
     $.ajax({
-        url:"/foreground/home/affiche/list",
+        url:"/foreground/affiche/list",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
@@ -37,7 +37,7 @@ function afficheImageLoader(){
             配置useBodyEncodingForURI="true"后，可以解决普通get请求的中文乱码问题，
             但是对于通过ajax发起的get请求中文依然会乱码，请把useBodyEncodingForURI="true"改为URIEncoding="UTF-8"即可。
         */
-        url:"/foreground/home/picture/push/list?pictureTypeId=1",
+        url:"/foreground/picture/list?pictureTypeId=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json;charset=utf-8",
@@ -52,8 +52,7 @@ function afficheImageLoader(){
     })
     categoryName();
 }
-
-
+/*分类层次id  左侧分类列表显示数据层次*/
 /*生成左侧分类名称*/
 function categoryName(){
     /*
@@ -68,7 +67,7 @@ function categoryName(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/category/level/list?levelNum=3",
+        url:"/foreground/product/category/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
@@ -125,14 +124,14 @@ function categorySpread(){
             var aParam = $(this).attr("param");
             resultVal += "<dt>" + $(this).text() + "</dt>";
             $.ajax({
-                url:"/foreground/home/category/spread?categoryId=" + aParam,
+                url:"/foreground/product/category/list?levelNum=2&parentId=" + aParam,
                 type:"GET",
                 async: false,//设置为同步
                 contentType: "application/json",
                 success:function(data){
                     resultVal += "<dd>";
                     $.each(data.data, function(index,element){
-                        resultVal += "<a href=\"javascript:;\">" + element + "</a>";
+                        resultVal += "<a href=\"javascript:;\">" + element.categoryName + "</a>";
                     })
                     resultVal += "</dd>";
                 }

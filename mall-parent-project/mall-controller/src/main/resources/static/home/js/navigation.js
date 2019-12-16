@@ -9,13 +9,13 @@ function navigation(){
     */
     var resultVal = "";
     $.ajax({
-        url:"/foreground/home/category/level/list?levelNum=1",
+        url:"/foreground/sidebar/category/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
         success:function(data){
             $.each(data.data, function(index,element) {
-                resultVal += "<li>" + element.categoryName + "</li>";
+                resultVal += "<li>" + element.sidebarCategoryName + "</li>";
             })
         }
     })

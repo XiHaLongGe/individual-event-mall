@@ -13,8 +13,11 @@ import java.util.List;
  */
 public interface ProductInfDao {
     List<ProductInfEntity> getAll();
+    List<ProductInfEntity> getHotProduct();
+    List<ProductInfEntity> getBySidebarCategoryId(@Param("sidebarCategoryId")Integer sidebarCategoryId);
     ProductInfEntity getById(Integer id);
     List<ProductInfEntity> getByBrandId(Integer brandId);
     List<ProductInfEntity> getByCategoryId(Integer categoryId);
     List<ProductInfEntity> getCategorySale(@Param("picTypeId") Integer picTypeId, @Param("proCategoryId") Integer proCategoryId);
+    List<ProductInfEntity> getSidebarCategorySale(@Param("picTypeId") Integer picTypeId);
 }

@@ -19,36 +19,37 @@ function categorySale(){
             </span>
     */
     $.ajax({
-        url:"/foreground/home/category/level/list?levelNum=1&parentId=0",
+        url:"/foreground/sidebar/category/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
         success:function(data){
             var resultVal = "";
-            var resultIndex = 1;
+            var prefixIndex = 1;
             $.each(data.data, function(index,element) {
-                if(element.categoryName == "热销商品"){
+                if(element.sidebarCategoryName == "热销商品"){
                     hotProductHead();
                 }else{
+                    var suffixIndex = 1;
                     var resultDIV = "";
                     resultVal += "<span class=\"as blessing_package\">";
                     resultVal += "<a href=\"#\" style=\" color:#000\">";
-                    resultVal += "<h3 style=\"float:left\">&nbsp;" + element.categoryName + "<font>" + element.categoryDescribe + "</font>";
+                    resultVal += "<h3 style=\"float:left\">&nbsp;" + element.sidebarCategoryName + "<font>" + element.sidebarCategoryDescribe + "</font>";
                     resultVal += "<img src=\"/static/home/images/zd.png\" style=\"display:block; float:left; margin-top:5px\">";
                     resultVal += "</h3>";
                     resultVal += "<div class=\"detailed_navigation\">";
                     resultVal += "<ul>";
                     $.ajax({
-                        url:"/foreground/home/category/level/list?levelNum=" + (element.categoryLevel + 1) + "&parentId=" + element.categoryId,
+                        url:"/foreground/sidebar/category/list?levelNum=" + (element.sidebarCategoryLevel + 1) + "&parentId=" + element.sidebarCategoryId,
                         type:"GET",
                         async: false,//设置为同步
                         contentType: "application/json",
                         success:function(data){
                             $.each(data.data, function(index, element){
                                 var checked = index == 0 ? " yadi" : "";
-                                resultVal += "<li class=\"dog d-1-lt" + resultIndex + " " + checked + "\"  dg-floor=\"1\"  dg-ct=\"lt" + resultIndex + "\">" + element.categoryName + "</li>";
-                                resultDIV += categoryProduct(element.categoryId, resultIndex);
-                                resultIndex ++;
+                                resultVal += "<li class=\"dog d-" + prefixIndex + "-lt" + suffixIndex + " " + checked + "\"  dg-floor=\"" + prefixIndex + "\"  dg-ct=\"lt" + suffixIndex + "\">" + element.sidebarCategoryName + "</li>";
+                                resultDIV += categoryProduct(element.sidebarCategoryId, prefixIndex, suffixIndex);
+                                suffixIndex ++;
                             })
                         }
                     })
@@ -57,13 +58,14 @@ function categorySale(){
                     resultVal += "</a>";
                     resultVal += "</span>";
                     resultVal += "<div>" + resultDIV + "</div>";
+                    prefixIndex ++;
                 }
             })
             $("#spanProduct").empty().append(resultVal);
         }
     })
 }
-function categoryProduct(categoryId, resultIndex){
+function categoryProduct(categoryId, prefixIndex, suffixIndex){
     /*
         想要达到效果：
         <div>
@@ -86,11 +88,11 @@ function categoryProduct(categoryId, resultIndex){
         </div>
     */
     var resultDIV = "";
-    var styleDIV = resultIndex == 1 ? "" : "style=\"display:none\"";
-    resultDIV += "<div class=\"currency f-1-lt" + resultIndex + "\" " + styleDIV + ">";
+    var styleDIV = suffixIndex == 1 ? "" : "style=\"display:none\"";
+    resultDIV += "<div class=\"currency f-" + prefixIndex + "-lt" + suffixIndex + "\" " + styleDIV + ">";
     resultDIV += "<ul>";
     $.ajax({
-        url:"/foreground/home/picTypeId/proCategoryId/product?proCategoryId=" + categoryId,
+        url:"/foreground/product/sidebar/category/list?sidebarCategoryId=" + categoryId,
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",

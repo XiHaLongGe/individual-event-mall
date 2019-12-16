@@ -40,10 +40,6 @@ public class CustomerInfEntity {
      * customerEmail
      */
     private String customerEmail;
-    /**
-     * customerRegion
-     */
-    private String customerRegion;
 
     public CustomerInfEntity() {
     }
@@ -62,7 +58,6 @@ public class CustomerInfEntity {
         customerCard = builder.customerCard;
         customerPhone = builder.customerPhone;
         customerEmail = builder.customerEmail;
-        customerRegion = builder.customerRegion;
     }
 
     public static Builder newBuilder() {
@@ -78,7 +73,6 @@ public class CustomerInfEntity {
         builder.customerCard = copy.getCustomerCard();
         builder.customerPhone = copy.getCustomerPhone();
         builder.customerEmail = copy.getCustomerEmail();
-        builder.customerRegion = copy.getCustomerRegion();
         return builder;
     }
 
@@ -91,7 +85,6 @@ public class CustomerInfEntity {
         private String customerCard;
         private String customerPhone;
         private String customerEmail;
-        private String customerRegion;
 
         private Builder() {
         }
@@ -131,10 +124,6 @@ public class CustomerInfEntity {
             return this;
         }
 
-        public Builder customerRegion(String val) {
-            customerRegion = val;
-            return this;
-        }
 
         public CustomerInfEntity build() {
             return new CustomerInfEntity(this);

@@ -8,16 +8,16 @@ function hotProductHead(){
 	    </h3>
     */
     $.ajax({
-        url:"/foreground/home/category/level/list?levelNum=1",
+        url:"/foreground/sidebar/category/list?levelNum=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",
         success:function(data){
             var resultVal = "";
             $.each(data.data, function(index,element) {
-                if(element.categoryName == "热销商品"){
-                    resultVal += element.categoryName;
-                    resultVal += "<font>" + element.categoryDescribe + "</font>";
+                if(element.sidebarCategoryName == "热销商品"){
+                    resultVal += element.sidebarCategoryName;
+                    resultVal += "<font>" + element.sidebarCategoryDescribe + "</font>";
                     resultVal += "<a href=\"#\">更多热销商品</a>";
                 }
             })
@@ -40,7 +40,7 @@ function hotProductBody(){
             </li>
     */
     $.ajax({
-        url:"/foreground/home/picTypeId/proCategoryId/product?picTypeId=3&proCategoryId=8",
+        url:"/foreground/product/hot/sale/list",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json",

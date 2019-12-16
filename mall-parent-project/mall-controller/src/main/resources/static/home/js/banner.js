@@ -21,7 +21,7 @@ function mainPicture(){
     var resultVal = "";
     var picIndex = 0;
     $.ajax({
-        url:"/foreground/home/picture/push/list?pictureTypeId=2",
+        url:"/foreground/picture/list?pictureTypeId=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json;charset=utf-8",

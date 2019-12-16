@@ -13,7 +13,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class PictureInfEntity {
     private Integer pictureInfId;
-    private Integer productInfId;
+    private Integer productId;
     private Integer pictureTypeId;
     private String pictureInfUrl;
     private Integer pictureInfOrder;
@@ -23,7 +23,7 @@ public class PictureInfEntity {
 
     private PictureInfEntity(Builder builder) {
         pictureInfId = builder.pictureInfId;
-        productInfId = builder.productInfId;
+        productId = builder.productId;
         pictureTypeId = builder.pictureTypeId;
         pictureInfUrl = builder.pictureInfUrl;
         pictureInfOrder = builder.pictureInfOrder;
@@ -37,7 +37,7 @@ public class PictureInfEntity {
     public static Builder newBuilder(PictureInfEntity copy) {
         Builder builder = new Builder();
         builder.pictureInfId = copy.getPictureInfId();
-        builder.productInfId = copy.getProductInfId();
+        builder.productId = copy.getProductId();
         builder.pictureTypeId = copy.getPictureTypeId();
         builder.pictureInfUrl = copy.getPictureInfUrl();
         builder.pictureInfOrder = copy.getPictureInfOrder();
@@ -45,10 +45,9 @@ public class PictureInfEntity {
         return builder;
     }
 
-
     public static final class Builder {
         private Integer pictureInfId;
-        private Integer productInfId;
+        private Integer productId;
         private Integer pictureTypeId;
         private String pictureInfUrl;
         private Integer pictureInfOrder;
@@ -62,8 +61,8 @@ public class PictureInfEntity {
             return this;
         }
 
-        public Builder productInfId(Integer val) {
-            productInfId = val;
+        public Builder productId(Integer val) {
+            productId = val;
             return this;
         }
 
