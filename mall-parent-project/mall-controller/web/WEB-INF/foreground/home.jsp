@@ -109,12 +109,14 @@
                 <p><a href="#">【优选】中秋嘉年华，好礼钜惠</a></p>
                 <p><a href="#">【优选】冰点破纪录，低价不猫腻</a></p>
             </div>
-            <a href="#">
-                <div id="afficheImageDIV" class="notice_img">
-                    <img src="/static/home/images/activity.jpg" class="img1">
-                    <img src="/static/home/images/activity.jpg" class="img2">
-                </div>
-            </a>
+            <span id="afficheImageSPAN">
+                <a href="#">
+                    <div class="notice_img">
+                        <img src="/static/home/images/activity.jpg" class="img1">
+                        <img src="/static/home/images/activity.jpg" class="img2">
+                    </div>
+                </a>
+            </span>
         </div>
         <!--全部商品分类-->
         <div class="important"><img src="/static/home/images/all_list.png" style=" margin-top:8px">&nbsp;全部商品分类

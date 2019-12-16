@@ -22,4 +22,13 @@
         from picture_inf
         where picture_type_id = #{pictureTypeId}
     </select>
+
+    <select id="getByTypeAndPro" resultType="com.nf.mall.entity.PictureInfEntity">
+        select
+        product_id, <include refid="pictureInfParams"/>
+        from picture_inf
+        where picture_type_id = #{pictureTypeId}
+        and product_id = #{productId}
+        order by picture_inf_order
+    </select>
 </mapper>

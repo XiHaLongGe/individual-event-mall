@@ -28,8 +28,14 @@ function afficheData(){
 function afficheImageLoader(){
     /*
         想要达到效果：
-            <img src="/static/home/images/activity.jpg" class="img1">
-            <img src="/static/home/images/activity.jpg" class="img2">
+            <span id="afficheImageSPAN">
+                <a href="#">
+                    <div class="notice_img">
+                        <img src="/static/home/images/activity.jpg" class="img1">
+                        <img src="/static/home/images/activity.jpg" class="img2">
+                    </div>
+                </a>
+            </span>
     */
     $.ajax({
         /*
@@ -37,17 +43,23 @@ function afficheImageLoader(){
             配置useBodyEncodingForURI="true"后，可以解决普通get请求的中文乱码问题，
             但是对于通过ajax发起的get请求中文依然会乱码，请把useBodyEncodingForURI="true"改为URIEncoding="UTF-8"即可。
         */
-        url:"/foreground/picture/list?pictureTypeId=1",
+        url:"/foreground/picture/type/list?pictureTypeId=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json;charset=utf-8",
         success:function(data){
             var resultVal = "";
             $.each(data.data, function(index,element) {
-                resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img1\">";
-                resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img2\">";
+                if(index == 0){
+                    resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\">";
+                    resultVal += "<div class=\"notice_img\">";
+                    resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img1\">";
+                    resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img2\">";
+                    resultVal += "</div>";
+                    resultVal += "</a>";
+                }
             })
-            $("#afficheImageDIV").empty().append(resultVal);
+            $("#afficheImageSPAN").empty().append(resultVal);
         }
     })
     categoryName();

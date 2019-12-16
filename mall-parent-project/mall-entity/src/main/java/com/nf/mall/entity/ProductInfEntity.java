@@ -20,6 +20,7 @@ public class ProductInfEntity {
     private Byte hotSale;
     private Integer sidebarCategoryId;
     private String productName;
+    private String productDescribe;
     private BigDecimal productPrice;
     private Integer productSales;
     private Byte productStatus;
@@ -40,10 +41,10 @@ public class ProductInfEntity {
         hotSale = builder.hotSale;
         sidebarCategoryId = builder.sidebarCategoryId;
         productName = builder.productName;
+        productDescribe = builder.productDescribe;
         productPrice = builder.productPrice;
         productSales = builder.productSales;
         productStatus = builder.productStatus;
-        pictureInfUrl = builder.pictureInfUrl;
     }
 
     public static Builder newBuilder() {
@@ -58,13 +59,12 @@ public class ProductInfEntity {
         builder.hotSale = copy.getHotSale();
         builder.sidebarCategoryId = copy.getSidebarCategoryId();
         builder.productName = copy.getProductName();
+        builder.productDescribe = copy.getProductDescribe();
         builder.productPrice = copy.getProductPrice();
         builder.productSales = copy.getProductSales();
         builder.productStatus = copy.getProductStatus();
-        builder.pictureInfUrl = copy.getPictureInfUrl();
         return builder;
     }
-
 
     public static final class Builder {
         private Integer productId;
@@ -73,10 +73,10 @@ public class ProductInfEntity {
         private Byte hotSale;
         private Integer sidebarCategoryId;
         private String productName;
+        private String productDescribe;
         private BigDecimal productPrice;
         private Integer productSales;
         private Byte productStatus;
-        private String pictureInfUrl;
 
         private Builder() {
         }
@@ -111,6 +111,11 @@ public class ProductInfEntity {
             return this;
         }
 
+        public Builder productDescribe(String val) {
+            productDescribe = val;
+            return this;
+        }
+
         public Builder productPrice(BigDecimal val) {
             productPrice = val;
             return this;
@@ -123,11 +128,6 @@ public class ProductInfEntity {
 
         public Builder productStatus(Byte val) {
             productStatus = val;
-            return this;
-        }
-
-        public Builder pictureInfUrl(String val) {
-            pictureInfUrl = val;
             return this;
         }
 

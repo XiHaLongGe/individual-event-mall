@@ -5,6 +5,7 @@ import com.nf.mall.service.port.ProductInfService;
 import com.nf.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,9 +22,21 @@ public class ProductInfController {
     @Autowired
     private ProductInfService productInfService;
 
+    @RequestMapping("")
+    public String home(Integer productId, Model model){
+        model.addAttribute("productId", productId);
+        return "foreground/productInfList";
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public ResponseVO productList(Integer productId){
+        return ResponseVO.newBuilder().code("200").msg("根据商品id获得商品表数据").data(productInfService.getById(productId)).build();
+    }
+
     @RequestMapping("/hot/sale/list")
     @ResponseBody
-    public ResponseVO hotProductList(){
+    public ResponseVO productList(){
         return ResponseVO.newBuilder().code("200").msg("获得热销商品表数据").data(productInfService.getHotProduct()).build();
     }
 
@@ -31,7 +44,7 @@ public class ProductInfController {
     @RequestMapping("/sidebar/category/list")
     @ResponseBody
     public ResponseVO sidebarCategoryProductList(Integer sidebarCategoryId){
-        return ResponseVO.newBuilder().code("200").msg("根据商品信息中的侧边分类栏ID，获得热销商品表数据").data(productInfService.getBySidebarCategoryId(sidebarCategoryId)).build();
+        return ResponseVO.newBuilder().code("200").msg("根据商品信息中的侧边分类栏ID，获得商品表数据").data(productInfService.getBySidebarCategoryId(sidebarCategoryId)).build();
     }
 
 

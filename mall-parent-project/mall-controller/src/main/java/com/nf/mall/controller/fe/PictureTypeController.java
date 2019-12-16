@@ -21,11 +21,16 @@ public class PictureTypeController {
     @Autowired
     private PictureInfService pictureInfService;
 
-
-    @RequestMapping("/list")
+    @RequestMapping("/type/list")
     @ResponseBody
     public ResponseVO pictureList(Integer pictureTypeId){
         return ResponseVO.newBuilder().code("200").msg("根据图片类型id，获得图片表数据").data(pictureInfService.getByType(pictureTypeId)).build();
+    }
+
+    @RequestMapping("/type/main/list")
+    @ResponseBody
+    public ResponseVO pictureList(Integer pictureTypeId, Integer productId){
+        return ResponseVO.newBuilder().code("200").msg("根据图片类型id和商品id，获得图片表数据").data(pictureInfService.getByTypeAndPro(pictureTypeId, productId)).build();
     }
 
 }

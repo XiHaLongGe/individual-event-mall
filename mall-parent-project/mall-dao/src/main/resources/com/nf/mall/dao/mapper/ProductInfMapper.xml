@@ -9,10 +9,15 @@
         proinf.hot_sale,
         proinf.sidebar_category_id,
         proinf.product_name,
+        proinf.product_describe,
         proinf.product_price,
         proinf.product_sales,
         proinf.product_status
     </sql>
+
+    <resultMap id="productInfResultMap" type="com.nf.mall.entity.ProductInfEntity">
+        <result property="pictureInfUrl" column="picUrl"/>
+    </resultMap>
 
     <select id="getAll" resultType="com.nf.mall.entity.ProductInfEntity">
         select
@@ -20,33 +25,14 @@
         from product_inf proinf
     </select>
 
-    <select id="getById" resultType="com.nf.mall.entity.ProductInfEntity">
+    <select id="getById" resultMap="productInfResultMap">
         select
         proinf.product_id, <include refid="productParams"/>
         from product_inf proinf
         where product_id = #{id}
     </select>
 
-    <select id="getByBrandId" resultType="com.nf.mall.entity.ProductInfEntity">
-        select
-        proinf.product_id, <include refid="productParams"/>
-        from product_inf proinf
-        where brand_id = #{id}
-    </select>
-
-    <select id="getByCategoryId" resultType="com.nf.mall.entity.ProductInfEntity">
-        select
-        proinf.product_id, <include refid="productParams"/>
-        from product_inf proinf
-        where category_id = #{categoryId}
-    </select>
-
-
-
-    <resultMap id="categorySaleResultMap" type="com.nf.mall.entity.ProductInfEntity">
-        <result property="pictureInfUrl" column="picUrl"/>
-    </resultMap>
-    <select id="getCategorySale" resultMap="categorySaleResultMap">
+    <select id="getCategorySale" resultMap="productInfResultMap">
         select
         picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
         from picture_inf picinf join product_inf proinf
@@ -54,15 +40,7 @@
         where picinf.picture_type_id = #{picTypeId} and proinf.category_id = #{proCategoryId}
     </select>
 
-    <select id="getSidebarCategorySale" resultMap="categorySaleResultMap">
-        select
-        picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
-        from picture_inf picinf join product_inf proinf
-        on picinf.product_inf_id = proinf.product_id
-        where picinf.picture_type_id = #{picTypeId} and proinf.hot_sale = 1
-    </select>
-
-    <select id="getHotProduct" resultMap="categorySaleResultMap">
+    <select id="getHotProduct" resultMap="productInfResultMap">
         select
         picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
         from product_inf proinf join picture_inf picinf
@@ -70,7 +48,7 @@
         where proinf.hot_sale = 1 and picinf.picture_type_id = 3
     </select>
 
-    <select id="getBySidebarCategoryId" resultMap="categorySaleResultMap">
+    <select id="getBySidebarCategoryId" resultMap="productInfResultMap">
         select
         picinf.picture_inf_url as picUrl, proinf.product_id, <include refid="productParams"/>
         from product_inf proinf join picture_inf picinf

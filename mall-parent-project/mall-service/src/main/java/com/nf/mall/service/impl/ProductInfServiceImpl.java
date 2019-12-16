@@ -38,23 +38,9 @@ public class ProductInfServiceImpl implements ProductInfService {
         return dao.getBySidebarCategoryId(sidebarCategoryId);
     }
 
-    @Override
-    public List<ProductInfEntity> getByBrandId(Integer brandId) {
-        return dao.getByBrandId(brandId);
-    }
-
-    @Override
-    public List<ProductInfEntity> getByCategoryId(Integer categoryId) {
-        return dao.getByCategoryId(categoryId);
-    }
 
     @Override
     public List<ProductInfEntity> getCategorySale(Integer picTypeId, Integer proCategoryId) {
         return dao.getCategorySale(picTypeId, proCategoryId);
-    }
-
-    @Override
-    public List<ProductInfEntity> getSidebarCategorySale(Integer picTypeId) {
-        return dao.getSidebarCategorySale(picTypeId);
     }
 }

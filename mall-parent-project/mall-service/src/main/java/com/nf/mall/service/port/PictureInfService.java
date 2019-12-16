@@ -13,4 +13,5 @@ import java.util.List;
 public interface PictureInfService {
     List<PictureInfEntity> getAll();
     List<PictureInfEntity> getByType(Integer pictureTypeId);
+    List<PictureInfEntity> getByTypeAndPro(Integer pictureTypeId, Integer productId);
 }

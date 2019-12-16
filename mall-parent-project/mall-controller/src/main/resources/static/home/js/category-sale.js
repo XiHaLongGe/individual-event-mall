@@ -99,10 +99,10 @@ function categoryProduct(categoryId, prefixIndex, suffixIndex){
         success:function(data){
             $.each(data.data, function(index, element){
                 resultDIV += "<li>";
-                resultDIV += "<a href=\"Blessingpackage.html\"><img src=\"" + element.pictureInfUrl + "\" style=\" margin:0 auto; display:block; width:220px; height:220px\"></a>";
+                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\"><img src=\"" + element.pictureInfUrl + "\" style=\" margin:0 auto; display:block; width:220px; height:220px\"></a>";
                 resultDIV += "<light1><img src=\"/static/home/images/saoguang.png\"></light1>";
                 resultDIV += "<span>￥" + element.productPrice + "</span>";
-                resultDIV += "<a href=\"Blessingpackage.html\"><p>" + element.productName + "</p></a>";
+                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\"><p>" + element.productName + "</p></a>";
                 resultDIV += "<em>";
                 resultDIV += "<a href=\"#\">收藏</a>";
                 resultDIV += "<a href=\"javascript:void(0)\" class=\"add_scar\">加入购物车</a>";

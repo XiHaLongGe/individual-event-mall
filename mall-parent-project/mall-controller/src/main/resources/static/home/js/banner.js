@@ -21,14 +21,14 @@ function mainPicture(){
     var resultVal = "";
     var picIndex = 0;
     $.ajax({
-        url:"/foreground/picture/list?pictureTypeId=1",
+        url:"/foreground/picture/type/list?pictureTypeId=1",
         type:"GET",
         async: false,//设置为同步
         contentType: "application/json;charset=utf-8",
         success:function(data){
             $.each(data.data, function(index,element) {
                 resultVal += "<li>";
-                resultVal += (picIndex == 0) ? "<a title=\"\" target=\"_blank\" href=\"#\">" : "<a title=\"\" href=\"#\">";
+                resultVal += (picIndex == 0) ? "<a title=\"\" target=\"_blank\" href=\"/foreground/product?productId=" + element.productId + "\">" : "<a title=\"\" href=\"/foreground/product?productId=" + element.productId + "\">";
                 resultVal += "<img width=\"1920\" height=\"500\" alt=\"\" style=\"background: url(/static/home/images/banner1.png) no-repeat center;\" src=\"" + element.pictureInfUrl + "\">";
                 resultVal += "</a>";
                 resultVal += "</li>";

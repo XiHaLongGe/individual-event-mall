@@ -27,4 +27,9 @@ public class PictureInfServiceImpl implements PictureInfService {
     public List<PictureInfEntity> getByType(Integer pictureTypeId) {
         return dao.getByType(pictureTypeId);
     }
+
+    @Override
+    public List<PictureInfEntity> getByTypeAndPro(Integer pictureTypeId, Integer productId) {
+        return dao.getByTypeAndPro(pictureTypeId, productId);
+    }
 }

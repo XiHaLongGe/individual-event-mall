@@ -45,6 +45,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 "classpath:/static/login/hint/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/login/assets/",
+                "classpath:/static/home/product-inf-list/",
                 "classpath:/static/home/",
                 "classpath:/static/backend/home/"
         };
