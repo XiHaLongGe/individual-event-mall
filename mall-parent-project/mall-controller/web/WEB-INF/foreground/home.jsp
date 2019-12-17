@@ -2273,7 +2273,7 @@
 </div>
 <!--侧边栏-->
 <div class="toolbar">
-    <a href="###" class="toolbar-item toolbar-item-weixin" style=" position:relative">
+    <a href="/foreground/product/cart?customerInfId=1" class="toolbar-item toolbar-item-weixin" style=" position:relative">
         <em style=" position:absolute; display:block; line-height:20px; font-size:12px; color:#f00; top:-20px; left:0">(0)</em>
         <!--<span class="toolbar-layer"></span>-->
     </a>

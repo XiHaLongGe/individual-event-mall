@@ -34,13 +34,13 @@ IF
 CREATE TABLE customer_inf (
 	customer_inf_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '用户个人信息ID',
 	customer_id INT NOT NULL COMMENT '用户登录ID',
-	customer_name VARCHAR ( 20 ) COMMENT '用户姓名',
-	customer_gender BIT DEFAULT 0 COMMENT '用户性别(0:"女",1:"男")',
-	customer_card VARCHAR ( 20 ) COMMENT '用户身份证号',
-	customer_phone VARCHAR ( 20 ) COMMENT '用户手机号',
-	customer_email VARCHAR ( 20 ) COMMENT '用户邮箱'
+	customer_inf_name VARCHAR ( 20 ) COMMENT '用户姓名',
+	customer_inf_gender BIT DEFAULT 0 COMMENT '用户性别(0:"女",1:"男")',
+	customer_inf_card VARCHAR ( 20 ) COMMENT '用户身份证号',
+	customer_inf_phone VARCHAR ( 20 ) COMMENT '用户手机号',
+	customer_inf_email VARCHAR ( 20 ) COMMENT '用户邮箱'
 ) COMMENT '用户个人信息表';
-INSERT INTO customer_inf(customer_id, customer_name, customer_gender, customer_card, customer_phone, customer_email) VALUES
+INSERT INTO customer_inf(customer_id, customer_inf_name, customer_inf_gender, customer_inf_card, customer_inf_phone, customer_inf_email) VALUES
 (1, '李一', 1, '362432201804673847', '18128364756', '1612364756@qq.com'),
 (2, '李二', 0, '362432201704673847', '18228364756', '1627064756@qq.com'),
 (3, '李三', 1, '362432201604673847', '18328364756', '1627964756@qq.com'),
@@ -127,6 +127,7 @@ INSERT INTO brand_inf(brand_name, category_id) VALUES
 ('德芙',7),
 ('HUAWEI',6),
 ('LENOVO',5)
+
 DROP TABLE
 IF
 	EXISTS product_inf;
@@ -137,16 +138,17 @@ CREATE TABLE product_inf(
 	hot_sale BIT DEFAULT 0 COMMENT '是否属于热销商品：(0:"不属于",1:"属于")',
 	sidebar_category_id INT DEFAULT 0 COMMENT '侧边分类栏ID',
 	product_name VARCHAR(50) COMMENT '商品名称',
+	product_describe VARCHAR(50) COMMENT '商品描述',
   product_price DECIMAL(8,2) COMMENT '商品价格',
 	product_sales INT COMMENT '商品销量',
 	product_status BIT DEFAULT 0 COMMENT '上下架状态：(0:"下架",1:"上架")'
 )ENGINE = innodb COMMENT '商品信息表';
-INSERT INTO product_inf(brand_id, category_id, sidebar_category_id, hot_sale, product_name, product_price, product_sales, product_status) VALUES
-(1,12,8,0,'远行客登山包双肩男户外背包40L50L徒步旅行包60升',268.00,2030,1),
-(1,13,9,0,'Topsky户外高帮登山鞋男鞋运动徒步爬山鞋防泼水登山靴旅游骑行鞋',159.00,4801,1),
-(2,25,10,1,'德芙礼盒装丝滑牛奶纯黑白夹心巧克力3碗排块送女友小零食喜糖果',89.97,499182,1),
-(3,24,0,1,'Huawei/华为P30 Pro手机官方旗舰店曲面屏麒麟980智能商务手机mate20x5g正版',4899.00,19137,1),
-(4,22,11,1,'联想ThinkBook 14/15 .6英寸十代酷睿i5/i7独显轻薄便携',4699,500,1)
+INSERT INTO product_inf(brand_id, category_id, sidebar_category_id, hot_sale, product_name, product_describe, product_price, product_sales, product_status) VALUES
+(1,12,8,0,'远行客登山包双肩男户外背包40L50L徒步旅行包60升','',268.00,1,1),
+(1,13,9,0,'Topsky户外高帮登山鞋男鞋运动徒步爬山鞋防泼水登山靴旅游骑行鞋','玩转户外 攀山涉水 防水袜套 护踝高帮设计',159.00,2,1),
+(2,25,10,1,'德芙礼盒装丝滑牛奶纯黑白夹心巧克力3碗排块送女友小零食喜糖果','热销600万碗 多种组合可选 纵享丝滑',89.97,3,1),
+(3,24,0,1,'Huawei/华为P30 Pro手机官方旗舰店曲面屏麒麟980智能商务手机mate20x5g正版','直降500 再享优惠200元 6期免息 延保2年',4899.00,4,1),
+(4,22,11,1,'联想ThinkBook 14/15 .6英寸十代酷睿i5/i7独显轻薄便携','金属机身 轻薄高颜值 读秒开机',4699,5,1)
 DROP TABLE
 IF
 	EXISTS picture_type;
@@ -158,7 +160,11 @@ INSERT INTO picture_type(picture_type_name) VALUES
 ('轮播图'),
 ('公告图'),
 ('热销图'),
-('主图')
+('海报图'),
+('主图'),
+('款式图')
+
+
 DROP TABLE
 IF
 	EXISTS picture_inf;
@@ -174,18 +180,82 @@ INSERT INTO picture_inf(product_id, picture_type_id, picture_inf_url, picture_in
 (1,1,'/static/home/images/登山包.jpg',0,1),
 (1,3,'/static/home/images/登山包.jpg',0,1),
 (1,4,'/static/home/images/登山包.jpg',0,1),
-(1,1,'/static/home/images/登山鞋.jpg',0,1),
-(1,3,'/static/home/images/登山鞋.jpg',0,1),
-(1,4,'/static/home/images/登山鞋.jpg',0,1),
-(1,1,'/static/home/images/德芙巧克力.jpg',0,1),
-(1,3,'/static/home/images/德芙巧克力.jpg',0,1),
-(1,4,'/static/home/images/德芙巧克力.jpg',0,1),
-(1,1,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
-(1,3,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
-(1,4,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
-(1,1,'/static/home/images/ThinkBook.jpg',0,1),
-(1,3,'/static/home/images/ThinkBook.jpg',0,1),
-(1,4,'/static/home/images/ThinkBook.jpg',0,1)
+(1,5,'/static/home/images/登山包.jpg',1,1),
+(1,5,'/static/home/images/登山包.jpg',2,1),
+(1,5,'/static/home/images/登山包.jpg',3,1),
+(1,5,'/static/home/images/登山包.jpg',4,1),
+(1,5,'/static/home/images/登山包.jpg',5,1),
+(1,6,'/static/home/images/登山包.jpg',1,1),
+(1,6,'/static/home/images/登山包.jpg',2,1),
+(2,1,'/static/home/images/登山鞋.jpg',0,1),
+(2,3,'/static/home/images/登山鞋.jpg',0,1),
+(2,4,'/static/home/images/登山鞋.jpg',0,1),
+(2,5,'/static/home/images/登山鞋.jpg',1,1),
+(2,5,'/static/home/images/登山鞋.jpg',2,1),
+(2,5,'/static/home/images/登山鞋.jpg',3,1),
+(2,5,'/static/home/images/登山鞋.jpg',4,1),
+(2,5,'/static/home/images/登山鞋.jpg',5,1),
+(2,6,'/static/home/images/登山鞋.jpg',1,1),
+(2,6,'/static/home/images/登山鞋.jpg',2,1),
+(3,1,'/static/home/images/德芙巧克力.jpg',0,1),
+(3,2,'/static/home/images/德芙巧克力.jpg',0,1),
+(3,3,'/static/home/images/德芙巧克力.jpg',0,1),
+(3,4,'/static/home/images/德芙巧克力.jpg',0,1),
+(3,5,'/static/home/images/德芙巧克力.jpg',1,1),
+(3,5,'/static/home/images/德芙巧克力.jpg',2,1),
+(3,5,'/static/home/images/德芙巧克力.jpg',3,1),
+(3,5,'/static/home/images/德芙巧克力.jpg',4,1),
+(3,5,'/static/home/images/德芙巧克力.jpg',5,1),
+(3,6,'/static/home/images/德芙巧克力.jpg',1,1),
+(3,6,'/static/home/images/德芙巧克力.jpg',2,1),
+(4,1,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
+(4,3,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
+(4,4,'/static/home/images/HUAWEI_P30_Pro.jpg',0,1),
+(4,5,'/static/home/images/HUAWEI_P30_Pro.jpg',1,1),
+(4,5,'/static/home/images/HUAWEI_P30_Pro.jpg',2,1),
+(4,5,'/static/home/images/HUAWEI_P30_Pro.jpg',3,1),
+(4,5,'/static/home/images/HUAWEI_P30_Pro.jpg',4,1),
+(4,5,'/static/home/images/HUAWEI_P30_Pro.jpg',5,1),
+(4,6,'/static/home/images/HUAWEI_P30_Pro.jpg',1,1),
+(4,6,'/static/home/images/HUAWEI_P30_Pro.jpg',2,1),
+(5,1,'/static/home/images/ThinkBook.jpg',0,1),
+(5,3,'/static/home/images/ThinkBook.jpg',0,1),
+(5,4,'/static/home/images/ThinkBook.jpg',0,1),
+(5,5,'/static/home/images/ThinkBook.jpg',1,1),
+(5,5,'/static/home/images/ThinkBook.jpg',2,1),
+(5,5,'/static/home/images/ThinkBook.jpg',3,1),
+(5,5,'/static/home/images/ThinkBook.jpg',4,1),
+(5,5,'/static/home/images/ThinkBook.jpg',5,1),
+(5,6,'/static/home/images/ThinkBook.jpg',1,1),
+(5,6,'/static/home/images/ThinkBook.jpg',2,1)
+
+
+DROP TABLE
+IF
+	EXISTS product_cart;
+CREATE TABLE product_cart(
+	product_cart_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '购物车ID',
+  customer_inf_id INT COMMENT '用户ID',
+	product_id INT COMMENT '商品ID',
+	product_cart_num INT COMMENT '加入购物车商品数量',
+	add_time DATETIME COMMENT '加入购物车时间'
+)ENGINE=innodb COMMENT '购物车表';
+INSERT INTO product_cart(customer_inf_id, product_id, product_cart_num, add_time) VALUES
+(1,1,1,NOW()),
+(1,2,1,NOW()),
+(1,3,1,NOW()),
+(2,2,2,NOW()),
+(3,3,3,NOW()),
+(4,4,4,NOW()),
+(5,5,5,NOW())
+
+
+
+
+
+
+
+
 DROP TABLE
 IF
 	EXISTS affiche_type;

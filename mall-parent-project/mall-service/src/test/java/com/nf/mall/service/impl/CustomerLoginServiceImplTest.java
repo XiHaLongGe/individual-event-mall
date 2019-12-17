@@ -38,7 +38,7 @@ public class CustomerLoginServiceImplTest {
 
     @Test
     public void register() {
-        System.out.println(service.register(CustomerLoginEntity.newBuilder().loginName("123123").loginAccount("123123").loginPassword("123123").creationTime(new Date()).build(), CustomerInfEntity.newBuilder().customerPhone("13523423434").customerEmail("1738475867@qq.com").build()));
+        System.out.println(service.register(CustomerLoginEntity.newBuilder().loginName("123123").loginAccount("123123").loginPassword("123123").creationTime(new Date()).build(), CustomerInfEntity.newBuilder().customerInfPhone("13523423434").customerInfEmail("1738475867@qq.com").build()));
     }
 
     @Test

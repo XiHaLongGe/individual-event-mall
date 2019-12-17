@@ -51,7 +51,7 @@ public class CustomerLoginController {
          * PasswordUtil.randomGenerate(11) : 获取到一个11位的随机账号
          */
         CustomerLoginEntity customerLoginEntity = CustomerLoginEntity.newBuilder().loginAccount(PasswordUtil.randomGenerate(11)).loginName(registerVO.getLoginName()).loginPassword(password).creationTime(new Date()).build();
-        CustomerInfEntity customerInfEntity = CustomerInfEntity.newBuilder().customerPhone(registerVO.getCustomerPhone()).customerEmail(registerVO.getCustomerEmail()).build();
+        CustomerInfEntity customerInfEntity = CustomerInfEntity.newBuilder().customerInfPhone(registerVO.getCustomerPhone()).customerInfEmail(registerVO.getCustomerEmail()).build();
         return service.register(customerLoginEntity, customerInfEntity) ?
                 ResponseVO.newBuilder().code("200").msg("注册成功").data(true).build():
                 ResponseVO.newBuilder().code("400").msg("注册失败").data(false).build();

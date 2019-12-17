@@ -42,11 +42,12 @@ public class MvcConfig implements WebMvcConfigurer {
         ResourceHandlerRegistration registration  = registry.addResourceHandler("/static/**");
         String [] resourceLocations = new String [] {
                 "classpath:/static/",
+                "classpath:/static/home/",
                 "classpath:/static/login/hint/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/home/product-inf-list/",
-                "classpath:/static/home/",
+                "classpath:/static/home/shopping-cart/",
                 "classpath:/static/backend/home/"
         };
         registration.addResourceLocations(resourceLocations);

@@ -23,41 +23,35 @@ public class CustomerInfEntity {
     /**
      * customerName
      */
-    private String customerName;
+    private String customerInfName;
     /**
      * customerGender
      */
-    private Byte customerGender;
+    private Byte customerInfGender;
     /**
      * customerCard
      */
-    private String customerCard;
+    private String customerInfCard;
     /**
      * customerPhone
      */
-    private String customerPhone;
+    private String customerInfPhone;
     /**
      * customerEmail
      */
-    private String customerEmail;
+    private String customerInfEmail;
 
     public CustomerInfEntity() {
     }
 
-    public CustomerInfEntity(String customerPhone, String customerEmail) {
-        this.customerPhone = customerPhone;
-        this.customerEmail = customerEmail;
-    }
-
-
     private CustomerInfEntity(Builder builder) {
         customerInfId = builder.customerInfId;
         customerId = builder.customerId;
-        customerName = builder.customerName;
-        customerGender = builder.customerGender;
-        customerCard = builder.customerCard;
-        customerPhone = builder.customerPhone;
-        customerEmail = builder.customerEmail;
+        customerInfName = builder.customerInfName;
+        customerInfGender = builder.customerInfGender;
+        customerInfCard = builder.customerInfCard;
+        customerInfPhone = builder.customerInfPhone;
+        customerInfEmail = builder.customerInfEmail;
     }
 
     public static Builder newBuilder() {
@@ -68,23 +62,22 @@ public class CustomerInfEntity {
         Builder builder = new Builder();
         builder.customerInfId = copy.getCustomerInfId();
         builder.customerId = copy.getCustomerId();
-        builder.customerName = copy.getCustomerName();
-        builder.customerGender = copy.getCustomerGender();
-        builder.customerCard = copy.getCustomerCard();
-        builder.customerPhone = copy.getCustomerPhone();
-        builder.customerEmail = copy.getCustomerEmail();
+        builder.customerInfName = copy.getCustomerInfName();
+        builder.customerInfGender = copy.getCustomerInfGender();
+        builder.customerInfCard = copy.getCustomerInfCard();
+        builder.customerInfPhone = copy.getCustomerInfPhone();
+        builder.customerInfEmail = copy.getCustomerInfEmail();
         return builder;
     }
-
 
     public static final class Builder {
         private Integer customerInfId;
         private Integer customerId;
-        private String customerName;
-        private Byte customerGender;
-        private String customerCard;
-        private String customerPhone;
-        private String customerEmail;
+        private String customerInfName;
+        private Byte customerInfGender;
+        private String customerInfCard;
+        private String customerInfPhone;
+        private String customerInfEmail;
 
         private Builder() {
         }
@@ -99,31 +92,30 @@ public class CustomerInfEntity {
             return this;
         }
 
-        public Builder customerName(String val) {
-            customerName = val;
+        public Builder customerInfName(String val) {
+            customerInfName = val;
             return this;
         }
 
-        public Builder customerGender(Byte val) {
-            customerGender = val;
+        public Builder customerInfGender(Byte val) {
+            customerInfGender = val;
             return this;
         }
 
-        public Builder customerCard(String val) {
-            customerCard = val;
+        public Builder customerInfCard(String val) {
+            customerInfCard = val;
             return this;
         }
 
-        public Builder customerPhone(String val) {
-            customerPhone = val;
+        public Builder customerInfPhone(String val) {
+            customerInfPhone = val;
             return this;
         }
 
-        public Builder customerEmail(String val) {
-            customerEmail = val;
+        public Builder customerInfEmail(String val) {
+            customerInfEmail = val;
             return this;
         }
-
 
         public CustomerInfEntity build() {
             return new CustomerInfEntity(this);

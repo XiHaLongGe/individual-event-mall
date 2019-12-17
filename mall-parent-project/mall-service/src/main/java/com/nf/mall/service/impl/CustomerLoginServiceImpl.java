@@ -115,7 +115,7 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
          */
         String code = CodeUtil.generateUniqueCode();
         if(dao.register(CustomerLoginEntity.newBuilder(customerLoginEntity).loginPassword(md5Pwd).activateCode(code).build(), customerInfEntity) > 0){
-            new Thread(new MailUtil(customerInfEntity.getCustomerEmail(), code)).start();
+            new Thread(new MailUtil(customerInfEntity.getCustomerInfEmail(), code)).start();
             return true;
         }
         return false;

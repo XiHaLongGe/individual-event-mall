@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nf.mall.dao.port.CustomerInfDao">
     <sql id="customerLoginParams">
-        customer_id, customer_name, customer_gender, customer_card, customer_phone, customer_email
+        customer_id, customer_inf_name, customer_inf_gender, customer_inf_card, customer_inf_phone, customer_inf_email
     </sql>
 
     <select id="getAll" resultType="com.nf.mall.entity.CustomerInfEntity">
