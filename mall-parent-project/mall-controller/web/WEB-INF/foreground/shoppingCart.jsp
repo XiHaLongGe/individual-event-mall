@@ -13,12 +13,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>购物车</title>
-    <link rel="stylesheet" href="/static/home/shopping-cart/css/reset.css">
-    <link rel="stylesheet" href="/static/home/shopping-cart/css/carts.css">
+    <link rel="stylesheet" href="/static/home/shopping-cart/css/reset.css?v=<%= System.currentTimeMillis()%>">
+    <link rel="stylesheet" href="/static/home/shopping-cart/css/carts.css?v=<%= System.currentTimeMillis()%>">
     <script src="/static/home/shopping-cart/js/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 <input type="hidden" value="${customerInfId}" id="customerInfId"/>
+<ul style="position: fixed; float:left">
+    <br/>
+    <h3><li><a href="/foreground/home/" style="text-decoration:none;"><p>首页</p></a></li></h3><br/>
+    <h3><li><a href="javascript:;" onclick="self.location=document.referrer;" style="text-decoration:none;"><p>返回</p></a></li></h3><br/>
+    <h3><li><a href="#" style="text-decoration:none;"><p>我的订单</p></a></li></h3>
+</ul>
 <section class="cartMain">
     <div class="cartMain_hd">
         <ul class="order_lists cartTop">
@@ -295,15 +301,16 @@
     <script src="/static/home/shopping-cart/js/productCart.js?v=<%= System.currentTimeMillis()%>"></script>
     <!--底部-->
     <div class="bar-wrapper">
-        <li class="list_chk" style="list-style-type: none; position: fixed; margin: 20px auto">
+        <li class="list_chk" style="float:left; list-style-type: none; position: fixed; margin: 20px auto">
             <!--所有商品全选-->
             <input type="checkbox" id="all" class="whole_check" style="padding-top: 10px">
             <label for="all"></label>
             &nbsp;&nbsp;全选
         </li>
         <div class="bar-right">
+            <div class="batchDeleteBtn" style="float: left"><a href="javascript:;">批量移除</a></div>
             <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
-            <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+            <div class="totalMoney">共计: <strong class="total_text">￥0.00</strong></div>
             <div class="calBtn"><a href="javascript:;">结算</a></div>
         </div>
     </div>

@@ -13,9 +13,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>激活界面</title>
-    <link rel="stylesheet" href="/static/login/hint/example/example.css">
-    <script src="/static/login/hint/lib/sweet-alert.js"></script>
-    <link rel="stylesheet" href="/static/login/hint/lib/sweet-alert.css">
+    <link rel="stylesheet" href="/static/toosTips/example/example.css">
+    <script src="/static/toosTips/lib/sweet-alert.js"></script>
+    <link rel="stylesheet" href="/static/toosTips/lib/sweet-alert.css">
     <script src="/static/js/jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>

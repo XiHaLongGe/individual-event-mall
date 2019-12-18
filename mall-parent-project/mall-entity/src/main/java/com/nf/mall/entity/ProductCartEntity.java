@@ -26,6 +26,7 @@ public class ProductCartEntity {
     /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
     /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-扩展字段=-=-==-=-=-=-=-=-=-=-=-=-=-=-=*/
 
+    private Integer[] productIds;
     private Integer brandId;
     private String brandName;
     private String productName;

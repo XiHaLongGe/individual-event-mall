@@ -129,7 +129,7 @@ $(function () {
         $reduce = $('.reduce'),
         $all_sum = $('.sum');
     $plus.click(function () {
-        var productCartNum = $(this).attr("productId");
+        var productId = $(this).attr("productId");
         var $inputVal = $(this).prev('input'),
             $count = parseInt($inputVal.val())+1,
             $obj = $(this).parents('.amount_box').find('.reduce'),
@@ -142,11 +142,11 @@ $(function () {
             $obj.removeClass('reSty');
         }
         totalMoney();
-        productCartEdit(productCartNum,$count);
+        productCartEdit(productId,$count);
     });
 
     $reduce.click(function () {
-        var productCartNum = $(this).attr("productId");
+        var productId = $(this).attr("productId");
         var $inputVal = $(this).next('input'),
             $count = parseInt($inputVal.val())-1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
@@ -160,9 +160,8 @@ $(function () {
             $(this).addClass('reSty');
         }
         totalMoney();
-        productCartEdit(productCartNum,$count);
+        productCartEdit(productId,$count <= 0 ? 1 : $count);
     });
-
     $all_sum.keyup(function () {
         var $count = 0,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
@@ -181,14 +180,31 @@ $(function () {
 
     //======================================移除商品========================================
 
-    var $order_lists = null;
-    var $order_content = '';
+    var $order_lists = [];
+    var $order_content = [];
+    var productId = 0;
     $('.delBtn').click(function () {
-        $order_lists = $(this).parents('.order_lists');
-        $order_content = $order_lists.parents('.order_content');
+        productId = $(this).attr("productId");
+        $order_lists.push($(this).parents('.order_lists'));
+        $order_content.push($order_lists[0].parents('.order_content'));
         $('.model_bg').fadeIn(300);
         $('.my_model').fadeIn(300);
     });
+
+    //======================================批量移除商品========================================
+    $('.batchDeleteBtn').click(function(){
+        productId = [];
+        var productIndex = 0;
+        $sonCheckBox.each(function () {
+            if ($(this).is(':checked')) {
+                productId.push($(this).attr("productId"));
+                $order_lists.push($(this).parents('.order_lists'));
+                $order_content.push($order_lists[productIndex++].parents('.order_content'));
+            }
+        });
+        $('.model_bg').fadeIn(300);
+        $('.my_model').fadeIn(300);
+    })
 
     //关闭模态框
     $('.closeModel').click(function () {
@@ -203,14 +219,21 @@ $(function () {
     }
     //确定按钮，移除商品
     $('.dialog-sure').click(function () {
-        $order_lists.remove();
-        if($order_content.html().trim() == null || $order_content.html().trim().length == 0){
-            $order_content.parents('.cartBox').remove();
-        }
+        productCartDelete(productId);
+        $.each($order_lists,function (index, element) {
+            element.remove();
+        })
+        $.each($order_content,function (index, element) {
+            if(element.html().trim() == null || element.html().trim().length == 0){
+                element.parents('.cartBox').remove();
+            }
+        })
         closeM();
         $sonCheckBox = $('.son_check');
         totalMoney();
     })
+
+
 
     //======================================总计==========================================
 
@@ -218,6 +241,7 @@ $(function () {
         var total_money = 0;
         var total_count = 0;
         var calBtn = $('.calBtn a');
+        var batchDeleteBtn = $('.batchDeleteBtn a');
         $sonCheckBox.each(function () {
             if ($(this).is(':checked')) {
                 var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
@@ -234,10 +258,12 @@ $(function () {
         if(total_money!=0 && total_count!=0){
             if(!calBtn.hasClass('btn_sty')){
                 calBtn.addClass('btn_sty');
+                batchDeleteBtn.addClass('btn_sty');
             }
         }else{
             if(calBtn.hasClass('btn_sty')){
                 calBtn.removeClass('btn_sty');
+                batchDeleteBtn.removeClass('btn_sty');
             }
         }
     }

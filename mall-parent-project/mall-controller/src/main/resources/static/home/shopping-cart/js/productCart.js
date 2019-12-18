@@ -1,3 +1,5 @@
+/*获取到当前用户的id*/
+var $customerInfId = $("#customerInfId").val();
 productData();
 function productData(){
     /*
@@ -258,7 +260,6 @@ function productData(){
                 </div>
 
     */
-    var $customerInfId = $("#customerInfId").val();
     $.ajax({
         url:"/foreground/product/cart/list?customerInfId=" + $customerInfId,
         type:"GET",
@@ -313,12 +314,12 @@ function productJoint(element, brandOrder){
     var resultValue = "";
     resultValue += "<ul class=\"order_lists\">";
     resultValue += "<li class=\"list_chk\">";
-    resultValue += "<input type=\"checkbox\" id=\"checkbox_" + brandOrder + "\" class=\"son_check\">";
+    resultValue += "<input type=\"checkbox\" productId='" + element.productId + "' id=\"checkbox_" + brandOrder + "\" class=\"son_check\">";
     resultValue += "<label for=\"checkbox_" + brandOrder + "\"></label>";
     resultValue += "</li>";
     resultValue += "<li class=\"list_con\">";
-    resultValue += "<div class=\"list_img\"><a href=\"javascript:;\"><img src=\"" + element.pictureInfUrl + "\" alt=\"\"></a></div>";
-    resultValue += "<div class=\"list_text\"><a href=\"javascript:;\">" + element.productName + "</a></div>";
+    resultValue += "<div class=\"list_img\"><a href=\"/foreground/product?productId=" + element.productId + "\"><img src=\"" + element.pictureInfUrl + "\" alt=\"\"></a></div>";
+    resultValue += "<div class=\"list_text\"><a href=\"/foreground/product?productId=" + element.productId + "\">" + element.productName + "</a></div>";
     resultValue += "</li>";
     resultValue += "<li class=\"list_info\">";
     /*描述*/
@@ -340,18 +341,35 @@ function productJoint(element, brandOrder){
     resultValue += "<p class=\"sum_price\">￥" + (element.productPrice * element.productCartNum).toFixed(2) + "</p>";
     resultValue += "</li>";
     resultValue += "<li class=\"list_op\">";
-    resultValue += "<p class=\"del\"><a href=\"javascript:;\" class=\"delBtn\">移除商品</a></p>";
+    resultValue += "<p class=\"del\"><a productId='" + element.productId + "' href=\"javascript:;\" class=\"delBtn\">移除商品</a></p>";
     resultValue += "</li>";
     resultValue += "</ul>";
     return resultValue;
 }
-
+/*修改购物车中商品的数量*/
 function productCartEdit(productId,productCartNum){
     var yn = false;
     $.ajax({
-        url:"/foreground/product/cart/update?productId=" + productId + "&productCartNum=" + productCartNum,
-        type:"GET",
+        url:"/foreground/product/cart/update",
+        type:"POST",
+        data:JSON.stringify({"productId" : productId, "productCartNum" : productCartNum, "customerInfId" : $customerInfId}),
         // async: false,//设置为同步
+        contentType: "application/json;charset=utf-8",
+        success:function(data){
+            yn = data.data;
+        }
+    })
+    return yn;
+}
+/*删除购物车中的商品 + 批量删除*/
+function productCartDelete(productIds){
+    var productArray = [];
+    productIds instanceof Array ? productArray = productIds : productArray.push(productIds);
+    var yn = false;
+    $.ajax({
+        url:"/foreground/product/cart/delete",
+        type:"POST",
+        data:JSON.stringify({"productIds" : productArray, "customerInfId" : $customerInfId}),
         contentType: "application/json;charset=utf-8",
         success:function(data){
             yn = data.data;

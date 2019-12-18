@@ -314,7 +314,7 @@ a:hover{
 .bar-wrapper .bar-right .calBtn{
     float: left;
 }
-.bar-wrapper .bar-right .calBtn a{
+.bar-wrapper .bar-right .batchDeleteBtn a, .calBtn a{
     display: block;
     width: 120px;
     height: 50px;
@@ -328,7 +328,7 @@ a:hover{
     text-align: center;
     border-radius: 2px;
 }
-.bar-wrapper .bar-right .calBtn a.btn_sty{
+.bar-wrapper .bar-right .batchDeleteBtn a.btn_sty,.calBtn a.btn_sty{
     background: #f40;
     cursor: pointer;
 }

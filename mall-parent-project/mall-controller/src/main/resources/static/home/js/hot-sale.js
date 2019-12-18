@@ -51,9 +51,9 @@ function hotProductBody(){
                 resultVal += "<light>";
                 resultVal += "<img src=\"/static/home/images/saoguang1.png\">";
                 resultVal += "</light>";
-                resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\"><img src=\"" + element.pictureInfUrl + "\"></a>";
+                resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\" target=\"_blank\"><img src=\"" + element.pictureInfUrl + "\"></a>";
                 resultVal += "<span>价值" + element.productPrice + "元</span>";
-                resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\">查看商品</a>";
+                resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\" target=\"_blank\">查看商品</a>";
                 resultVal += "<em>" + element.productSales + "人已购买</em>";
                 resultVal += "</li>";
             })

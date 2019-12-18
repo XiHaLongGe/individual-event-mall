@@ -11,6 +11,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title id="title">=-=-=-=-=-=</title>
+<%--提示框的样式与脚本---------------------------------------------------------%>
+
+    <link rel="stylesheet" href="/static/toosTips/example/example.css">
+    <script src="/static/toosTips/lib/sweet-alert.js"></script>
+    <link rel="stylesheet" href="/static/toosTips/lib/sweet-alert.css">
+
+<%----------------------------------------------------------------------------%>
+
     <link rel="stylesheet" href="/static/home/product-inf-list/css/shouye.css?v=<%= System.currentTimeMillis()%>">
     <script src="/static/home/product-inf-list/js/jquery-1.11.1.min.js"></script>
     <script   src="/static/home/product-inf-list/js/modernizr-custom-v2.7.1.min.js"></script>
@@ -45,7 +53,7 @@
 
             $(".Xcontent32").click(function(){
                 var num = $(".input").val()
-                if(num>0){
+                if(num>1){
                     $(".input").val(num-1);
                 }
             })
@@ -56,8 +64,8 @@
 <input type="hidden" value="${productId}" id="productId"/>
 <div id="headDIV" class="Xcontent14">
     <a href="/foreground/home/"><p>首页&nbsp;&nbsp;&nbsp;</p></a>
-    <a href="javascript:history.back(-1)"><p>返回&nbsp;&nbsp;&nbsp;</p></a>
-    <a href="#"><p>查看购物车&nbsp;&nbsp;&nbsp;</p></a>
+    <a href="javascript:;" onclick="self.location=document.referrer;"><p>返回&nbsp;&nbsp;&nbsp;</p></a>
+    <a href="/foreground/product/cart?customerInfId=1"><p>查看购物车&nbsp;&nbsp;&nbsp;</p></a>
 </div>
 <div class="Xcontent">
     <ul class="Xcontent01">
@@ -94,8 +102,7 @@
             <div class="Xcontent30">
                 <p class="Xcontent31">数量</p>
                 <div class="Xcontent32"><img src="/static/home/product-inf-list/images/shangpinxiangqing/X15.png"></div>
-                <form>
-                    <input class="input" value="1"></form>
+                <form><input class="input" value="1"></form>
                 <div class="Xcontent33"><img src="/static/home/product-inf-list/images/shangpinxiangqing/16.png"></div>
             </div>
             <div class="Xcontent34"><a href="#"><img src="/static/home/product-inf-list/images/shangpinxiangqing/X17.png"></a></div>

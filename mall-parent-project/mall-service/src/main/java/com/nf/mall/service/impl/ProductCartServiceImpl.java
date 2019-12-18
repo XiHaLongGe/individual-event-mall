@@ -24,7 +24,33 @@ public class ProductCartServiceImpl implements ProductCartService{
     }
 
     @Override
+    public Integer productCartCount(Integer customerInfId) {
+        return dao.productCartCount(customerInfId);
+    }
+
+    @Override
+    public ProductCartEntity productCartVerify(ProductCartEntity productCartEntity) {
+        return dao.productCartVerify(productCartEntity);
+    }
+
+    @Override
     public boolean productCartUpdate(ProductCartEntity productCartEntity) {
         return dao.productCartUpdate(productCartEntity) > 0;
+    }
+
+    @Override
+    public boolean productCartDelete(ProductCartEntity productCartEntity) {
+        return dao.productCartDelete(productCartEntity) > 0;
+    }
+
+    @Override
+    public boolean productCartInsert(ProductCartEntity productCartEntity) {
+        ProductCartEntity verifyEntity = productCartVerify(productCartEntity);
+        if(verifyEntity != null){
+            Integer verifyCartNum = verifyEntity.getProductCartNum();
+            Integer productCartNum = productCartEntity.getProductCartNum();
+            return productCartUpdate(ProductCartEntity.newBuilder(productCartEntity).productCartNum(verifyCartNum + productCartNum).build());
+        }
+        return dao.productCartInsert(productCartEntity) > 0;
     }
 }

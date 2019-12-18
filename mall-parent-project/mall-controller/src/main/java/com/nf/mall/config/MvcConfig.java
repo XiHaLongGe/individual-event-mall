@@ -43,7 +43,7 @@ public class MvcConfig implements WebMvcConfigurer {
         String [] resourceLocations = new String [] {
                 "classpath:/static/",
                 "classpath:/static/home/",
-                "classpath:/static/login/hint/",
+                "classpath:/static/toosTips/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/login/assets/",
                 "classpath:/static/home/product-inf-list/",

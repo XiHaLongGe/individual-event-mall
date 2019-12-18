@@ -18,8 +18,19 @@ public class ProductCartServiceImplTest {
     private ProductCartService productCartService;
     @Test
     public void getById() {
+        System.out.println("-=-=-=-=-=-=-=-=-=-=--==--=-=" + productCartService.getById(1).size());
         for (ProductCartEntity productCartEntity : productCartService.getById(1)) {
             System.out.println(productCartEntity);
         }
+    }
+
+    @Test
+    public void productCartVerify() {
+        System.out.println(productCartService.productCartVerify(ProductCartEntity.newBuilder().customerInfId(1).productId(5).build()));
+    }
+
+    @Test
+    public void productCartCount() {
+        System.out.println(productCartService.productCartCount(1));
     }
 }

@@ -76,10 +76,12 @@ function productBuyData(){
         contentType: "application/json;charset=utf-8",
         success:function(data){
             var resultValue = "";
+            var $productId = data.data.productId;
             var $productName = data.data.productName;
             var $productDescribe = data.data.productDescribe;
             var $productPrice = data.data.productPrice;
             var $productSales = data.data.productSales;
+            resultValue += "<input type='hidden' id='proIdINPUT' value='" + $productId + "' />"
             resultValue +="<div class=\"Xcontent14\"><a href=\"#\"><p>" + $productName + "</p></a></div>";
             //resultValue +="<div class=\"Xcontent15\"><img src=\"" + $pictureInfUrl + "\"></div>";
             resultValue +="<div class=\"Xcontent16\"><p>" + $productDescribe + "</p></div>";
@@ -121,16 +123,39 @@ function productBuyData(){
             resultValue +="<div class=\"Xcontent30\">";
             resultValue +="<p class=\"Xcontent31\">数量</p>";
             resultValue +="<div class=\"Xcontent32\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X15.png\"></div>";
-            resultValue +="<input class=\"input\" value=\"1\">";
+            resultValue +="<input id='productNumINPUT' onkeyup='positive(this)' class=\"input\" value=\"1\">";
             resultValue +="<div class=\"Xcontent33\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/16.png\"></div>";
             resultValue +="</div>";
             /*立即购买  &  加入购物车*/
             resultValue +="<div class=\"Xcontent34\"><a href=\"#\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X17.png\"></a></div>";
-            resultValue +="<div class=\"Xcontent35\"><a href=\"#\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X18.png\"></a></div>";
-
-
+            resultValue +="<div id=\"addCartDIV\" class=\"Xcontent35\"><a href=\"javascript:;\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X18.png\"></a></div>";
             $("#title").empty().append($productName)
             $("#productBuyOL").empty().append(resultValue)
         }
     })
+
 }
+/*控制input只能输入正整数，大于0的数字*/
+function positive($this){
+    $this.value.length==1 ? $this.value=$this.value.replace(/[^1-9]/g,'') : $this.value=$this.value.replace(/\D/g,'');
+    if($this.value == ""){$this.value = 1}
+}
+
+$(function(){
+    $("#addCartDIV").click(function(){
+        var proNum = $("#productNumINPUT").val();
+        var proId = $("#proIdINPUT").val();
+        $.ajax({
+            url:"/foreground/product/cart/insert",
+            type:"POST",
+            data:JSON.stringify({"customerInfId" : 1, "productId" : proId, "productCartNum" : proNum}),
+            async: false,//设置为同步
+            contentType: "application/json",
+            success:function(data){
+                if(data.data){
+                    swal("成功加入购物车!", "成功加入" + proNum + "件商品到购物车!", "success");
+                }
+            }
+        })
+    })
+})

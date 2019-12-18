@@ -1,3 +1,4 @@
+var customerInfId = 1;
 categorySale();
 function categorySale(){
     /*
@@ -99,13 +100,13 @@ function categoryProduct(categoryId, prefixIndex, suffixIndex){
         success:function(data){
             $.each(data.data, function(index, element){
                 resultDIV += "<li>";
-                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\"><img src=\"" + element.pictureInfUrl + "\" style=\" margin:0 auto; display:block; width:220px; height:220px\"></a>";
+                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\" target=\"_blank\"><img src=\"" + element.pictureInfUrl + "\" style=\" margin:0 auto; display:block; width:220px; height:220px\"></a>";
                 resultDIV += "<light1><img src=\"/static/home/images/saoguang.png\"></light1>";
                 resultDIV += "<span>￥" + element.productPrice + "</span>";
-                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\"><p>" + element.productName + "</p></a>";
+                resultDIV += "<a href=\"/foreground/product?productId=" + element.productId + "\" target=\"_blank\"><p>" + element.productName + "</p></a>";
                 resultDIV += "<em>";
                 resultDIV += "<a href=\"#\">收藏</a>";
-                resultDIV += "<a href=\"javascript:void(0)\" class=\"add_scar\">加入购物车</a>";
+                resultDIV += "<a onclick='addCart($(this))' productId=" + element.productId + " href=\"javascript:void(0)\" class=\"add_scar\">加入购物车</a>";
                 resultDIV += "</em>";
                 resultDIV += "</li>";
             })
@@ -114,4 +115,21 @@ function categoryProduct(categoryId, prefixIndex, suffixIndex){
     resultDIV += "</ul>";
     resultDIV += "</div>";
     return resultDIV;
+}
+
+function addCart($this){
+    var productId = $this.attr("productId");
+    var cartNum = $("#cartNumB").text();
+    $.ajax({
+        url:"/foreground/product/cart/insert",
+        type:"POST",
+        data:JSON.stringify({"customerInfId" : customerInfId, "productId" : productId, "productCartNum" : 1}),
+        async: false,//设置为同步
+        contentType: "application/json",
+        success:function(data){
+            if(data.data){
+                $("#cartNumB").text(parseInt(cartNum) + 1)
+            }
+        }
+    })
 }

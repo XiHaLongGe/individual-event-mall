@@ -51,7 +51,7 @@ function afficheImageLoader(){
             var resultVal = "";
             $.each(data.data, function(index,element) {
                 if(index == 0){
-                    resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\">";
+                    resultVal += "<a href=\"/foreground/product?productId=" + element.productId + "\" target=\"_blank\">";
                     resultVal += "<div class=\"notice_img\">";
                     resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img1\">";
                     resultVal += "<img src=\"" + element.pictureInfUrl + "\" class=\"img2\">";

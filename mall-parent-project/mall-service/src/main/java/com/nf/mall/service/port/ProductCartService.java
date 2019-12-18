@@ -1,6 +1,7 @@
 package com.nf.mall.service.port;
 
 import com.nf.mall.entity.ProductCartEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +13,9 @@ import java.util.List;
  */
 public interface ProductCartService {
     List<ProductCartEntity> getById(Integer customerInfId);
+    Integer productCartCount(Integer customerInfId);
+    ProductCartEntity productCartVerify(ProductCartEntity productCartEntity);
     boolean productCartUpdate(ProductCartEntity productCartEntity);
+    boolean productCartDelete(ProductCartEntity productCartEntity);
+    boolean productCartInsert(ProductCartEntity productCartEntity);
 }

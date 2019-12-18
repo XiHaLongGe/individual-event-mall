@@ -2273,8 +2273,8 @@
 </div>
 <!--侧边栏-->
 <div class="toolbar">
-    <a href="/foreground/product/cart?customerInfId=1" class="toolbar-item toolbar-item-weixin" style=" position:relative">
-        <em style=" position:absolute; display:block; line-height:20px; font-size:12px; color:#f00; top:-20px; left:0">(0)</em>
+    <a href="/foreground/product/cart?customerInfId=1" target="_blank" class="toolbar-item toolbar-item-weixin" style=" position:relative">
+        <em style=" position:absolute; display:block; line-height:20px; font-size:12px; color:#f00; top:-20px; left:0">(<b id="cartNumB">0</b>)</em>
         <!--<span class="toolbar-layer"></span>-->
     </a>
     <a href="###" class="toolbar-item toolbar-item-feedback"></a>
@@ -2283,6 +2283,17 @@
     </a>
     <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
 </div>
+<script>
+    $.ajax({
+        url:"/foreground/product/cart/count?customerInfId=1",
+        type:"GET",
+        async: false,//设置为同步
+        contentType: "application/json",
+        success:function(data){
+            $("#cartNumB").text(data.data)
+        }
+    })
+</script>
 <!--购物车fly插件-->
 </body>
 </html>

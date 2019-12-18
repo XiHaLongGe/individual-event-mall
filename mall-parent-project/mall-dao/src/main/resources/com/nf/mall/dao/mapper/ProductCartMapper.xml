@@ -3,8 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nf.mall.dao.port.ProductCartDao">
-    <sql id="productCartParams">
+    <sql id="procatParams">
         procat.customer_inf_id, procat.product_id, procat.product_cart_num, procat.add_time
+    </sql>
+    <sql id="productCartParams">
+        customer_inf_id, product_id, product_cart_num, add_time
     </sql>
     <resultMap id="productCartResultMap" type="com.nf.mall.entity.ProductCartEntity">
         <result property="brandId" column="brandId"/>
@@ -15,7 +18,7 @@
         <result property="pictureInfUrl" column="pictureInfUrl"/>
     </resultMap>
     <select id="getById" resultMap="productCartResultMap">
-        select procat.product_cart_id, <include refid="productCartParams"/>,
+        select procat.product_cart_id, <include refid="procatParams"/>,
         proinf.brand_id as brandId,
         brainf.brand_name as brandName,
         picinf.picture_inf_url as pictureInfUrl,
@@ -31,9 +34,42 @@
         where procat.customer_inf_id = #{customerInfId} and picinf.picture_type_id = 4
     </select>
 
+    <select id="productCartCount" resultType="integer">
+        select sum(product_cart_num)
+        from product_cart
+        where customer_inf_id = #{customerInfId}
+    </select>
+
+    <select id="productCartVerify" resultType="com.nf.mall.entity.ProductCartEntity">
+            select product_cart_id, <include refid="productCartParams"/>
+            from product_cart
+            where customer_inf_id = #{productCartEntity.customerInfId}
+            and product_id = #{productCartEntity.productId}
+    </select>
+
     <update id="productCartUpdate">
         update product_cart
         set product_cart_num = #{productCartEntity.productCartNum}
         where product_id = #{productCartEntity.productId}
+        and customer_inf_id = #{productCartEntity.customerInfId}
     </update>
+
+    <delete id="productCartDelete">
+        delete from product_cart
+        where customer_inf_id = #{productCartEntity.customerInfId}
+        and product_id in
+        <foreach collection="productCartEntity.productIds" item="productId" open="(" separator="," close=")">
+            #{productId}
+        </foreach>
+    </delete>
+
+    <insert id="productCartInsert">
+        insert into product_cart(<include refid="productCartParams"/>) value
+        (
+            #{productCartEntity.customerInfId},
+            #{productCartEntity.productId},
+            #{productCartEntity.productCartNum},
+            NOW()
+        )
+    </insert>
 </mapper>
