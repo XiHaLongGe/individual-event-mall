@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.ReceivingInfDao">
+    <sql id="recinfParam">
+        recinf.customer_inf_id,
+        recinf.receiving_inf_name,
+        recinf.receiving_inf_phone,
+        recinf.receiving_inf_province,
+        recinf.receiving_inf_city,
+        recinf.receiving_inf_district,
+        recinf.receiving_inf_address,
+        recinf.postal_code
+    </sql>
+    <sql id="receivingInf">
+        customer_inf_id,
+        receiving_inf_name,
+        receiving_inf_phone,
+        receiving_inf_province,
+        receiving_inf_city,
+        receiving_inf_district,
+        receiving_inf_address,
+        postal_code
+    </sql>
+    <resultMap id="receivingInfResultMap" type="com.nf.mall.entity.ReceivingInfEntity">
+        <result column="labelInfName" property="labelInfName"></result>
+    </resultMap>
+    <select id="getByCustomerInfId" resultMap="receivingInfResultMap">
+        select
+        recinf.receiving_inf_id,
+        <include refid="recinfParam"/>,
+        labinf.label_inf_name as labelInfName
+        from receiving_inf recinf join label_receiving_relevance lrr
+        on recinf.receiving_inf_id = lrr.receiving_inf_id
+        left join label_inf labinf
+        on lrr.label_inf_id = labinf.label_inf_id
+        where recinf.customer_inf_id = #{customerInfId}
+    </select>
+
+    <select id="getByReceivingInfId" resultMap="receivingInfResultMap">
+        select recinf.receiving_inf_id, <include refid="receivingInf"/>
+        from receiving_inf where receiving_inf_id = #{receivingInfId}
+    </select>
+
+    <insert id="receivingInfInsert">
+        insert into receiving_inf(<include refid="receivingInf"/>) values
+        (#{receivingInfEntity.customerInfId},
+        #{receivingInfEntity.receivingInfName},
+        #{receivingInfEntity.receivingInfPhone},
+        #{receivingInfEntity.receivingInfProvince},
+        #{receivingInfEntity.receivingInfCity},
+        #{receivingInfEntity.receivingInfDistrict},
+        #{receivingInfEntity.receivingInfAddress},
+        #{receivingInfEntity.postalCode})
+        ;
+        insert into label_receiving_relevance(receiving_inf_id, label_inf_id) values
+        (LAST_INSERT_ID(), #{receivingInfEntity.postalCode})
+    </insert>
+
+    <delete id="receivingInfDelete">
+        delete from receiving_inf where receiving_inf_id = #{receivingInfEntity.receivingInfId}
+        ;
+        delete from label_receiving_relevance where receiving_inf_id = #{receivingInfEntity.receivingInfId}
+    </delete>
+</mapper>

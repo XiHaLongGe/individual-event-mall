@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.LabelInfDao">
+    <sql id="receivingInf">
+        customer_inf_id,
+        label_inf_name
+    </sql>
+    <resultMap id="labelInfResultMap" type="com.nf.mall.entity.LabelInfEntity"></resultMap>
+    <select id="getAll" resultMap="labelInfResultMap">
+        select label_inf_id,<include refid="receivingInf"/> from label_inf
+    </select>
+
+    <select id="labelInfByCustomerInfId" resultMap="labelInfResultMap">
+        select label_inf_id,<include refid="receivingInf"/> from label_inf
+        where customer_inf_id = #{customerInfId}
+    </select>
+
+    <insert id="labelInfInsert">
+        insert into label_inf(<include refid="receivingInf"/>) values
+        (#{labelInfEntity.customerInfId},
+        #{labelInfEntity.labelInfName})
+    </insert>
+</mapper>
