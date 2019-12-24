@@ -13,7 +13,8 @@ import java.util.List;
  */
 public interface ReceivingInfService {
     List<ReceivingInfEntity> getByCustomerInfId(Integer customerInfId);
-    ReceivingInfEntity getByReceivingInfId(@Param("receivingInfId") Integer receivingInfId);
+    ReceivingInfEntity getByReceivingInfId(Integer receivingInfId);
     boolean receivingInfInsert(ReceivingInfEntity receivingInfEntity);
     boolean receivingInfDelete(ReceivingInfEntity receivingInfEntity);
+    boolean receivingInfUpdate(ReceivingInfEntity receivingInfEntity);
 }

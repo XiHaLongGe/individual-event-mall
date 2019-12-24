@@ -62,10 +62,12 @@
 </head>
 <body>
 <input type="hidden" value="${productId}" id="productId"/>
+
+<input type="hidden" value="${customerInfId}" id="customerInfId"/>
 <div id="headDIV" class="Xcontent14">
     <a href="/foreground/home/"><p>首页&nbsp;&nbsp;&nbsp;</p></a>
     <a href="javascript:;" onclick="self.location=document.referrer;"><p>返回&nbsp;&nbsp;&nbsp;</p></a>
-    <a href="/foreground/product/cart?customerInfId=1"><p>查看购物车&nbsp;&nbsp;&nbsp;</p></a>
+    <a href="/foreground/product/cart?customerInfId=${customerInfId}"><p>查看购物车&nbsp;&nbsp;&nbsp;</p></a>
 </div>
 <div class="Xcontent">
     <ul class="Xcontent01">

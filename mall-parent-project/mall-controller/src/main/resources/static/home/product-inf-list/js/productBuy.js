@@ -127,7 +127,7 @@ function productBuyData(){
             resultValue +="<div class=\"Xcontent33\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/16.png\"></div>";
             resultValue +="</div>";
             /*立即购买  &  加入购物车*/
-            resultValue +="<div class=\"Xcontent34\"><a href=\"#\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X17.png\"></a></div>";
+            resultValue +="<div id=\"submitOrderDIV\" class=\"Xcontent34\"><a href=\"#\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X17.png\"></a></div>";
             resultValue +="<div id=\"addCartDIV\" class=\"Xcontent35\"><a href=\"javascript:;\"><img src=\"/static/home/product-inf-list/images/shangpinxiangqing/X18.png\"></a></div>";
             $("#title").empty().append($productName)
             $("#productBuyOL").empty().append(resultValue)
@@ -148,12 +148,26 @@ $(function(){
         $.ajax({
             url:"/foreground/product/cart/insert",
             type:"POST",
-            data:JSON.stringify({"customerInfId" : 1, "productId" : proId, "productCartNum" : proNum}),
+            data:JSON.stringify({"customerInfId" : $("#customerInfId").val(), "productId" : proId, "productCartNum" : proNum}),
             async: false,//设置为同步
             contentType: "application/json",
             success:function(data){
                 if(data.data){
                     swal("成功加入购物车!", "成功加入" + proNum + "件商品到购物车!", "success");
+                }
+            }
+        })
+    })
+    $("#submitOrderDIV").click(function(){
+        $.ajax({
+            url:"/foreground/product/order/insert",
+            type:"POST",
+            data:JSON.stringify({"customerInfId" : $("#customerInfId").val(), "productId" : $("#productId").val(), "productNum" : $("#productNumINPUT").val()}),
+            async: false,//设置为同步
+            contentType: "application/json",
+            success:function(data){
+                if(data.data != ""){
+                    window.location.href = "/foreground/product/order?productOrderNumber=" + data.data;
                 }
             }
         })

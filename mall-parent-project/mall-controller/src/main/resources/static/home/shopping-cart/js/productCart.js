@@ -314,7 +314,7 @@ function productJoint(element, brandOrder){
     var resultValue = "";
     resultValue += "<ul class=\"order_lists\">";
     resultValue += "<li class=\"list_chk\">";
-    resultValue += "<input type=\"checkbox\" productId='" + element.productId + "' id=\"checkbox_" + brandOrder + "\" class=\"son_check\">";
+    resultValue += "<input type=\"checkbox\" productCartId='" + element.productCartId + "' productId='" + element.productId + "' id=\"checkbox_" + brandOrder + "\" class=\"son_check\">";
     resultValue += "<label for=\"checkbox_" + brandOrder + "\"></label>";
     resultValue += "</li>";
     resultValue += "<li class=\"list_con\">";
@@ -377,3 +377,4 @@ function productCartDelete(productIds){
     })
     return yn;
 }
+

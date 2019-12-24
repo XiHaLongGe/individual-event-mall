@@ -1,6 +1,7 @@
 package com.nf.mall.config;
 
 import com.nf.mall.interceptor.EncodingInterceptor;
+import com.nf.mall.interceptor.LoginCustomerInterceptor;
 import org.springframework.context.annotation.*;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
@@ -35,6 +36,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new EncodingInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new LoginCustomerInterceptor()).addPathPatterns("/foreground/**", "/backend/**");
     }
 
     @Override
@@ -57,4 +59,9 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new DateFormatter("yyyy-MM-dd"));
     }
+
+    /*@Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/foreground/product/hot/sale/list");
+    }*/
 }

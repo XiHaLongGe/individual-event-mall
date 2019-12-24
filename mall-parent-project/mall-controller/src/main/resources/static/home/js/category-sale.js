@@ -1,4 +1,4 @@
-var customerInfId = 1;
+var customerInfId = $("#customerInfId").val();
 categorySale();
 function categorySale(){
     /*

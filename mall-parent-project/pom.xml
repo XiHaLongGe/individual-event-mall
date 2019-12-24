@@ -37,6 +37,7 @@
         <junit.version>4.12</junit.version>
         <jackson.version>2.10.1</jackson.version>
         <mail.version>1.4.7</mail.version>
+        <alipay.version>3.3.49.ALL</alipay.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -123,6 +124,11 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>${mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay.version}</version>
             </dependency>
         </dependencies>
 

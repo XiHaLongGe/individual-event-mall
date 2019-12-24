@@ -55,6 +55,11 @@ public class CustomerLoginServiceImpl implements CustomerLoginService {
     }
 
     @Override
+    public CustomerLoginEntity getByAccount(String loginAccount) {
+        return dao.getByAccount(loginAccount);
+    }
+
+    @Override
     public boolean update(CustomerLoginEntity customerLoginEntity) {
         return dao.update(customerLoginEntity) > 0;
     }

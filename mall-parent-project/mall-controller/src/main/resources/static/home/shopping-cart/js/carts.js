@@ -267,6 +267,30 @@ $(function () {
             }
         }
     }
-
-
+    //======================================结算购物车==========================================
+    $("#settleAccountDIV").click(function(){
+        var proJSONArray = [];
+        $sonCheckBox.each(function (){
+            if ($(this).is(':checked')) {
+                var proJSON = {};
+                proJSON["productId"] = $(this).attr("productId");
+                proJSON["productCartId"] = $(this).attr("productCartId");
+                proJSON["productNum"] = $(this).parents('.order_lists').find('.sum').val();
+                proJSON["customerInfId"] = $("#customerInfId").val();
+                proJSONArray.push(proJSON);
+            }
+        });
+        $.ajax({
+            url:"/foreground/product/order/batch/insert",
+            type:"POST",
+            async:false,
+            data:JSON.stringify(proJSONArray),
+            contentType: "application/json;charset=utf-8",
+            success:function(data){
+                if(data.data != ""){
+                    window.location.href = "/foreground/product/order?productOrderNumber=" + data.data;
+                }
+            }
+        })
+    })
 });

@@ -26,6 +26,8 @@
 <!--最大的背景-->
 <%--<div class="maxbj"></div>--%>
 
+
+<input type="hidden" value="${customerInfId}" id="customerInfId"/>
 <!--头部-->
 <top>
     <section class="seck">
@@ -71,9 +73,8 @@
             </div>
         </div>
         <div class="register_login">
-            <em>您好，</em>
-            <a href="#">会员登录</a>
-            <a href="#">快速注册</a>
+            <em>您好，${loginName}</em>
+            <a href="/customer/login/logout">注销登录</a>
         </div>
         <div class="vip_center">
             <a href="#">会员中心</a>
@@ -2271,9 +2272,9 @@
         <em>CopyRight © 2000-2016 BitAuto,All Rights Reserved.</em>
     </div>
 </div>
-<!--侧边栏-->
+<!--侧边栏   // target="_blank"-->
 <div class="toolbar">
-    <a href="/foreground/product/cart?customerInfId=1" target="_blank" class="toolbar-item toolbar-item-weixin" style=" position:relative">
+    <a href="/foreground/product/cart?customerInfId=1" class="toolbar-item toolbar-item-weixin" style=" position:relative">
         <em style=" position:absolute; display:block; line-height:20px; font-size:12px; color:#f00; top:-20px; left:0">(<b id="cartNumB">0</b>)</em>
         <!--<span class="toolbar-layer"></span>-->
     </a>

@@ -28,6 +28,8 @@ public interface CustomerLoginDao {
 
     Integer getCount();
 
+    CustomerLoginEntity getByAccount(@Param("loginAccount") String loginAccount);
+
     Integer delete(Integer id);
 
     Integer batchDelete(@Param("batchId")Integer [] batchId);

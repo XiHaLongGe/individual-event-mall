@@ -54,6 +54,17 @@
             customer_id
         from customer_login where login_account = #{loginAccount} and login_password = #{loginPassword}
     </select>
+
+    <resultMap id="customerLoginResultMap" type="com.nf.mall.entity.CustomerLoginEntity">
+        <result column="customerInfId" property="customerInfId"></result>
+    </resultMap>
+    <select id="getByAccount" resultMap="customerLoginResultMap">
+        select
+                cuslogin.login_name, cusinf.customer_inf_id as customerInfId
+            from customer_login cuslogin left join customer_inf cusinf
+            on cusinf.customer_id = cuslogin.customer_id
+         where cuslogin.login_account = #{loginAccount}
+    </select>
     <!--
         下面是注册的相关语句
         LAST_INSERT_ID() ： 获取到当前事务中最后添加数据的id

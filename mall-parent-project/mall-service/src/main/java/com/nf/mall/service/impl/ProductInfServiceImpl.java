@@ -33,6 +33,7 @@ public class ProductInfServiceImpl implements ProductInfService {
         return dao.getById(id);
     }
 
+
     @Override
     public List<ProductInfEntity> getBySidebarCategoryId(Integer sidebarCategoryId) {
         return dao.getBySidebarCategoryId(sidebarCategoryId);

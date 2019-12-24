@@ -28,9 +28,9 @@
     </resultMap>
     <select id="getByCustomerInfId" resultMap="receivingInfResultMap">
         select
-        recinf.receiving_inf_id,
-        <include refid="recinfParam"/>,
-        labinf.label_inf_name as labelInfName
+            recinf.receiving_inf_id,
+            <include refid="recinfParam"/>,
+            labinf.label_inf_name as labelInfName
         from receiving_inf recinf join label_receiving_relevance lrr
         on recinf.receiving_inf_id = lrr.receiving_inf_id
         left join label_inf labinf
@@ -39,8 +39,15 @@
     </select>
 
     <select id="getByReceivingInfId" resultMap="receivingInfResultMap">
-        select recinf.receiving_inf_id, <include refid="receivingInf"/>
-        from receiving_inf where receiving_inf_id = #{receivingInfId}
+        select
+            recinf.receiving_inf_id,
+            <include refid="recinfParam"/>,
+            labinf.label_inf_name as labelInfName
+        from receiving_inf recinf join label_receiving_relevance lrr
+        on recinf.receiving_inf_id = lrr.receiving_inf_id
+        left join label_inf labinf
+        on lrr.label_inf_id = labinf.label_inf_id
+        where recinf.receiving_inf_id = #{receivingInfId}
     </select>
 
     <insert id="receivingInfInsert">
@@ -63,4 +70,21 @@
         ;
         delete from label_receiving_relevance where receiving_inf_id = #{receivingInfEntity.receivingInfId}
     </delete>
+
+    <update id="receivingInfUpdate">
+        update receiving_inf set
+                                    customer_inf_id = #{receivingInfEntity.customerInfId},
+                                    receiving_inf_name = #{receivingInfEntity.receivingInfName},
+                                    receiving_inf_phone = #{receivingInfEntity.receivingInfPhone},
+                                    receiving_inf_province = #{receivingInfEntity.receivingInfProvince},
+                                    receiving_inf_city = #{receivingInfEntity.receivingInfCity},
+                                    receiving_inf_district = #{receivingInfEntity.receivingInfDistrict},
+                                    receiving_inf_address = #{receivingInfEntity.receivingInfAddress},
+                                    postal_code = #{receivingInfEntity.postalCode}
+        where receiving_inf_id = #{receivingInfEntity.receivingInfId}
+        ;
+        update label_receiving_relevance set
+                                                label_inf_id = #{receivingInfEntity.postalCode}
+        where receiving_inf_id = #{receivingInfEntity.receivingInfId}
+    </update>
 </mapper>

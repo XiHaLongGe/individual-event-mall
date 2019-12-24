@@ -16,4 +16,5 @@ public interface ReceivingInfDao {
     ReceivingInfEntity getByReceivingInfId(@Param("receivingInfId") Integer receivingInfId);
     Integer receivingInfInsert(@Param("receivingInfEntity") ReceivingInfEntity receivingInfEntity);
     Integer receivingInfDelete(@Param("receivingInfEntity") ReceivingInfEntity receivingInfEntity);
+    Integer receivingInfUpdate(@Param("receivingInfEntity") ReceivingInfEntity receivingInfEntity);
 }

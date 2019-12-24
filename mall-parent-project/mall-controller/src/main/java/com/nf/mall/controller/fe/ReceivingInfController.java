@@ -30,8 +30,14 @@ public class ReceivingInfController {
 
     @RequestMapping("/customerInfId/list")
     @ResponseBody
-    public ResponseVO ReceivingInfList(Integer customerInfId){
+    public ResponseVO customerInfIdList(Integer customerInfId){
         return ResponseVO.newBuilder().code("200").msg("根据用户Id，获得收货信息数据").data(receivingInfService.getByCustomerInfId(customerInfId)).build();
+    }
+
+    @RequestMapping("/receivingInfId/list")
+    @ResponseBody
+    public ResponseVO receivingInfIdList(@RequestBody ReceivingInfEntity receivingInfEntity){
+        return ResponseVO.newBuilder().code("200").msg("根据收货信息Id，获得收货信息数据 用于修改").data(receivingInfService.getByReceivingInfId(receivingInfEntity.getReceivingInfId())).build();
     }
 
     @PostMapping("/insert")
@@ -43,6 +49,12 @@ public class ReceivingInfController {
     @PostMapping("/delete")
     @ResponseBody
     public ResponseVO ReceivingInfDelete(@RequestBody ReceivingInfEntity receivingInfEntity){
-        return ResponseVO.newBuilder().code("200").msg("添加收货信息数据").data(receivingInfService.receivingInfDelete(receivingInfEntity)).build();
+        return ResponseVO.newBuilder().code("200").msg("删除收货信息数据").data(receivingInfService.receivingInfDelete(receivingInfEntity)).build();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public ResponseVO ReceivingInfUpdate(@RequestBody ReceivingInfEntity receivingInfEntity){
+        return ResponseVO.newBuilder().code("200").msg("修改收货信息数据").data(receivingInfService.receivingInfUpdate(receivingInfEntity)).build();
     }
 }

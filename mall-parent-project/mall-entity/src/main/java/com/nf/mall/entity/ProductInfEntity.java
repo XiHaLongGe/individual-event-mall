@@ -29,6 +29,7 @@ public class ProductInfEntity {
     /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-扩展字段=-=-==-=-=-=-=-=-=-=-=-=-=-=-=*/
 
     private String pictureInfUrl;
+    private Integer productNum;
 
     /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
@@ -45,6 +46,8 @@ public class ProductInfEntity {
         productPrice = builder.productPrice;
         productSales = builder.productSales;
         productStatus = builder.productStatus;
+        pictureInfUrl = builder.pictureInfUrl;
+        productNum = builder.productNum;
     }
 
     public static Builder newBuilder() {
@@ -63,6 +66,8 @@ public class ProductInfEntity {
         builder.productPrice = copy.getProductPrice();
         builder.productSales = copy.getProductSales();
         builder.productStatus = copy.getProductStatus();
+        builder.pictureInfUrl = copy.getPictureInfUrl();
+        builder.productNum = copy.getProductNum();
         return builder;
     }
 
@@ -77,6 +82,8 @@ public class ProductInfEntity {
         private BigDecimal productPrice;
         private Integer productSales;
         private Byte productStatus;
+        private String pictureInfUrl;
+        private Integer productNum;
 
         private Builder() {
         }
@@ -128,6 +135,16 @@ public class ProductInfEntity {
 
         public Builder productStatus(Byte val) {
             productStatus = val;
+            return this;
+        }
+
+        public Builder pictureInfUrl(String val) {
+            pictureInfUrl = val;
+            return this;
+        }
+
+        public Builder productNum(Integer val) {
+            productNum = val;
             return this;
         }
 

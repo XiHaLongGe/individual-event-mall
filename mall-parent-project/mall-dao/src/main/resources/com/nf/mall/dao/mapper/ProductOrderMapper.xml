@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.mall.dao.port.ProductOrderDao">
+    <sql id="productOrder">
+        customer_inf_id,
+        receiving_inf_id,
+        product_id,
+        product_cart_id,
+        leave_word,
+        product_num,
+        payment,
+        submit_time,
+        payment_time,
+        product_order_state ,
+        product_order_number
+    </sql>
+    <sql id="insertProductOrder">
+        customer_inf_id,
+        receiving_inf_id,
+        product_id,
+        product_cart_id,
+        leave_word,
+        product_num,
+        payment,
+        submit_time,
+        payment_time,
+        product_order_state ,
+        product_order_number
+    </sql>
+    <sql id="proOrderParam">
+        proOrder.customer_inf_id,
+        proOrder.receiving_inf_id,
+        proOrder.product_id,
+        proOrder.product_cart_id,
+        proOrder.leave_word,
+        proOrder.product_num,
+        proOrder.payment,
+        proOrder.submit_time,
+        proOrder.payment_time,
+        proOrder.product_order_state ,
+        proOrder.product_order_number
+
+    </sql>
+    <resultMap id="productOrderResultMap" type="com.nf.mall.entity.ProductOrderEntity">
+        <result property="productName" column="productName"/>
+        <result property="productPrice" column="productPrice"/>
+        <result property="pictureInfUrl" column="pictureInfUrl"/>
+        <result property="receivingInfName" column="receivingInfName"/>
+        <result property="receivingInfPhone" column="receivingInfPhone"/>
+        <result property="receivingInfProvince" column="receivingInfProvince"/>
+        <result property="receivingInfCity" column="receivingInfCity"/>
+        <result property="receivingInfDistrict" column="receivingInfDistrict"/>
+        <result property="receivingInfAddress" column="receivingInfAddress"/>
+    </resultMap>
+
+    <select id="getByCustomerId" resultMap="productOrderResultMap">
+        select
+        proOrder.product_order_id,
+        <include refid="proOrderParam"/>,
+        proInf.product_name as productName,
+        proInf.product_price as productPrice,
+        picInf.picture_inf_url as pictureInfUrl,
+        recinf.receiving_inf_name as receivingInfName,
+        recinf.receiving_inf_phone as receivingInfPhone,
+        recinf.receiving_inf_province as receivingInfProvince,
+        recinf.receiving_inf_city as receivingInfCity,
+        recinf.receiving_inf_district as receivingInfDistrict,
+        recinf.receiving_inf_address as receivingInfAddress
+        from product_order proOrder join product_inf proInf
+        on proOrder.product_id = proInf.product_id
+        join picture_inf picInf
+        on picInf.product_id = proInf.product_id
+        left join receiving_inf recinf
+        on proOrder.receiving_inf_id = recinf.receiving_inf_id
+        where proOrder.customer_inf_id = #{productOrderEntity.customerInfId}
+        and picInf.picture_type_id = 4
+    </select>
+
+    <select id="getByProductOrderNumber" resultMap="productOrderResultMap">
+        select
+        proOrder.product_order_id,
+        <include refid="proOrderParam"/>,
+        proInf.product_name as productName,
+        proInf.product_price as productPrice,
+        picInf.picture_inf_url as pictureInfUrl,
+        recinf.receiving_inf_name as receivingInfName,
+        recinf.receiving_inf_phone as receivingInfPhone,
+        recinf.receiving_inf_province as receivingInfProvince,
+        recinf.receiving_inf_city as receivingInfCity,
+        recinf.receiving_inf_district as receivingInfDistrict,
+        recinf.receiving_inf_address as receivingInfAddress
+        from product_order proOrder join product_inf proInf
+        on proOrder.product_id = proInf.product_id
+        join picture_inf picInf
+        on picInf.product_id = proInf.product_id
+        left join receiving_inf recinf
+        on proOrder.receiving_inf_id = recinf.receiving_inf_id
+        where proOrder.customer_inf_id = #{customerInfId}
+                and proOrder.product_order_number = #{productOrderNumber}
+                and picInf.picture_type_id = 4
+    </select>
+    <insert id="productOrderInsert">
+        insert into product_order(<include refid="productOrder"/>) values
+        (
+            #{productOrderEntity.customerInfId},
+            #{productOrderEntity.receivingInfId},
+            #{productOrderEntity.productId},
+            #{productOrderEntity.productCartId},
+            #{productOrderEntity.leaveWord},
+            #{productOrderEntity.productNum},
+            0,
+            #{productOrderEntity.submitTime},
+            #{productOrderEntity.paymentTime},
+            1,
+            #{productOrderEntity.productOrderNumber}
+        )
+    </insert>
+
+    <insert id="productOrderBatchInsert">
+        insert into product_order(<include refid="productOrder"/>) values
+            <foreach collection="productOrderEntity" item="productOrderEntity" separator=",">
+                (
+                    #{productOrderEntity.customerInfId},
+                    #{productOrderEntity.receivingInfId},
+                    #{productOrderEntity.productId},
+                    #{productOrderEntity.productCartId},
+                    #{productOrderEntity.leaveWord},
+                    #{productOrderEntity.productNum},
+                    0,
+                    #{productOrderEntity.submitTime},
+                    #{productOrderEntity.paymentTime},
+                    1,
+                    #{productOrderEntity.productOrderNumber}
+                )
+            </foreach>
+    </insert>
+
+    <update id="submitOrderUpdate">
+        update product_order set
+            receiving_inf_id = #{productOrderEntity.receivingInfId},
+            leave_word = #{productOrderEntity.leaveWord},
+            submit_time = NOW(),
+            product_order_state = 1
+        where product_order_number = #{productOrderEntity.productOrderNumber}
+        ;
+        delete from product_cart where product_cart_id in
+        (select product_cart_id from product_order where product_order_number = #{productOrderEntity.productOrderNumber})
+    </update>
+
+    <update id="paidOrderUpdate">
+        update product_order set
+        payment = 1,
+        payment_time = NOW(),
+        product_order_state = 2
+        where product_order_number = #{productOrderNumber}
+    </update>
+
+    <delete id="submitOrderDelete">
+        delete from product_order where product_order_id in
+        <foreach collection="productOrderEntity.productOrderIds" item="productOrderIds" open="(" separator="," close=")">
+            #{productOrderIds}
+        </foreach>
+    </delete>
+</mapper>

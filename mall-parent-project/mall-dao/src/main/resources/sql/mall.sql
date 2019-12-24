@@ -146,8 +146,8 @@ CREATE TABLE product_inf(
 INSERT INTO product_inf(brand_id, category_id, sidebar_category_id, hot_sale, product_name, product_describe, product_price, product_sales, product_status) VALUES
 (1,12,8,0,'远行客登山包双肩男户外背包40L50L徒步旅行包60升','',268.00,1,1),
 (1,13,9,0,'Topsky户外高帮登山鞋男鞋运动徒步爬山鞋防泼水登山靴旅游骑行鞋','玩转户外 攀山涉水 防水袜套 护踝高帮设计',159.00,2,1),
-(2,25,10,1,'德芙礼盒装丝滑牛奶纯黑白夹心巧克力3碗排块送女友小零食喜糖果','热销600万碗 多种组合可选 纵享丝滑',89.97,3,1),
-(3,24,0,1,'Huawei/华为P30 Pro手机官方旗舰店曲面屏麒麟980智能商务手机mate20x5g正版','直降500 再享优惠200元 6期免息 延保2年',4899.00,4,1),
+(2,25,0,1,'德芙礼盒装丝滑牛奶纯黑白夹心巧克力3碗排块送女友小零食喜糖果','热销600万碗 多种组合可选 纵享丝滑',89.97,3,1),
+(3,24,10,1,'Huawei/华为P30 Pro手机官方旗舰店曲面屏麒麟980智能商务手机mate20x5g正版','直降500 再享优惠200元 6期免息 延保2年',4899.00,4,1),
 (4,22,11,1,'联想ThinkBook 14/15 .6英寸十代酷睿i5/i7独显轻薄便携','金属机身 轻薄高颜值 读秒开机',4699,5,1)
 DROP TABLE
 IF
@@ -237,7 +237,7 @@ CREATE TABLE product_cart(
 	product_cart_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '购物车ID',
   customer_inf_id INT COMMENT '用户ID',
 	product_id INT COMMENT '商品ID',
-	product_cart_num INT COMMENT '加入购物车商品数量',
+	product_cart_num INT COMMENT '商品数量',
 	add_time DATETIME COMMENT '加入购物车时间'
 )ENGINE=innodb COMMENT '购物车表';
 INSERT INTO product_cart(customer_inf_id, product_id, product_cart_num, add_time) VALUES
@@ -250,6 +250,97 @@ INSERT INTO product_cart(customer_inf_id, product_id, product_cart_num, add_time
 (5,5,5,NOW())
 
 
+
+
+DROP TABLE
+IF
+	EXISTS label_inf;
+CREATE TABLE label_inf(
+	label_inf_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '收货标签id',
+  customer_inf_id INT COMMENT '用户ID',
+	label_inf_name VARCHAR(6) COMMENT '收货标签名称'
+)ENGINE=innodb COMMENT '收货标签表';
+
+INSERT INTO label_inf
+									(customer_inf_id, 
+									label_inf_name)
+VALUES
+			(1, '我家'),
+			(1, '我弟弟家');
+
+DROP TABLE
+IF
+	EXISTS receiving_inf;
+CREATE TABLE receiving_inf(
+	receiving_inf_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '收获信息ID',
+  customer_inf_id INT COMMENT '用户ID',
+  receiving_inf_name VARCHAR(10) COMMENT '收货人姓名',
+  receiving_inf_phone VARCHAR(11) COMMENT '收货人手机号',
+	receiving_inf_province VARCHAR(10) COMMENT '收货人省份/自治区',
+	receiving_inf_city VARCHAR(10) COMMENT '收货人城市/地区/自治州',
+	receiving_inf_district VARCHAR(10) COMMENT '收货人区/县',
+	receiving_inf_address VARCHAR(100) COMMENT '收货人详细地址',
+	postal_code VARCHAR(6) COMMENT '收货人邮政编码'
+)ENGINE=innodb COMMENT '收货信息表';
+INSERT INTO receiving_inf
+									(customer_inf_id, 
+									receiving_inf_name, 
+									receiving_inf_phone,
+									receiving_inf_province,
+									receiving_inf_city,
+									receiving_inf_district,
+									receiving_inf_address,
+									postal_code)
+VALUES
+			(1, '李一', '18128364756', '江西', '吉安市', '井冈山市', '鹅岭乡白石街88号', '343600'),
+			(1, '李一弟弟', '18493857463', '江西', '吉安市', '井冈山市', '鹅岭乡白石街89号', '343600')
+
+DROP TABLE
+IF
+	EXISTS label_receiving_relevance;
+CREATE TABLE label_receiving_relevance(
+	relevance_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '关联ID',
+	receiving_inf_id INT COMMENT '收货信息ID',
+	label_inf_id INT COMMENT '收货标签id'
+)ENGINE=innodb COMMENT '收货信息收获标签关联表';
+
+INSERT INTO label_receiving_relevance
+									(label_inf_id, 
+									receiving_inf_id)
+VALUES
+			(1, 1),
+			(2, 2);
+
+
+DROP TABLE
+IF
+	EXISTS product_order;
+CREATE TABLE product_order(
+	product_order_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '订单ID',
+  customer_inf_id INT COMMENT '用户ID',
+	receiving_inf_id INT COMMENT '收获信息ID',
+  product_id INT COMMENT '商品ID',
+	product_cart_num INT COMMENT '商品数量',
+	payment INT DEFAULT 0 COMMENT '支付方式：0未支付，1支付宝，2微信，3现金',
+	submit_time DATETIME COMMENT '提交订单时间',
+	payment_time DATETIME COMMENT '付款时间',
+	product_order_state INT DEFAULT 1 COMMENT '订单状态：1待付款，2待收货，3已收货',
+	product_order_number VARCHAR(18) COMMENT '订单编号'
+)ENGINE=innodb COMMENT '商品订单表';
+
+INSERT INTO product_order
+									(customer_inf_id, 
+									receiving_inf_id, 
+									product_id,
+									product_cart_num,
+									payment,
+									submit_time,
+									payment_time,
+									product_order_state,
+									product_order_number)
+VALUES
+			(1, 1, 1, 1, 0, '2019-12-19 08:40:40', null, 1, '283948566858674324')
+								
 
 
 

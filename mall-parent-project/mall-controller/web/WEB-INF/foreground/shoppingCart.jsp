@@ -23,7 +23,7 @@
     <br/>
     <h3><li><a href="/foreground/home/" style="text-decoration:none;"><p>首页</p></a></li></h3><br/>
     <h3><li><a href="javascript:;" onclick="self.location=document.referrer;" style="text-decoration:none;"><p>返回</p></a></li></h3><br/>
-    <h3><li><a href="#" style="text-decoration:none;"><p>我的订单</p></a></li></h3>
+    <h3><li><a href="/foreground/product/order/list" style="text-decoration:none;"><p>我的订单</p></a></li></h3>
 </ul>
 <section class="cartMain">
     <div class="cartMain_hd">
@@ -298,7 +298,6 @@
             </div>
         </div>
     </span>
-    <script src="/static/home/shopping-cart/js/productCart.js?v=<%= System.currentTimeMillis()%>"></script>
     <!--底部-->
     <div class="bar-wrapper">
         <li class="list_chk" style="float:left; list-style-type: none; position: fixed; margin: 20px auto">
@@ -311,7 +310,7 @@
             <div class="batchDeleteBtn" style="float: left"><a href="javascript:;">批量移除</a></div>
             <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
             <div class="totalMoney">共计: <strong class="total_text">￥0.00</strong></div>
-            <div class="calBtn"><a href="javascript:;">结算</a></div>
+            <div id="settleAccountDIV" class="calBtn"><a >结算</a></div>
         </div>
     </div>
 </section>
@@ -322,6 +321,7 @@
     <p>您确认要删除该宝贝吗？</p>
     <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
 </section>
+<script src="/static/home/shopping-cart/js/productCart.js?v=<%= System.currentTimeMillis()%>"></script>
 <script src="/static/home/shopping-cart/js/carts.js?v=<%= System.currentTimeMillis()%>"></script>
 </body>
 </html>

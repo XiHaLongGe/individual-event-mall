@@ -28,6 +28,8 @@ public interface CustomerLoginService {
 
     Integer getCount();
 
+    CustomerLoginEntity getByAccount(String loginAccount);
+
     boolean update(CustomerLoginEntity customerLoginEntity);
 
     boolean delete(Integer id);

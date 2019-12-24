@@ -39,4 +39,10 @@ public class ReceivingInfServiceImpl implements ReceivingInfService {
     public boolean receivingInfDelete(ReceivingInfEntity receivingInfEntity) {
         return dao.receivingInfDelete(receivingInfEntity) > 0;
     }
+
+    @Transactional(rollbackFor = Throwable.class)
+    @Override
+    public boolean receivingInfUpdate(ReceivingInfEntity receivingInfEntity) {
+        return dao.receivingInfUpdate(receivingInfEntity) > 0;
+    }
 }
