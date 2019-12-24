@@ -16,103 +16,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/static/home/uiduck/css/uiduck.css" type="text/css" rel="stylesheet">
     <link href="/static/home/uiduck/css/table.css" type="text/css" rel="stylesheet">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 </head>
 <body>
+<input id="customerInfId" hidden value="${customerInfId}" >
     <div style="width: 80%;padding: 0 10%;padding-bottom: 200px;">
         <div id="ud-top" style="display: block;">
-            <%--<h3>当前设置为微信字段，通过ud-keyWord属性指定相关列的key</h3>--%>
             <input id="search" ud-keyWord="productName" class="uiduck-input" /><button class="uiduck-btn" onClick=setData()>搜索</button>
         </div>
         <div id="table">
             <table id="uiduck_1577158080757" class="uiduck-table">
+                <thead>
+                    <tr>
+                        <th class="" style="font-weight: bold">序号</th>
+                        <th class="" style="font-weight:bold">商品名称</th>
+                        <th class="" style="font-weight:bold">商品价格</th>
+                        <th class="" style="width:65px;font-weight:bold">商品图片</th>
+                        <th class="" style="font-weight:bold">订单编号</th>
+                        <th class="" style="font-weight:bold">支付方式</th>
+                        <th class="" style="font-weight:bold">订单状态</th>
+                        <th class="" style="width:100px">操作</th>
+                    </tr>
+                </thead>
                 <tbody>
-                <tr>
-                    <th class="" style="font-weight: bold">序号</th>
-                    <th class="" style="font-weight:bold">商品名称</th>
-                    <th class="" style="font-weight:bold">商品价格</th>
-                    <th class="" style="width:65px;font-weight:bold">商品图片</th>
-                    <th class="" style="font-weight:bold">订单编号</th>
-                    <th class="" style="font-weight:bold">支付方式</th>
-                    <th class="" style="font-weight:bold">订单状态</th>
-                    <th class="" style="width:100px">操作</th>
-                </tr>
-                <tr id="ud-tr-0" ud-tr-num="0" class="uiduck_tr " style="visibility: visible;">
-                    <td class="">1</td>
-                    <td class="">
-                        <a style="font-weight: 900;color:#E6A23C;"></a>远行客登山包双肩男户外背包40L50L徒步旅行包60升</td>
-                    <td class="">268</td>
-                    <td class=""><img style="width:65px;height:65px" src="/static/home/images/登山包.jpg"></td>
-                    <td class="">283948566858674324</td>
-                    <td class="">未支付</td>
-                    <td class="">待付款</td>
-                    <td class="style='width:100px'">
-                        <div ud-index="0">
-                            <button class="uiduck-btn" proid="1">付款</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="ud-tr-1" ud-tr-num="1" class="uiduck_tr " style="visibility: visible;">
-                    <td class="">2</td>
-                    <td class="">
-                        <a style="font-weight:1000;color:#E6A23C;"></a>远行客登山包双肩男户外背包40L50L徒步旅行包60升</td>
-                    <td class="">268</td>
-                    <td class=""><img style="width:65px;height:65px" src="/static/home/images/登山包.jpg"></td>
-                    <td class="">349115002091446658</td>
-                    <td class="">未支付</td>
-                    <td class="">待收货</td>
-                    <td class="style='width:100px'">
-                        <div ud-index="1">
-                            <button class="uiduck-btn" proid="1">付款</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="ud-tr-2" ud-tr-num="2" class="uiduck_tr " style="visibility: visible;">
-                    <td class="">3</td>
-                    <td class="">
-                        <a style="font-weight:1000;color:#E6A23C;"></a>远行客登山包双肩男户外背包40L50L徒步旅行包60升</td>
-                    <td class="">268</td>
-                    <td class=""><img style="width:65px;height:65px" src="/static/home/images/登山包.jpg"></td>
-                    <td class="">389171090388108452</td>
-                    <td class="">未支付</td>
-                    <td class="">待收货</td>
-                    <td class="style='width:100px'">
-                        <div ud-index="2">
-                            <button class="uiduck-btn" proid="1">付款</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="ud-tr-3" ud-tr-num="3" class="uiduck_tr " style="visibility: visible;">
-                    <td class="">4</td>
-                    <td class="">
-                        <a style="font-weight:1000;color:#E6A23C;"></a>远行客登山包双肩男户外背包40L50L徒步旅行包60升</td>
-                    <td class="">268</td>
-                    <td class=""><img style="width:65px;height:65px" src="/static/home/images/登山包.jpg"></td>
-                    <td class="">575212468560357515</td>
-                    <td class="">未支付</td>
-                    <td class="">待付款</td>
-                    <td class="style='width:100px'">
-                        <div ud-index="3">
-                            <button class="uiduck-btn" proid="1">付款</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="ud-tr-4" ud-tr-num="4" class="uiduck_tr " style="visibility: visible;">
-                    <td class="">5</td>
-                    <td class="">
-                        <a style="font-weight:1000;color:#E6A23C;"></a>远行客登山包双肩男户外背包40L50L徒步旅行包60升</td>
-                    <td class="">268</td>
-                    <td class=""><img style="width:65px;height:65px" src="/static/home/images/登山包.jpg"></td>
-                    <td class="">025668867302484473</td>
-                    <td class="">未支付</td>
-                    <td class="">待付款</td>
-                    <td class="style='width:100px'">
-                        <div ud-index="4">
-                            <button class="uiduck-btn" proid="1">付款</button>
-                        </div>
-                    </td>
-                </tr>
+
                 </tbody>
             </table>
+            <script src="/static/home/uiduck/js/order_load.js?v=<%= System.currentTimeMillis()%>"> </script>
             <br>
             <%--<div class="uiduck-page noselect">
                 <a class="uiduck-page-disable">首页</a>
@@ -144,7 +74,6 @@
         </div>
     </div>
 </body>
-<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script language="Javascript" src="/static/home/uiduck/js/json2.js"></script>
 <script language="Javascript" src="/static/home/uiduck/js/uiduck.js"></script>
 </html>

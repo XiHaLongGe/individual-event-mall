@@ -1,6 +1,7 @@
 package com.nf.mall.service.impl;
 
 import com.nf.mall.config.AppConfig;
+import com.nf.mall.entity.ProductOrderEntity;
 import com.nf.mall.service.port.ProductOrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,5 +19,12 @@ public class ProductOrderServiceImplTest {
     @Test
     public void getByProductOrderNumber() {
         System.out.println(service.getByProductOrderNumber("575212468560357515", 1));
+    }
+
+    @Test
+    public void getByCustomerId() {
+        for (ProductOrderEntity productOrderEntity : service.getByCustomerId(ProductOrderEntity.newBuilder().customerInfId(1).build())) {
+            System.out.println(productOrderEntity);
+        }
     }
 }

@@ -49,7 +49,7 @@ public class ProductOrderController {
     @RequestMapping("/customer/list")
     @ResponseBody
     public ResponseVO productOrderList(@RequestBody ProductOrderEntity productOrderEntity){
-        return ResponseVO.newBuilder().code("200").msg("根据订单编号查询订单表数据").data(productOrderService.getByCustomerId(productOrderEntity)).build();
+        return ResponseVO.newBuilder().code("200").msg("根据用户id查询订单表数据").data(productOrderService.getByCustomerId(productOrderEntity)).build();
     }
 
     @RequestMapping("/productOrderNumber/list")

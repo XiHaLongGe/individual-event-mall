@@ -17,17 +17,17 @@ CREATE TABLE customer_login (
 ) COMMENT '用户登录信息表';
 -- 密码默认六个1
 INSERT INTO customer_login(login_account, login_name, login_password, activate_code, user_stats, creation_time) VALUES
-('18546320231', 'xiha1', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('28546320232', 'xiha2', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('38546320233', 'xiha3', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('48546320234', 'xiha4', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('58546320235', 'xiha5', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('68546320236', 'xiha6', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('78546320237', 'xiha7', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('87546320238', 'xiha8', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('828546320239', 'xiha9', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('98546320230', 'xiha10', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
-('108546320211', 'xiha11', '9db06bcff9248837f86d1a6bcf41c9e7', '42fa4af762b843dca0393605a1feba30', 1, NOW())
+('18546320231', 'xiha1', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('28546320232', 'xiha2', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('38546320233', 'xiha3', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('48546320234', 'xiha4', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('58546320235', 'xiha5', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('68546320236', 'xiha6', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('78546320237', 'xiha7', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('87546320238', 'xiha8', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('828546320239', 'xiha9', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('98546320230', 'xiha10', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW()),
+('108546320211', 'xiha11', '96e79218965eb72c92a549dd5a330112', '42fa4af762b843dca0393605a1feba30', 1, NOW())
 DROP TABLE
 IF
 	EXISTS customer_inf;
@@ -40,6 +40,7 @@ CREATE TABLE customer_inf (
 	customer_inf_phone VARCHAR ( 20 ) COMMENT '用户手机号',
 	customer_inf_email VARCHAR ( 20 ) COMMENT '用户邮箱'
 ) COMMENT '用户个人信息表';
+
 INSERT INTO customer_inf(customer_id, customer_inf_name, customer_inf_gender, customer_inf_card, customer_inf_phone, customer_inf_email) VALUES
 (1, '李一', 1, '362432201804673847', '18128364756', '1612364756@qq.com'),
 (2, '李二', 0, '362432201704673847', '18228364756', '1627064756@qq.com'),
@@ -251,7 +252,6 @@ INSERT INTO product_cart(customer_inf_id, product_id, product_cart_num, add_time
 
 
 
-
 DROP TABLE
 IF
 	EXISTS label_inf;
@@ -267,6 +267,9 @@ INSERT INTO label_inf
 VALUES
 			(1, '我家'),
 			(1, '我弟弟家');
+			
+			
+
 
 DROP TABLE
 IF
@@ -311,35 +314,36 @@ VALUES
 			(1, 1),
 			(2, 2);
 
-
 DROP TABLE
 IF
 	EXISTS product_order;
 CREATE TABLE product_order(
 	product_order_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '订单ID',
   customer_inf_id INT COMMENT '用户ID',
-	receiving_inf_id INT COMMENT '收获信息ID',
+	receiving_inf_id INT COMMENT '收货信息ID',
   product_id INT COMMENT '商品ID',
-	product_cart_num INT COMMENT '商品数量',
+  product_cart_id INT COMMENT '购物车ID',
+	leave_word VARCHAR(200) COMMENT '用户留言',
+	product_num INT COMMENT '商品数量',
 	payment INT DEFAULT 0 COMMENT '支付方式：0未支付，1支付宝，2微信，3现金',
 	submit_time DATETIME COMMENT '提交订单时间',
 	payment_time DATETIME COMMENT '付款时间',
 	product_order_state INT DEFAULT 1 COMMENT '订单状态：1待付款，2待收货，3已收货',
 	product_order_number VARCHAR(18) COMMENT '订单编号'
 )ENGINE=innodb COMMENT '商品订单表';
-
 INSERT INTO product_order
 									(customer_inf_id, 
 									receiving_inf_id, 
 									product_id,
-									product_cart_num,
+									leave_word,
+									product_num,
 									payment,
 									submit_time,
 									payment_time,
 									product_order_state,
 									product_order_number)
 VALUES
-			(1, 1, 1, 1, 0, '2019-12-19 08:40:40', null, 1, '283948566858674324')
+			(1, 1, 1, '发货速度要快哦！！！', 1, 0, '2019-12-19 08:40:40', null, 1, '283948566858674324')
 								
 
 
