@@ -14,6 +14,7 @@ import java.util.List;
 public interface ProductOrderDao {
     List<ProductOrderEntity> getByCustomerId(@Param("productOrderEntity") ProductOrderEntity productOrderEntity);
     List<ProductOrderEntity> getByProductOrderNumber(@Param("productOrderNumber") String productOrderNumber, @Param("customerInfId") Integer customerInfId);
+    List<ProductOrderEntity> getPageList(@Param("customerInfId") Integer customerInfId,@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize);
     Integer productOrderInsert(@Param("productOrderEntity") ProductOrderEntity productOrderEntity);
     Integer productOrderBatchInsert(@Param("productOrderEntity") List<ProductOrderEntity> productOrderEntity);
     Integer submitOrderUpdate(@Param("productOrderEntity") ProductOrderEntity productOrderEntity);

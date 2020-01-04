@@ -101,6 +101,33 @@
                 and proOrder.product_order_number = #{productOrderNumber}
                 and picInf.picture_type_id = 4
     </select>
+
+    <select id="getPageList" resultMap="productOrderResultMap">
+        select
+        proOrder.product_order_id,
+        <include refid="proOrderParam"/>,
+        proInf.product_name as productName,
+        proInf.product_price as productPrice,
+        picInf.picture_inf_url as pictureInfUrl,
+        recinf.receiving_inf_name as receivingInfName,
+        recinf.receiving_inf_phone as receivingInfPhone,
+        recinf.receiving_inf_province as receivingInfProvince,
+        recinf.receiving_inf_city as receivingInfCity,
+        recinf.receiving_inf_district as receivingInfDistrict,
+        recinf.receiving_inf_address as receivingInfAddress
+        from product_order proOrder join product_inf proInf
+        on proOrder.product_id = proInf.product_id
+        join picture_inf picInf
+        on picInf.product_id = proInf.product_id
+        left join receiving_inf recinf
+        on proOrder.receiving_inf_id = recinf.receiving_inf_id
+        where proOrder.customer_inf_id = #{customerInfId}
+        and picInf.picture_type_id = 4
+        order by proOrder.product_order_id
+    </select>
+
+
+
     <insert id="productOrderInsert">
         insert into product_order(<include refid="productOrder"/>) values
         (

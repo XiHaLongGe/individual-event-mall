@@ -1,5 +1,6 @@
 package com.nf.mall.controller.fe;
 
+import com.github.pagehelper.PageInfo;
 import com.nf.mall.entity.ProductOrderEntity;
 import com.nf.mall.service.port.ProductOrderService;
 import com.nf.mall.util.RandomCodeUtil;
@@ -7,10 +8,7 @@ import com.nf.mall.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -50,6 +48,12 @@ public class ProductOrderController {
     @ResponseBody
     public ResponseVO productOrderList(@RequestBody ProductOrderEntity productOrderEntity){
         return ResponseVO.newBuilder().code("200").msg("根据用户id查询订单表数据").data(productOrderService.getByCustomerId(productOrderEntity)).build();
+    }
+
+    @RequestMapping("/customer/page/list")
+    @ResponseBody
+    public ResponseVO productOrderPagList(Integer customerInfId, Integer pageNum, Integer pageSize){
+        return ResponseVO.newBuilder().code("200").msg("根据用户id查询订单表数据,并返回分页后的数据").data(new PageInfo(productOrderService.getPageList(customerInfId, pageNum, pageSize))).build();
     }
 
     @RequestMapping("/productOrderNumber/list")

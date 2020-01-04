@@ -14,6 +14,7 @@ import java.util.List;
 public interface ProductOrderService {
     List<ProductOrderEntity> getByCustomerId(ProductOrderEntity productOrderEntity);
     List<ProductOrderEntity> getByProductOrderNumber(String productOrderNumber, Integer customerInfId);
+    List<ProductOrderEntity> getPageList(Integer customerInfId, Integer pageNum, Integer pageSize);
     boolean productOrderInsert(ProductOrderEntity productOrderEntity);
     boolean productOrderBatchInsert(List<ProductOrderEntity> productOrderEntity);
     boolean submitOrderUpdate(ProductOrderEntity productOrderEntity);

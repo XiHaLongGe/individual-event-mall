@@ -27,4 +27,11 @@ public class ProductOrderServiceImplTest {
             System.out.println(productOrderEntity);
         }
     }
+
+    @Test
+    public void getPageList() {
+        for (ProductOrderEntity productOrderEntity : service.getPageList(1, 2, 1)) {
+            System.out.println(productOrderEntity);
+        }
+    }
 }

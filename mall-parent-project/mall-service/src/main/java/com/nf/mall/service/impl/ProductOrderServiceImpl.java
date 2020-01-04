@@ -31,6 +31,11 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     }
 
     @Override
+    public List<ProductOrderEntity> getPageList(Integer customerInfId, Integer pageNum, Integer pageSize) {
+        return dao.getPageList(customerInfId, pageNum, pageSize);
+    }
+
+    @Override
     public boolean productOrderInsert(ProductOrderEntity productOrderEntity) {
         return dao.productOrderInsert(productOrderEntity) > 0;
     }

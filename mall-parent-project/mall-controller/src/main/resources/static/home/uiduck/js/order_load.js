@@ -1,4 +1,4 @@
-orderDataLoad();
+/*orderDataLoad();
 function orderDataLoad(){
     var resultValue = "";
     var resultIndex = 0;
@@ -48,4 +48,51 @@ function orderDataLoad(){
         }
     })
     $("#uiduck_1577158080757").children("tbody").empty().append(resultValue);
-}
+}*/
+
+
+
+
+
+/*vue写法*/
+var vue = new Vue({
+    el:"#vueParent",
+    data:{
+        pageInfo:[],
+        pageNum:1,
+        pageSize:1
+    },
+    /*初始化调用*/
+    mounted:function(){
+        this.getAll();
+    },
+    /*监听器*/
+    watch:{
+        pageNum: function(){
+            this.getAll();
+        },
+        pageSize: function(){
+            this.getAll();
+        }
+    },
+    methods:{
+        getAll:function(){
+            var vue_this = this;
+            $.ajax({
+                url:"/foreground/product/order/customer/page/list",
+                type:"GET",
+                data:{customerInfId: $("#customerInfId").val(), pageNum: vue_this.pageNum, pageSize: vue_this.pageSize},
+                dataType:"JSON",
+                success:function(data){
+                    vue_this.pageInfo = data.data;
+                }
+            })
+        },
+        getParentVal:function(){
+            return $("#skipPageNum").val();
+        }
+    }
+})
+
+
+
